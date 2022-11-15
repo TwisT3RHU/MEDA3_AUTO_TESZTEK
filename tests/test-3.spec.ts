@@ -1,0 +1,248 @@
+import { test, expect } from '@playwright/test';
+
+import { datum, loginout, medaurl, randomname } from './globalis';
+import { misc, user } from './core.json';
+
+const testname = randomname("geriautcsp");
+
+console.log(testname); // tudjuk már, hogy mit adott meg a script :D
+
+test.beforeEach(async ({ page }) => { // gyakorlatilag ez a precondition; legyen bejelentkezve
+
+  loginout(page, true);
+  await page.getByText('►Hozzáférések').click();
+  await page.getByText('Csoportok').click();
+  await expect(page).toHaveURL(medaurl('#!grps'));
+
+});
+
+test.afterEach(async ({ page }) => { loginout(page, false); });
+
+test.describe.serial('egy csoportot érintő tesztek', () => {
+
+  test('csoport létrehozása', async ({ page }) => {
+
+    await page.getByRole('button', { name: ' Új' }).click();
+    await page.getByRole('textbox', { name: 'Név' }).click();
+    await page.getByRole('textbox', { name: 'Név' }).fill(testname);
+    await page.getByRole('textbox', { name: 'Név' }).press('Tab');
+    await page.getByRole('textbox', { name: 'Információ' }).click();
+    await page.getByRole('textbox', { name: 'Információ' }).fill(datum() + ' playwright teszt ' + testname);
+    await page.getByRole('button', { name: ' Mentés' }).click();
+    console.log(testname + " csoport létrehozva");
+
+  });
+
+  test('csoport jogosultságainak beállítása', async ({ page }) => {
+
+    if (misc.branch == "gamma")
+    {
+      await page.getByRole('cell', { name: testname }).click();
+      await page.getByRole('combobox').locator('div').click();
+      await page.getByText('General.Admin').click();
+      await page.getByRole('button', { name: ' Hozzáad' }).nth(1).click();
+      await page.getByRole('combobox').locator('div').click();
+      await page.getByText('Client.Menu').click();
+      await page.getByRole('row', { name: 'Alkalmazás' }).getByRole('combobox').locator('div').click();
+      await page.getByRole('textbox', { name: 'Alkalmazás' }).fill('medalyse3app');
+      await page.getByRole('textbox', { name: 'Alkalmazás' }).press(' ');
+      await page.getByRole('textbox', { name: 'Alkalmazás' }).press('Backspace');
+      await page.getByText('medalyse3app').click();
+      await page.getByText('Főmenü').click();
+      await page.getByRole('cell', { name: ' Főmenü' }).locator('span').click();
+      //for (let i = 0; i < 5; i++) await page.getByText('Menü címe').press('PageDown');
+      await page.getByText('Tesztriportok').click();
+      await page.getByRole('button', { name: ' Hozzáad' }).nth(1).click();
+      await page.getByRole('row', { name: 'Jogosultság' }).getByRole('combobox').locator('div').click();
+      await page.locator('td[role="listitem"]:has-text("Client.ExportRows")').click();
+      await page.getByRole('textbox', { name: 'Sorok száma' }).click();
+      await page.getByRole('textbox', { name: 'Sorok száma' }).fill('10');
+      await page.getByRole('row', { name: 'Riport' }).getByRole('combobox').locator('div').click();
+      await page.getByRole('textbox', { name: 'Riport' }).fill('KGERIC_EXPORT_TESZT_2020');
+      await page.getByRole('textbox', { name: 'Riport' }).press(' ');
+      await page.getByRole('textbox', { name: 'Riport' }).press('Backspace');
+      await page.getByText('KGERIC_EXPORT_TESZT_2020').click();
+      await page.getByRole('row', { name: 'Lekérdezés' }).getByRole('combobox').locator('div').click();
+      await page.getByText('QUERY_FOR_ROWS_EXPORT').click();
+      await page.getByRole('button', { name: ' Hozzáad' }).nth(1).click();
+      await page.getByRole('row', { name: 'Jogosultság' }).getByRole('combobox').locator('div').click();
+      await page.locator('td[role="listitem"]:has-text("Client.ExportTable")').click();
+      await page.getByRole('row', { name: 'Lekérdezés' }).getByRole('combobox').locator('div').click();
+      await page.getByText('QUERY_FOR_TABLE_EXPORT').click();
+      await page.getByRole('button', { name: ' Hozzáad' }).nth(1).click();
+      await page.getByRole('row', { name: 'Jogosultság' }).getByRole('combobox').locator('div').click();
+      await page.getByText('Client.ExportDiagram').click();
+      await page.getByRole('row', { name: 'Riport' }).getByRole('combobox').locator('div').click();
+      //await page.getByRole('textbox', { name: 'Riport' }).dblclick();
+      await page.getByRole('textbox', { name: 'Riport' }).fill('KGERIC_ROUT_MEGJELENESEK');
+      await page.getByRole('textbox', { name: 'Riport' }).press(' ');
+      await page.getByRole('textbox', { name: 'Riport' }).press('Backspace');
+      await page.locator('td[role="listitem"]:has-text("KGERIC_ROUT_MEGJELENESEK")').click();
+      await page.getByRole('textbox', { name: 'Lekérdezés' }).click();
+      await page.getByRole('row', { name: 'Lekérdezés' }).getByRole('combobox').locator('div').click();
+      await page.getByRole('textbox', { name: 'Lekérdezés' }).fill('DIAGRAM_BOXPLOT');
+      await page.getByRole('textbox', { name: 'Lekérdezés' }).press(' ');
+      await page.getByRole('textbox', { name: 'Lekérdezés' }).press('Backspace');
+      await page.getByText('DIAGRAM_BOXPLOT').click();
+      await page.getByRole('button', { name: ' Hozzáad' }).nth(1).click();
+      await page.getByRole('row', { name: 'Jogosultság' }).getByRole('combobox').locator('div').click();
+      await page.getByText('Client.DisableFld').click();
+      await page.getByRole('row', { name: 'Mező' }).getByRole('combobox').locator('div').click();
+      await page.locator('td[role="listitem"]:has-text("ID")').click();
+      await page.getByRole('button', { name: ' Hozzáad' }).nth(1).click();
+      await page.getByRole('row', { name: 'Riport' }).getByRole('combobox').locator('div').click();
+      await page.getByText('KGERIC_ROUT_SZINKRON_TESZT').click();
+      await page.getByRole('row', { name: 'Jogosultság' }).getByRole('combobox').locator('div').click();
+      await page.getByText('Client.DisableButton').click();
+      //await page.getByRole('textbox', { name: 'Riport' }).dblclick();
+      await page.getByRole('textbox', { name: 'Riport' }).fill('KGERIC_GOMBOK_TESZT');
+      await page.getByRole('textbox', { name: 'Riport' }).press(' ');
+      await page.getByRole('textbox', { name: 'Riport' }).press('Backspace');
+      await page.getByText('KGERIC_GOMBOK_TESZT').click();
+      //await page.getByRole('row', { name: 'Dinamikus gomb' }).getByRole('combobox').locator('div').click();
+      await page.getByRole('row', { name: 'Lekérdezés' }).getByRole('combobox').locator('div').click();
+      await page.getByRole('textbox', { name: 'Lekérdezés' }).fill('JARMUVEK');
+      await page.getByRole('textbox', { name: 'Lekérdezés' }).press(' ');
+      await page.getByRole('textbox', { name: 'Lekérdezés' }).press('Backspace');
+      await page.getByText('JARMUVEK').click();
+      await page.getByRole('row', { name: 'Dinamikus gomb' }).getByRole('combobox').locator('div').click();
+      await page.getByRole('textbox', { name: 'Dinamikus gomb' }).fill('docupdesc');
+      await page.getByRole('textbox', { name: 'Dinamikus gomb' }).press(' ');
+      await page.getByRole('textbox', { name: 'Dinamikus gomb' }).press('Backspace');
+      await page.getByText('docupdesc').click();
+      await page.getByRole('button', { name: ' Hozzáad' }).nth(1).click();
+      await page.getByRole('row', { name: 'Jogosultság' }).getByRole('combobox').locator('div').click();
+      await page.locator('td[role="listitem"]:has-text("Client.DisableSaves")').click();
+      await page.getByRole('row', { name: 'Alkalmazás' }).getByRole('combobox').locator('div').click();
+      await page.getByRole('textbox', { name: 'Alkalmazás' }).fill('medalyse3app');
+      await page.getByRole('textbox', { name: 'Alkalmazás' }).press(' ');
+      await page.getByRole('textbox', { name: 'Alkalmazás' }).press('Backspace');
+      await page.locator('span:has-text("medalyse3app")').click();
+      await page.getByRole('button', { name: ' Hozzáad' }).nth(1).click();
+      await page.getByRole('row', { name: 'Jogosultság' }).getByRole('combobox').locator('div').click();
+      await page.getByText('Client.DisableExternalControls').click();
+      await page.getByRole('row', { name: 'Riport' }).getByRole('combobox').locator('div').click();
+      await page.getByRole('textbox', { name: 'Riport' }).fill('KGERIC_GOMBOK_TESZT');
+      await page.getByRole('textbox', { name: 'Riport' }).press(' ');
+      await page.getByRole('textbox', { name: 'Riport' }).press('Backspace');
+      await page.locator('td[role="listitem"]:has-text("KGERIC_GOMBOK_TESZT")').click();
+      await page.getByRole('row', { name: 'Lekérdezés' }).getByRole('combobox').locator('div').click();
+      await page.getByRole('textbox', { name: 'Lekérdezés' }).fill('EVDARAB');
+      await page.getByRole('textbox', { name: 'Lekérdezés' }).press(' ');
+      await page.getByRole('textbox', { name: 'Lekérdezés' }).press('Backspace');
+      await page.getByText('EVDARAB').click();
+      await page.getByRole('row', { name: 'Dinamikus gomb' }).getByRole('combobox').locator('div').click();
+      await page.getByRole('textbox', { name: 'Dinamikus gomb' }).fill('floatingchart');
+      await page.getByRole('textbox', { name: 'Dinamikus gomb' }).press(' ');
+      await page.getByRole('textbox', { name: 'Dinamikus gomb' }).press('Backspace');
+      await page.getByText('floatingchart').click();
+      await page.getByRole('button', { name: ' Hozzáad' }).nth(1).click();
+      await page.getByRole('row', { name: 'Jogosultság' }).getByRole('combobox').locator('div').click();
+      await page.getByText('Survey.EnableKampany').click();
+      await page.getByRole('row', { name: 'Kérdőív' }).getByRole('combobox').locator('div').click();
+      await page.getByRole('row', { name: 'COVID-19' }).locator('td[role="listitem"]:has-text("COVID-19")').click();
+      await page.getByRole('row', { name: 'Kampány' }).getByRole('combobox').locator('div').click();
+      await page.getByText('2020.04.28').click();
+    }
+    else test.skip();
+
+  });
+
+  test('csoport módosítása', async ({ page }) => {
+
+    await page.getByRole('cell', { name: testname }).click();
+    await page.getByRole('textbox', { name: 'Információ' }).click();
+    await page.getByRole('textbox', { name: 'Információ' }).fill(datum() + ' playwright teszt_edited');
+    await page.getByRole('button', { name: ' Mentés' }).click();
+    console.log(testname + " leírás módosítva");
+
+  });
+
+  test('felhasználó hozzáadása a csoporthoz', async ({ page }) => {
+
+    await page.getByRole('cell', { name: testname }).click();
+    await page.locator('#gwt-uid-91').click();
+    await page.locator('#gwt-uid-91').fill(user.name);
+    await page.check('input[type=checkbox]:nth-child(1)');
+    expect(await page.isChecked('input[type=checkbox]:nth-child(1)')).toBeTruthy();
+    await page.getByRole('button', { name: ' Hozzáad' }).first().click();
+    console.log(user.name + " felhasználó hozzáadva a " + testname + " csoporthoz");
+
+  });
+
+  test('felhasználó eltávolítása a csoportból + megerősítő ablak', async ({ page }) => {
+
+    await page.getByRole('cell', { name: testname }).click();
+    await page.locator('#gwt-uid-91').click();
+    await page.locator('#gwt-uid-91').fill(user.name);
+    await page.check('input[type=checkbox]:nth-child(1)');
+    expect(await page.isChecked('input[type=checkbox]:nth-child(1)')).toBeTruthy();
+    await page.getByRole('button', { name: ' Eltávolít' }).first().click();
+    await page.getByRole('button', { name: 'Nem' }).click();
+    await page.getByRole('button', { name: ' Eltávolít' }).first().click();
+    await page.getByRole('button', { name: 'Igen' }).click();
+    console.log(user.name + " eltávolítva a " + testname + " csoportból");
+
+  });
+
+  test('csoport jogosultságainak törlése + megerősítő ablak', async ({ page }) => {
+
+    if (misc.branch == "gamma")
+    {
+      await page.getByRole('cell', { name: testname }).click();
+      await page.locator('.v-splitpanel-second-container > .v-splitpanel-horizontal > div > .v-splitpanel-second-container > div > div > div > .v-panel > .v-panel-content > .v-verticallayout > div > div > .v-grid > .v-grid-tablewrapper > table > .v-grid-header > .v-grid-row > th').first().click();
+      await page.getByRole('button', { name: ' Eltávolít' }).nth(1).click();
+      await page.getByRole('button', { name: 'Nem' }).click();
+      await page.getByRole('button', { name: ' Eltávolít' }).nth(1).click();
+      await page.getByRole('button', { name: 'Igen' }).click();
+      console.log(testname + " csoport jogosultságai törölve");
+    }
+    else test.skip();
+
+  });
+
+  test('csoport törlése + megerősítő ablak', async ({ page }) => {
+
+    await page.getByRole('cell', { name: testname }).click();
+    await page.getByRole('button', { name: ' Törlés' }).click();
+    await page.getByRole('button', { name: 'Nem' }).click();
+    await page.getByRole('button', { name: ' Törlés' }).click();
+    await page.getByRole('button', { name: 'Igen' }).click();
+    console.log(testname + " csoport törölve");
+
+  });
+
+});
+
+test.describe.serial(misc.bulkcount + ' csoportot érintő tesztek', () => {
+
+  test(misc.bulkcount + ' csoport létrehozása', async ({ page }) => {
+
+    for (let index = 1; index < misc.bulkcount + 1; index++) {
+      const randomname2 = testname + '_' + index;
+      await page.getByRole('button', { name: ' Új' }).click();
+      await page.getByRole('textbox', { name: 'Név' }).click();
+      await page.getByRole('textbox', { name: 'Név' }).fill(randomname2);
+      await page.getByRole('textbox', { name: 'Név' }).press('Tab');
+      await page.getByRole('textbox', { name: 'Információ' }).click();
+      await page.getByRole('textbox', { name: 'Információ' }).fill(datum() + ' playwright teszt ' + randomname2);
+      await page.getByRole('button', { name: ' Mentés' }).click();
+      console.log(randomname2 + " csoport létrehozva");
+      await page.getByRole('cell', { name: randomname2 }).click();
+    }
+
+  });
+
+  test(misc.bulkcount + ' csoport törlése', async ({ page }) => {
+
+    for (let index = 1; index < misc.bulkcount + 1; index++) {
+      const randomname2 = testname + '_' + index;
+      await page.getByRole('cell', { name: randomname2 }).click();
+      await page.getByRole('button', { name: ' Törlés' }).click();
+      await page.getByRole('button', { name: 'Igen' }).click();
+      console.log(randomname2 + " csoport törölve");
+    }
+
+  });
+
+});
