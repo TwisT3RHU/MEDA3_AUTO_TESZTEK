@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import { datum, loginout, medaurl, randomname } from './globalis';
+import { datum, login, medaurl, randomname } from './globalis';
 import { misc, user } from './core.json';
 
 const testname = randomname("geriautcsp");
