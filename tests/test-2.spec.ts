@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import { loginout, medaurl, randomname } from './globalis';
+import { login, logout, medaurl, randomname } from './globalis';
 import { misc, user } from './core.json';
 
 const testname = randomname("geriautusr");
@@ -10,14 +10,14 @@ console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => { // gyakorlatilag ez a precondition; legyen bejelentkezve
 
-  loginout(page, true);
+  login(page);
   await page.getByText('►Hozzáférések').click();
   await page.getByText('Felhasználók').click();
   await expect(page).toHaveURL(medaurl('#!usrs'));
 
 });
 
-test.afterEach(async ({ page }) => { loginout(page, false); });
+test.afterEach(async ({ page }) => { logout(page); });
 
 test.describe.serial('egy felhasználót érintő tesztek', () => {
 

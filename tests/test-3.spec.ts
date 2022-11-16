@@ -9,14 +9,14 @@ console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => { // gyakorlatilag ez a precondition; legyen bejelentkezve
 
-  loginout(page, true);
+  login(page);
   await page.getByText('►Hozzáférések').click();
   await page.getByText('Csoportok').click();
   await expect(page).toHaveURL(medaurl('#!grps'));
 
 });
 
-test.afterEach(async ({ page }) => { loginout(page, false); });
+test.afterEach(async ({ page }) => { logout(page); });
 
 test.describe.serial('egy csoportot érintő tesztek', () => {
 

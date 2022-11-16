@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test';
-import { loginout, medaurl } from './globalis';
+import { login, logout, medaurl } from './globalis';
 
 test.beforeEach(async ({ page }) => { // gyakorlatilag ez a precondition; legyen bejelentkezve
 
-  loginout(page, true);
+  login(page);
   await page.getByText('►Hozzáférések').click();
   await page.getByText('Szerverek').click();
   await expect(page).toHaveURL(medaurl('#!servers'));
 
 });
 
-test.afterEach(async ({ page }) => { loginout(page, false); });
+test.afterEach(async ({ page }) => { logout(page); });
 
 test.skip('kapcsolatok', async ({ page }) => {
 

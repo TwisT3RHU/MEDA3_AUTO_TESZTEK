@@ -60,16 +60,16 @@ export function datum() {
 
 // KI ÉS BE
 
-export async function loginout(page: any, inout: boolean) {
-    if (inout)
-    {
-        await page.goto(medaurl());
-        await page.getByLabel('Username or email').fill(user.name);
-        await page.getByLabel('Username or email').press('Tab');
-        await page.getByLabel('Password').fill(user.pass);
-        await page.getByLabel('Password').press('Enter');
-        await expect(page).toHaveURL(medaurl());
-        console.log("sikeres bejelentkezés: " + misc.branch + ": " + user.name + " - " + user.pass);
-    }
-    else await page.locator('span:has-text("Kilépés")').first().click();
+export async function login(page: any) {
+    await page.goto(medaurl());
+    await page.getByLabel('Username or email').fill(user.name);
+    await page.getByLabel('Username or email').press('Tab');
+    await page.getByLabel('Password').fill(user.pass);
+    await page.getByLabel('Password').press('Enter');
+    await expect(page).toHaveURL(medaurl());
+    console.log("sikeres bejelentkezés: " + misc.branch + ": " + user.name + " - " + user.pass);
+};
+
+export async function logout(page: any) {
+    await page.locator('span:has-text("Kilépés")').first().click();
 };
