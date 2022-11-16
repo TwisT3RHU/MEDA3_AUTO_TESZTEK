@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login, logout, medaurl } from './globalis';
+import { login, medaurl } from './globalis';
 
 test.beforeEach(async ({ page }) => { // gyakorlatilag ez a precondition; legyen bejelentkezve
 
@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => { // gyakorlatilag ez a precondition; legyen
 
 });
 
-test.afterEach(async ({ page }) => { logout(page); });
+test.afterEach(async ({ page }) => { await page.locator('span:has-text("kilépés")').first().click(); });
 
 test.skip('kapcsolatok', async ({ page }) => {
 

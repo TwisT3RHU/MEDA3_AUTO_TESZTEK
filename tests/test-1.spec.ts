@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import { login, logout, medaurl, randomname } from './globalis';
+import { login, medaurl, randomname } from './globalis';
 
 const testname = randomname("geriautpart");
 
@@ -15,7 +15,7 @@ test.beforeEach(async ({ page }) => { // gyakorlatilag ez a precondition; legyen
 
 });
 
-test.afterEach(async ({ page }) => { logout(page); });
+test.afterEach(async ({ page }) => { await page.locator('span:has-text("kilépés")').first().click(); });
 
 test.describe.serial('egy partnert érintő tesztek', () => {
 

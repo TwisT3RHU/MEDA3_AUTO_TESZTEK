@@ -69,7 +69,3 @@ export async function login(page: any) {
     await expect(page).toHaveURL(medaurl());
     console.log("sikeres bejelentkezés: " + misc.branch + ": " + user.name + " - " + user.pass);
 };
-
-export async function logout(page: any) {
-    await page.locator('span:has-text("Kilépés")').first().click();
-};
