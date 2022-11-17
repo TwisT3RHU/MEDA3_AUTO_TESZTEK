@@ -1,21 +1,21 @@
 import { test, expect } from '@playwright/test';
 
-import { login, medaurl } from './globalis';
+import { branch, login, medaurl } from './globalis';
 import { misc, user } from './core.json';
 
-const remotename = misc.branch_remote + '_autoteszt';
-const servername = misc.branch + '_autoteszt';
+const remotename = branch(true) + '_autoteszt';
+const servername = branch(false) + '_autoteszt';
 
 test.beforeEach(async ({ page }) => { // gyakorlatilag ez a precondition; legyen bejelentkezve
 
   login(page);
   await page.getByText('►Hozzáférések').click();
   await page.getByText('Szerverek').click();
-  await expect(page).toHaveURL(medaurl('#!servers'));
+  await expect(page).toHaveURL(medaurl(false, '#!servers'));
 
 });
 
-test.afterEach(async ({ page }) => { await page.locator('span:has-text("kilépés")').first().click(); });
+//test.afterEach(async ({ page }) => { await page.locator('span:has-text("kilépés")').first().click(); });
 
 test('új távoli szerver hozzáadása', async ({ page }) => {
 
@@ -23,12 +23,22 @@ test('új távoli szerver hozzáadása', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Név' }).click();
   await page.getByRole('textbox', { name: 'Név' }).fill(remotename);
   await page.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).click();
-  await page.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).fill(medaurl('remote', true));
-  
+  await page.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).fill(medaurl(true, 'remote'));
+  const context = page.context();
+  const page2 = await context.newPage();
+  await login(page2, true);
+  await page2.getByText('►Hozzáférések').click();
+  await page2.getByText('Szerverek').click();
+  await expect(page2).toHaveURL(medaurl(false, '#!servers'));
+  await page2.getByRole('button', { name: ' Új' }).click();
+  await page2.getByRole('textbox', { name: 'Név' }).click();
+  await page2.getByRole('textbox', { name: 'Név' }).fill(servername);
+  await page2.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).click();
+  await page2.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).fill(medaurl(false, 'local'));
 
 });
 
-test('test', async ({ page }) => {
+test.skip('test', async ({ page }) => {
 
   await page.getByRole('textbox', { name: 'Bejövő kapcsolat kód' }).click();
 

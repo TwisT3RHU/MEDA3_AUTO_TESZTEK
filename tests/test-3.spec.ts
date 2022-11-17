@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import { datum, login, medaurl, randomname } from './globalis';
+import { branch, datum, login, medaurl, randomname } from './globalis';
 import { misc, user } from './core.json';
 
 const testname = randomname("geriautcsp");
@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => { // gyakorlatilag ez a precondition; legyen
   login(page);
   await page.getByText('►Hozzáférések').click();
   await page.getByText('Csoportok').click();
-  await expect(page).toHaveURL(medaurl('#!grps'));
+  await expect(page).toHaveURL(medaurl(false, '#!grps'));
 
 });
 
@@ -35,7 +35,7 @@ test.describe.serial('egy csoportot érintő tesztek', () => {
 
   test('csoport jogosultságainak beállítása', async ({ page }) => {
 
-    if (misc.branch == "gamma")
+    if (branch() == "gamma")
     {
       await page.getByRole('cell', { name: testname }).click();
       await page.getByRole('combobox').locator('div').click();
@@ -187,7 +187,7 @@ test.describe.serial('egy csoportot érintő tesztek', () => {
 
   test('csoport jogosultságainak törlése + megerősítő ablak', async ({ page }) => {
 
-    if (misc.branch == "gamma")
+    if (branch() == "gamma")
     {
       await page.getByRole('cell', { name: testname }).click();
       await page.locator('.v-splitpanel-second-container > .v-splitpanel-horizontal > div > .v-splitpanel-second-container > div > div > div > .v-panel > .v-panel-content > .v-verticallayout > div > div > .v-grid > .v-grid-tablewrapper > table > .v-grid-header > .v-grid-row > th').first().click();

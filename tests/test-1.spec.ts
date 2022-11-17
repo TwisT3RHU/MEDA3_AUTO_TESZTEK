@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => { // gyakorlatilag ez a precondition; legyen
   login(page);
   await page.getByText('►Hozzáférések').click();
   await page.getByText('Partnerek').click();
-  await expect(page).toHaveURL(medaurl('#!partners'));
+  await expect(page).toHaveURL(medaurl(false, '#!partners'));
 
 });
 
