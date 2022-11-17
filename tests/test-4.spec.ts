@@ -24,17 +24,28 @@ test('új távoli szerver hozzáadása', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Név' }).fill(remotename);
   await page.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).click();
   await page.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).fill(medaurl(true, 'remote'));
+  let kimenokod = await page.getByRole('textbox', { name: 'Kimenő kapcsolat kód' }).inputValue();
+
   const context = page.context();
   const page2 = await context.newPage();
   await login(page2, true);
+
   await page2.getByText('►Hozzáférések').click();
   await page2.getByText('Szerverek').click();
-  await expect(page2).toHaveURL(medaurl(false, '#!servers'));
+  await expect(page2).toHaveURL(medaurl(true, '#!servers'));
+
   await page2.getByRole('button', { name: ' Új' }).click();
   await page2.getByRole('textbox', { name: 'Név' }).click();
   await page2.getByRole('textbox', { name: 'Név' }).fill(servername);
   await page2.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).click();
   await page2.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).fill(medaurl(false, 'local'));
+  await page2.getByRole('textbox', { name: 'Bejövő kapcsolat kód' }).fill(kimenokod);
+  let bejovokod = await page2.getByRole('textbox', { name: 'Kimenő kapcsolat kód' }).inputValue();
+
+  await page.getByRole('textbox', { name: 'Bejövő kapcsolat kód' }).fill(bejovokod);
+  
+  await page.getByRole('button', { name: ' Mentés' }).click();
+  await page2.getByRole('button', { name: ' Mentés' }).click();
 
 });
 
