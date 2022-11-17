@@ -1,5 +1,6 @@
 {
     "misc": {
+        "admin": true,
         "bulkcount": 2,
         "branch": "gamma",
         "branch_remote": "beta"

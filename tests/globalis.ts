@@ -25,22 +25,35 @@ function klienslink() {
     return "medalyse3app/";
 };
 
-export function remotelink() {
-    return klienslink() + "call";
-};
-
 function adminlink() {
     if (misc.branch == "alfa") return "admin/";
     else return "medalyse3admin/"; 
 };
 
 export function medaurl(menu?: string) {
+    let url = "";
+    if (misc.admin)
+    {
+        if (misc.branch != "alfa") url = medalink() + "app/" + adminlink();
+        else url = medalink() + adminlink();
+        if (menu == undefined) return url;
+        else return url + menu;
+    }
+    else
+    {
+        url = medalink() + "app/" + klienslink();
+        if (menu == undefined) return url;
+        else return url + menu;
+    };
+};
+
+/*export function medaurl(menu?: string) {
     let admin = "";
     if (misc.branch != "alfa") admin = medalink() + "app/" + adminlink();
     else admin = medalink() + adminlink();
     if (menu == undefined) return admin;
     else return admin + menu;
-};
+};*/
 
 // NÉV GENERÁLÁS
 
