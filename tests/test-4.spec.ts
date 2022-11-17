@@ -23,7 +23,8 @@ test('új távoli szerver hozzáadása', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Név' }).click();
   await page.getByRole('textbox', { name: 'Név' }).fill(remotename);
   await page.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).click();
-  await page.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).fill(medaurl('call'));
+  await page.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).fill(medaurl('remote', true));
+  
 
 });
 

@@ -34,25 +34,30 @@ function adminlink() {
     else return "medalyse3admin/"; 
 };
 
-export function medaurl(menu?: string) {
+export function medaurl(menu?: string, remote: boolean = false) {
     let url = "";
-    if (menu == "call")
+    if (menu == "remote")
     {
-        url = medalink(true) + "app/" + klienslink() + "call";
+        url = medalink(remote) + "app/" + klienslink() + "call";
+        return url;
+    }
+    else if (menu == "local")
+    {
+        url = medalink(remote) + "app/" + klienslink() + "call";
         return url;
     }
     else
     {
         if (misc.admin)
         {
-            if (misc.branch != "alfa") url = medalink() + "app/" + adminlink();
-            else url = medalink() + adminlink();
+            if (misc.branch != "alfa") url = medalink(remote) + "app/" + adminlink();
+            else url = medalink(remote) + adminlink();
             if (menu == undefined) return url;
             else return url + menu;
         }
         else
         {
-            url = medalink() + "app/" + klienslink();
+            url = medalink(remote) + "app/" + klienslink();
             if (menu == undefined) return url;
             else return url + menu;
         };
