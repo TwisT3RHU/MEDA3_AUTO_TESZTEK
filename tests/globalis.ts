@@ -36,12 +36,7 @@ function adminlink() {
 
 export function medaurl(menu?: string, remote: boolean = false) {
     let url = "";
-    if (menu == "remote")
-    {
-        url = medalink(remote) + "app/" + klienslink() + "call";
-        return url;
-    }
-    else if (menu == "local")
+    if (menu == "remote" || menu == "local")
     {
         url = medalink(remote) + "app/" + klienslink() + "call";
         return url;
