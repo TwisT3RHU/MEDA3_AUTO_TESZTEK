@@ -10,8 +10,12 @@ const gamma = "http://medalyse.gamma.local/";
 const pre = "https://pre.medalyse.hu/";
 const prod = "https://medalyse.hu/";
 
-function medalink() {
-    switch (misc.branch) {
+function medalink(remote: boolean = false) {
+    let branch: string;
+    if (!remote) branch = misc.branch;
+    else branch = misc.branch_remote;
+
+    switch (branch) {
         case "alfa": return alfa;
         case "beta": return beta;
         case "gamma": return gamma;
@@ -34,7 +38,7 @@ export function medaurl(menu?: string) {
     let url = "";
     if (menu == "call")
     {
-        url = medalink() + "app/" + klienslink() + "call";
+        url = medalink(true) + "app/" + klienslink() + "call";
         return url;
     }
     else
