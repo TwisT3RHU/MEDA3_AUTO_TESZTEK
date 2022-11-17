@@ -32,18 +32,26 @@ function adminlink() {
 
 export function medaurl(menu?: string) {
     let url = "";
-    if (misc.admin)
+    if (menu == "call")
     {
-        if (misc.branch != "alfa") url = medalink() + "app/" + adminlink();
-        else url = medalink() + adminlink();
-        if (menu == undefined) return url;
-        else return url + menu;
+        url = medalink() + "app/" + klienslink() + "call";
+        return url;
     }
     else
     {
-        url = medalink() + "app/" + klienslink();
-        if (menu == undefined) return url;
-        else return url + menu;
+        if (misc.admin)
+        {
+            if (misc.branch != "alfa") url = medalink() + "app/" + adminlink();
+            else url = medalink() + adminlink();
+            if (menu == undefined) return url;
+            else return url + menu;
+        }
+        else
+        {
+            url = medalink() + "app/" + klienslink();
+            if (menu == undefined) return url;
+            else return url + menu;
+        };
     };
 };
 

@@ -23,15 +23,11 @@ test('új távoli szerver hozzáadása', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Név' }).click();
   await page.getByRole('textbox', { name: 'Név' }).fill(remotename);
   await page.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).click();
-  await page.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).fill('http://medalyse.beta.local/app/medalyse3app/call');
+  await page.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).fill(medaurl('call'));
 
 });
 
 test('test', async ({ page }) => {
-
-  await page.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).click();
-
-  await page.getByRole('textbox', { name: 'Kimenő kapcsolat URL' }).fill('http://medalyse.beta.local/app/medalyse3app/call');
 
   await page.getByRole('textbox', { name: 'Bejövő kapcsolat kód' }).click();
 
