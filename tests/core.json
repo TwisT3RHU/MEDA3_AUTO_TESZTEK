@@ -3,7 +3,7 @@
         "admin": true,
         "bulkcount": 2,
         "branch": "gamma",
-        "branch_remote": "alfa"
+        "branch_remote": "beta"
     },
     "user": {
         "name": "kotel.g_autotestuser",
