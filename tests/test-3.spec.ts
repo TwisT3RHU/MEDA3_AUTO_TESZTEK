@@ -313,9 +313,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
     );
   });
 
-  test("felhasználó eltávolítása a csoportból + megerősítő ablak", async ({
-    page,
-  }) => {
+  test("felhasználó eltávolítása a csoportból + megerősítő ablak", async ({ page, }) => {
     await page.getByRole("cell", { name: testname }).click();
     await page.locator("#gwt-uid-91").click();
     await page.locator("#gwt-uid-91").fill(user.name);
