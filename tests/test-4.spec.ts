@@ -6,104 +6,115 @@ import { misc, user } from "./core.json";
 const randname = randomname("_autoteszt");
 const remotename = branch(true) + randname;
 const servername = branch(false) + randname;
+let jumpbranch: boolean = false;
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
-
-  login(page);
+  if (jumpbranch) login(page, true);
+  else login(page, false);
+  //login(page, jumpbranch);
   await page.getByText("►Hozzáférések").click();
   await page.getByText("Szerverek").click();
-  await expect(page).toHaveURL(medaurl(false, "#!servers"));
+  await expect(page).toHaveURL(medaurl(jumpbranch, "#!servers"));
 });
 
-//test.afterEach(async ({ page }) => { await page.locator('span:has-text("kilépés")').first().click(); });
+test.afterEach(async ({ page }) => {
+  //await page.locator('span:has-text("kilépés")').first().click();
+});
+test.describe.serial("szerverek összekötése", () => {
+  test("új távoli szerver hozzáadása", async ({ page }) => {
+    await page.getByRole("button", { name: " Új" }).click();
+    await page.getByRole("textbox", { name: "Név" }).click();
+    await page.getByRole("textbox", { name: "Név" }).fill(remotename);
+    await page.getByRole("textbox", { name: "Kimenő kapcsolat URL" }).click();
+    await page
+      .getByRole("textbox", { name: "Kimenő kapcsolat URL" })
+      .fill(medaurl(true, "remote"));
+    let kimenokod = await page
+      .getByRole("textbox", { name: "Kimenő kapcsolat kód" })
+      .inputValue();
 
-test("új távoli szerver hozzáadása", async ({ page }) => {
-  await page.getByRole("button", { name: " Új" }).click();
-  await page.getByRole("textbox", { name: "Név" }).click();
-  await page.getByRole("textbox", { name: "Név" }).fill(remotename);
-  await page.getByRole("textbox", { name: "Kimenő kapcsolat URL" }).click();
-  await page
-    .getByRole("textbox", { name: "Kimenő kapcsolat URL" })
-    .fill(medaurl(true, "remote"));
-  let kimenokod = await page
-    .getByRole("textbox", { name: "Kimenő kapcsolat kód" })
-    .inputValue();
+    const context = page.context();
+    const page2 = await context.newPage();
+    await login(page2, true);
 
-  const context = page.context();
-  const page2 = await context.newPage();
-  await login(page2, true);
+    await page2.getByText("►Hozzáférések").click();
+    await page2.getByText("Szerverek").click();
+    await expect(page2).toHaveURL(medaurl(true, "#!servers"));
 
-  await page2.getByText("►Hozzáférések").click();
-  await page2.getByText("Szerverek").click();
-  await expect(page2).toHaveURL(medaurl(true, "#!servers"));
+    await page2.getByRole("button", { name: " Új" }).click();
+    await page2.getByRole("textbox", { name: "Név" }).click();
+    await page2.getByRole("textbox", { name: "Név" }).fill(servername);
+    await page2.getByRole("textbox", { name: "Kimenő kapcsolat URL" }).click();
+    await page2
+      .getByRole("textbox", { name: "Kimenő kapcsolat URL" })
+      .fill(medaurl(false, "local"));
+    await page2
+      .getByRole("textbox", { name: "Bejövő kapcsolat kód" })
+      .fill(kimenokod);
+    let bejovokod = await page2
+      .getByRole("textbox", { name: "Kimenő kapcsolat kód" })
+      .inputValue();
 
-  await page2.getByRole("button", { name: " Új" }).click();
-  await page2.getByRole("textbox", { name: "Név" }).click();
-  await page2.getByRole("textbox", { name: "Név" }).fill(servername);
-  await page2.getByRole("textbox", { name: "Kimenő kapcsolat URL" }).click();
-  await page2
-    .getByRole("textbox", { name: "Kimenő kapcsolat URL" })
-    .fill(medaurl(false, "local"));
-  await page2
-    .getByRole("textbox", { name: "Bejövő kapcsolat kód" })
-    .fill(kimenokod);
-  let bejovokod = await page2
-    .getByRole("textbox", { name: "Kimenő kapcsolat kód" })
-    .inputValue();
+    await page
+      .getByRole("textbox", { name: "Bejövő kapcsolat kód" })
+      .fill(bejovokod);
 
-  await page
-    .getByRole("textbox", { name: "Bejövő kapcsolat kód" })
-    .fill(bejovokod);
+    await page.getByRole("button", { name: " Mentés" }).click();
+    await page2.getByRole("button", { name: " Mentés" }).click();
+  });
+});
+test.describe.serial("szerverek felhasználói", () => {
+  test(misc.branch + " új távoli felhasználó hozzáadása", async ({ page }) => {
+    await page.getByRole("cell", { name: remotename }).click();
+    await page.getByRole("button", { name: " Távoli felhasználók" }).click();
+    await expect(page).toHaveURL(/.#!serverUsers./);
+    await page.getByRole("combobox").locator("div").click();
+    await page
+      .locator('td[role="listitem"]:has-text("' + remotename + '")')
+      .click();
+    await page.getByRole("cell", { name: user.name }).first().click();
+    await page.getByRole("button", { name: " Hozzáad" }).first().click();
+    await page
+      .getByRole("row", { name: remotename + " " + user.name })
+      .getByRole("cell", { name: user.name })
+      .click();
+    await page
+      .getByRole("row", { name: user.usergroup })
+      .getByLabel("")
+      .check();
+    await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+    jumpbranch = true;
+  });
 
-  await page.getByRole("button", { name: " Mentés" }).click();
-  await page2.getByRole("button", { name: " Mentés" }).click();
-
-  await page.getByRole("button", { name: " Távoli felhasználók" }).click();
-  await expect(page).toHaveURL(/.#!serverUsers./);
-  await page.getByRole("combobox").locator("div").click();
-  await page
-    .locator('td[role="listitem"]:has-text("' + remotename + '")')
-    .click();
-  await page.getByRole("cell", { name: user.name }).first().click();
-  await page.getByRole("button", { name: " Hozzáad" }).first().click();
-  await page
-    .getByRole("row", { name: remotename + " " + user.name })
-    .getByRole("cell", { name: user.name })
-    .click();
-  await page.getByRole("row", { name: user.usergroup }).getByLabel("").check();
-  await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
-
-  await page2.getByRole("button", { name: " Távoli felhasználók" }).click();
-  await expect(page2).toHaveURL(/.#!serverUsers./);
-  await page2.getByRole("combobox").locator("div").click();
-  await page2
-    .locator('td[role="listitem"]:has-text("' + servername + '")')
-    .click();
-  await page2.getByRole("cell", { name: user.name }).first().click();
-  await page2.getByRole("button", { name: " Hozzáad" }).first().click();
-  await page2
-    .getByRole("row", { name: servername + " " + user.name })
-    .getByRole("cell", { name: user.name })
-    .click();
-  await page2.getByRole("row", { name: user.usergroup }).getByLabel("").check();
-  await page2.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+  test(misc.branch_remote + " új távoli felhasználó hozzáadása", async ({ page }) => {
+      await page.getByRole("cell", { name: servername }).click();
+      await page.getByRole("button", { name: " Távoli felhasználók" }).click();
+      await expect(page).toHaveURL(/.#!serverUsers./);
+      await page.getByRole("combobox").locator("div").click();
+      await page
+        .locator('td[role="listitem"]:has-text("' + servername + '")')
+        .click();
+      await page.getByRole("cell", { name: user.name }).first().click();
+      await page.getByRole("button", { name: " Hozzáad" }).first().click();
+      await page
+        .getByRole("row", { name: servername + " " + user.name })
+        .getByRole("cell", { name: user.name })
+        .click();
+      await page
+        .getByRole("row", { name: user.usergroup })
+        .getByLabel("")
+        .check();
+      await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+      jumpbranch = false;
+    }
+  );
+  test.fixme(misc.branch + " távoli felhasználó törlése", async ({ page }) => {});
+  test.fixme(misc.branch_remote + " távoli felhasználó törlése", async ({ page }) => {});
 });
 /*
 test.skip('test', async ({ page }) => {
 
-  await page.getByRole('button', { name: ' Távoli felhasználók' }).click();
-  await expect(page).toHaveURL('http://medalyse.gamma.local/app/medalyse3admin/#!serverUsers/1000000026');
-
-  await page.getByRole('cell', { name: 'kotel.g_autotestuser' }).first().click();
-
-  await page.getByRole('button', { name: ' Hozzáad' }).first().click();
-
-  await page.getByRole('row', { name: 'beta kotel.g_autotestuser' }).getByRole('cell', { name: 'kotel.g_autotestuser' }).click();
-
-  await page.getByRole('row', { name: 'geriautocsop' }).getByLabel('').check();
-
-  await page.getByRole('button', { name: ' Hozzáad' }).nth(1).click();
 
   await page.locator('table:has-text("Névgeriautocsop")').getByRole('cell', { name: 'geriautocsop' }).click();
 
