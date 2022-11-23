@@ -39,7 +39,7 @@ function klienslink() {
 }
 
 function adminlink(remote: boolean) {
-  if (branch(remote) == "alfa") return "admin/";
+  if (branch(remote) == "alfa" || branch(remote) == "beta") return "admin/";
   else return "medalyse3admin/";
 }
 
@@ -50,7 +50,7 @@ export function medaurl(remote: boolean, menu?: string) {
     return url;
   } else {
     if (misc.admin) {
-      if (branch(remote) != "alfa")
+      if (branch(remote) != "alfa" || branch(remote) != "beta")
         url = medalink(remote) + "app/" + adminlink(remote);
       else url = medalink(remote) + adminlink(remote);
       if (menu == undefined) return url;
