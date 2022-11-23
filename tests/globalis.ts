@@ -50,9 +50,8 @@ export function medaurl(remote: boolean, menu?: string) {
     return url;
   } else {
     if (misc.admin) {
-      if (branch(remote) != "alfa" || branch(remote) != "beta")
-        url = medalink(remote) + "app/" + adminlink(remote);
-      else url = medalink(remote) + adminlink(remote);
+      if (branch(remote) == "alfa" || branch(remote) == "beta") url = medalink(remote) + adminlink(remote);
+      else url = medalink(remote) + "app/" + adminlink(remote);
       if (menu == undefined) return url;
       else return url + menu;
     } else {

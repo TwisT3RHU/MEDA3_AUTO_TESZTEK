@@ -32,7 +32,7 @@ const config = {
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [['html', { open: 'always' }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -70,6 +70,24 @@ const config = {
       },
     },
 
+    {
+      name: 'Microsoft Edge',
+      use: {
+        channel: 'msedge',
+      },
+    },
+
+    {
+       name: 'Google Chrome',
+       use: {
+        channel: 'chrome',
+      },
+    },
+  ],
+};
+module.exports = config;
+
+
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
@@ -85,19 +103,6 @@ const config = {
     // },
 
     /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: {
-    //     channel: 'msedge',
-    //   },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: {
-    //     channel: 'chrome',
-    //   },
-    // },
-  ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
   // outputDir: 'test-results/',
@@ -107,6 +112,3 @@ const config = {
   //   command: 'npm run start',
   //   port: 3000,
   // },
-};
-
-module.exports = config;

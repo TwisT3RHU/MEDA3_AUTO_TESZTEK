@@ -63,143 +63,152 @@ test.describe.serial("szerverek összekötése", () => {
     await page.getByRole("button", { name: " Mentés" }).click();
     await page2.getByRole("button", { name: " Mentés" }).click();
   });
-});
-test.describe.serial("szerverek felhasználói", () => {
-  test(misc.branch + " új távoli felhasználó hozzáadása", async ({ page }) => {
-    await page.getByRole("cell", { name: remotename }).click();
-    await page.getByRole("button", { name: " Távoli felhasználók" }).click();
-    await expect(page).toHaveURL(/.#!serverUsers./);
-    await page.getByRole("combobox").locator("div").click();
-    await page
-      .locator('td[role="listitem"]:has-text("' + remotename + '")')
-      .click();
-    await page.getByRole("cell", { name: user.name }).first().click();
-    await page.getByRole("button", { name: " Hozzáad" }).first().click();
-    await page
-      .getByRole("row", { name: remotename + " " + user.name })
-      .getByRole("cell", { name: user.name })
-      .click();
-    await page
-      .getByRole("row", { name: user.usergroup })
-      .getByLabel("")
-      .check();
-    await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
-    jumpbranch = true;
+  test.describe.serial("szerverek felhasználói", () => {
+    test.describe.serial(misc.branch + " szerver felhasználója", () => {
+      test(misc.branch + " új távoli felhasználó hozzáadása", async ({ page }) => {
+          await page.getByRole("cell", { name: remotename }).click();
+          await page
+            .getByRole("button", { name: " Távoli felhasználók" })
+            .click();
+          await expect(page).toHaveURL(/.#!serverUsers./);
+          await page.getByRole("combobox").locator("div").click();
+          await page
+            .locator('td[role="listitem"]:has-text("' + remotename + '")')
+            .click();
+          await page.getByRole("cell", { name: user.name }).first().click();
+          await page.getByRole("button", { name: " Hozzáad" }).first().click();
+        });
+      test(misc.branch + " felhasználó hozzáadása a " + user.usergroup + " csoporthoz", async ({ page }) => {
+          await page.getByRole("cell", { name: remotename }).click();
+          await page
+            .getByRole("button", { name: " Távoli felhasználók" })
+            .click();
+          await expect(page).toHaveURL(/.#!serverUsers./);
+          await page.getByRole("combobox").locator("div").click();
+          await page
+            .locator('td[role="listitem"]:has-text("' + remotename + '")')
+            .click();
+          await page
+            .getByRole("row", { name: remotename + " " + user.name })
+            .getByRole("cell", { name: user.name })
+            .click();
+          await page
+            .getByRole("row", { name: user.usergroup })
+            .getByLabel("")
+            .check();
+          await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+        });
+      test(misc.branch + " távoli felhasználó és csoportjának törlése", async ({ page }) => {
+          await page.getByRole("cell", { name: remotename }).click();
+          await page
+            .getByRole("button", { name: " Távoli felhasználók" })
+            .click();
+          await expect(page).toHaveURL(/.#!serverUsers./);
+          await page.getByRole("combobox").locator("div").click();
+          await page
+            .locator('td[role="listitem"]:has-text("' + remotename + '")')
+            .click();
+          await page
+            .getByRole("row", { name: remotename + " " + user.name })
+            .getByRole("cell", { name: user.name })
+            .click();
+          await page
+            .locator('table:has-text("Név' + user.usergroup + '")')
+            .getByRole("cell")
+            .nth(2)
+            .click();
+          await page
+            .getByRole("button", { name: " Eltávolít" })
+            .nth(1)
+            .click();
+          await page
+            .getByRole("button", { name: " Eltávolít" })
+            .first()
+            .click();
+          jumpbranch = true;
+        });
+    });
+    test.describe.serial(misc.branch_remote + " szerver felhasználója", () => {
+      test(misc.branch_remote + " új távoli felhasználó hozzáadása", async ({ page }) => {
+          await page.getByRole("cell", { name: servername }).click();
+          await page
+            .getByRole("button", { name: " Távoli felhasználók" })
+            .click();
+          await expect(page).toHaveURL(/.#!serverUsers./);
+          await page.getByRole("combobox").locator("div").click();
+          await page
+            .locator('td[role="listitem"]:has-text("' + servername + '")')
+            .click();
+          await page.getByRole("cell", { name: user.name }).first().click();
+          await page.getByRole("button", { name: " Hozzáad" }).first().click();
+        });
+      test(misc.branch_remote + " felhasználó hozzáadása a " + user.usergroup + " csoporthoz", async ({ page }) => {
+          await page.getByRole("cell", { name: servername }).click();
+          await page
+            .getByRole("button", { name: " Távoli felhasználók" })
+            .click();
+          await expect(page).toHaveURL(/.#!serverUsers./);
+          await page.getByRole("combobox").locator("div").click();
+          await page
+            .locator('td[role="listitem"]:has-text("' + servername + '")')
+            .click();
+          await page
+            .getByRole("row", { name: servername + " " + user.name })
+            .getByRole("cell", { name: user.name })
+            .click();
+          await page
+            .getByRole("row", { name: user.usergroup })
+            .getByLabel("")
+            .check();
+          await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+        });
+      test(misc.branch_remote + " távoli felhasználó és csoportjának törlése", async ({ page }) => {
+          await page.getByRole("cell", { name: servername }).click();
+          await page
+            .getByRole("button", { name: " Távoli felhasználók" })
+            .click();
+          await expect(page).toHaveURL(/.#!serverUsers./);
+          await page.getByRole("combobox").locator("div").click();
+          await page
+            .locator('td[role="listitem"]:has-text("' + servername + '")')
+            .click();
+          await page
+            .getByRole("row", { name: servername + " " + user.name })
+            .getByRole("cell", { name: user.name })
+            .click();
+          await page
+            .locator('table:has-text("Név' + user.usergroup + '")')
+            .getByRole("cell")
+            .nth(2)
+            .click();
+          await page
+            .getByRole("button", { name: " Eltávolít" })
+            .nth(1)
+            .click();
+          await page
+            .getByRole("button", { name: " Eltávolít" })
+            .first()
+            .click();
+          jumpbranch = false;
+        });
+    });
+    test.describe.serial("szerverek törlése", () => {
+      test(misc.branch + " távoli szerver törlése + megerősítő ablak", async ({ page }) => {
+          await page.getByRole("cell", { name: remotename }).click();
+          await page.getByRole("button", { name: " Törlés" }).click();
+          await page.getByRole("button", { name: "Nem" }).click();
+          await page.getByRole("button", { name: " Törlés" }).click();
+          await page.getByRole("button", { name: "Igen" }).click();
+          jumpbranch = true;
+        });
+      test(misc.branch_remote + " távoli szerver törlése + megerősítő ablak", async ({ page }) => {
+          await page.getByRole("cell", { name: servername }).click();
+          await page.getByRole("button", { name: " Törlés" }).click();
+          await page.getByRole("button", { name: "Nem" }).click();
+          await page.getByRole("button", { name: " Törlés" }).click();
+          await page.getByRole("button", { name: "Igen" }).click();
+          jumpbranch = false;
+        });
+    });
   });
-
-  test(misc.branch_remote + " új távoli felhasználó hozzáadása", async ({ page }) => {
-      await page.getByRole("cell", { name: servername }).click();
-      await page.getByRole("button", { name: " Távoli felhasználók" }).click();
-      await expect(page).toHaveURL(/.#!serverUsers./);
-      await page.getByRole("combobox").locator("div").click();
-      await page
-        .locator('td[role="listitem"]:has-text("' + servername + '")')
-        .click();
-      await page.getByRole("cell", { name: user.name }).first().click();
-      await page.getByRole("button", { name: " Hozzáad" }).first().click();
-      await page
-        .getByRole("row", { name: servername + " " + user.name })
-        .getByRole("cell", { name: user.name })
-        .click();
-      await page
-        .getByRole("row", { name: user.usergroup })
-        .getByLabel("")
-        .check();
-      await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
-      jumpbranch = false;
-    }
-  );
-  test.fixme(misc.branch + " távoli felhasználó törlése", async ({ page }) => {});
-  test.fixme(misc.branch_remote + " távoli felhasználó törlése", async ({ page }) => {});
 });
-/*
-test.skip('test', async ({ page }) => {
-
-
-  await page.locator('table:has-text("Névgeriautocsop")').getByRole('cell', { name: 'geriautocsop' }).click();
-
-  await page.locator('table:has-text("Névgeriautocsop")').getByRole('cell').nth(2).click();
-
-  await page.getByRole('button', { name: ' Eltávolít' }).nth(1).click();
-
-  await page.getByRole('button', { name: ' Eltávolít' }).first().click();
-
-  await page1.getByRole('button', { name: ' Távoli felhasználók' }).click();
-
-  await page1.goto('http://medalyse.beta.local/app/medalyse3admin/#!serverUsers/123');
-
-  await page1.getByRole('combobox').locator('div').click();
-
-  await page1.locator('td[role="listitem"]:has-text("gamma3")').click();
-
-  await page1.getByRole('combobox').locator('div').click();
-
-  await page1.locator('td[role="listitem"]:has-text("betavesszo")').click();
-
-  await page1.getByRole('combobox').locator('div').click();
-
-  await page1.getByText('gamma3').click();
-
-  await page1.getByRole('cell', { name: 'kotel.g_autotestuser' }).first().click();
-
-  await page1.getByRole('button', { name: ' Hozzáad' }).first().click();
-
-  await page1.getByRole('row', { name: 'gamma3 kotel.g_autotestuser' }).getByRole('cell', { name: 'kotel.g_autotestuser' }).click();
-
-  await page1.getByRole('row', { name: 'geriautocsop' }).getByRole('cell').first().click();
-
-  await page1.getByRole('button', { name: ' Hozzáad' }).nth(1).click();
-
-  await page1.locator('.v-splitpanel-second-container > .v-splitpanel-horizontal > div > .v-splitpanel-second-container > .v-panel > .v-panel-content > .v-verticallayout > .v-expand > div > .v-grid > .v-grid-tablewrapper > table > .v-grid-body > .v-grid-row > td').first().click();
-
-  await page1.getByRole('cell', { name: 'geriautocsop' }).nth(1).click();
-
-  await page1.getByRole('cell', { name: 'geriautocsop' }).nth(1).click();
-
-  await page1.getByRole('button', { name: ' Eltávolít' }).nth(1).click();
-
-  await page1.getByRole('button', { name: ' Eltávolít' }).first().click();
-
-  await page1.goto('http://medalyse.beta.local/app/medalyse3admin/#!servers');
-
-  await page1.getByRole('button', { name: ' Törlés' }).click();
-
-  await page1.getByRole('button', { name: 'Nem' }).click();
-
-  await page1.getByRole('button', { name: ' Törlés' }).click();
-
-  await page1.getByRole('button', { name: 'Igen' }).click();
-  await expect(page1).toHaveURL('http://medalyse.gamma.local/app/medalyse3admin/#!servers');
-
-  await page.getByRole('button', { name: ' Törlés' }).click();
-
-  await page.getByRole('button', { name: 'Nem' }).click();
-
-  await page.getByRole('button', { name: ' Törlés' }).click();
-
-  await page.getByRole('button', { name: 'Nem' }).click();
-
-  await page.getByRole('button', { name: ' Távoli felhasználók' }).click();
-  await expect(page).toHaveURL('http://medalyse.gamma.local/app/medalyse3admin/#!serverUsers/1000000026');
-
-  await page.getByRole('button', { name: ' Hozzáad' }).first().click();
-
-  await page.getByRole('row', { name: 'beta kotel.g_autotestuser' }).getByRole('cell', { name: 'beta' }).click();
-
-  await page.getByRole('button', { name: ' Eltávolít' }).first().click();
-  await expect(page).toHaveURL('http://medalyse.gamma.local/app/medalyse3admin/#!servers');
-
-  await page.getByRole('button', { name: ' Törlés' }).click();
-
-  await page.getByRole('button', { name: 'Igen' }).click();
-
-});
-
-test.skip('kapcsolatok', async ({ page }) => {
-
-  const bejovokod = await page.getByRole('textbox', { name: 'Bejövő kapcsolat kód' }).inputValue();
-  console.log(bejovokod + " BEJÖVŐ KÓD HELÓ VAN ITT VALAMI?");
-  const kimenokod = await page.getByRole('textbox', { name: 'Kimenő kapcsolat kód' }).inputValue();
-  console.log(kimenokod + " KIMENŐ KÓD HELÓ VAN ITT VALAMI?");
-
-});*/
