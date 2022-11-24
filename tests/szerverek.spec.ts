@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { branch, hoptoservers, login, medaurl, randomname } from "./globalis";
+import { branch, hoptoserverusers, login, medaurl, randomname } from "./globalis";
 import { misc, user } from "./core.json";
 
 const randname = randomname("_autoteszt");
@@ -66,12 +66,12 @@ test.describe.serial("szerverek összekötése", () => {
   test.describe.serial("szerverek felhasználói", () => {
     test.describe.serial(misc.branch + " szerver felhasználója", () => {
       test(misc.branch + " új távoli felhasználó hozzáadása", async ({ page }) => {
-        hoptoservers(page, remotename);
+        hoptoserverusers(page, remotename);
         await page.getByRole("cell", { name: user.name }).first().click();
         await page.getByRole("button", { name: " Hozzáad" }).first().click();
       });
       test(misc.branch + " felhasználó hozzáadása a " + user.usergroup + " csoporthoz", async ({ page }) => {
-        hoptoservers(page, remotename);
+        hoptoserverusers(page, remotename);
         await page
           .getByRole("row", { name: remotename + " " + user.name })
           .getByRole("cell", { name: user.name })
@@ -83,7 +83,7 @@ test.describe.serial("szerverek összekötése", () => {
         await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
       });
       test(misc.branch + " távoli felhasználó és csoportjának törlése", async ({ page }) => {
-        hoptoservers(page, remotename);
+        hoptoserverusers(page, remotename);
         await page
           .getByRole("row", { name: remotename + " " + user.name })
           .getByRole("cell", { name: user.name })
@@ -106,12 +106,12 @@ test.describe.serial("szerverek összekötése", () => {
     });
     test.describe.serial(misc.branch_remote + " szerver felhasználója", () => {
       test(misc.branch_remote + " új távoli felhasználó hozzáadása", async ({ page }) => {
-        hoptoservers(page, servername);
+        hoptoserverusers(page, servername);
         await page.getByRole("cell", { name: user.name }).first().click();
         await page.getByRole("button", { name: " Hozzáad" }).first().click();
       });
       test(misc.branch_remote + " felhasználó hozzáadása a " + user.usergroup + " csoporthoz", async ({ page }) => {
-        hoptoservers(page, servername);
+        hoptoserverusers(page, servername);
         await page
           .getByRole("row", { name: servername + " " + user.name })
           .getByRole("cell", { name: user.name })
@@ -123,7 +123,7 @@ test.describe.serial("szerverek összekötése", () => {
         await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
       });
       test(misc.branch_remote + " távoli felhasználó és csoportjának törlése", async ({ page }) => {
-        hoptoservers(page, servername);
+        hoptoserverusers(page, servername);
         await page
           .getByRole("row", { name: servername + " " + user.name })
           .getByRole("cell", { name: user.name })

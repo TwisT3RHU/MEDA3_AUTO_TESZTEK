@@ -107,7 +107,7 @@ export async function login(page: any, remote: boolean = false) {
 
 // TÁVOLI SZERVER MENÜ
 
-export async function hoptoservers(page: any, remote: string) {
+export async function hoptoserverusers(page: any, remote: string) {
   await page.getByRole("cell", { name: remote }).click();
   await page
     .getByRole("button", { name: " Távoli felhasználók" })
