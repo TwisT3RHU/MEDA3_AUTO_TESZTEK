@@ -39,8 +39,8 @@ function klienslink() {
 }
 
 function adminlink(remote: boolean) {
-  if (branch(remote) == "alfa" || branch(remote) == "beta") return "admin/";
-  else return "medalyse3admin/";
+  if (branch(remote) == "pre" || branch(remote) == "prod") return "medalyse3admin/";
+  else return "admin/";
 }
 
 export function medaurl(remote: boolean, menu?: string) {
@@ -50,8 +50,8 @@ export function medaurl(remote: boolean, menu?: string) {
     return url;
   } else {
     if (misc.admin) {
-      if (branch(remote) == "alfa" || branch(remote) == "beta") url = medalink(remote) + adminlink(remote);
-      else url = medalink(remote) + "app/" + adminlink(remote);
+      if (branch(remote) == "pre" || branch(remote) == "prod") url = medalink(remote) + "app/" + adminlink(remote);
+      else url = medalink(remote) +  adminlink(remote);
       if (menu == undefined) return url;
       else return url + menu;
     } else {
