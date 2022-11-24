@@ -46,7 +46,29 @@ function adminlink(remote: boolean) {
 export function medaurl(remote: boolean, menu?: string) {
   let url = "";
   if (menu == "remote" || menu == "local") {
-    url = medalink(remote) + "app/" + klienslink() + "call";
+    url = medalink(remote) + "m3/call?app=" + klienslink();
+  } else {
+    if (misc.admin) {
+      if (branch(remote) == "pre" || branch(remote) == "prod") {
+        url = medalink(remote) + "app/" + adminlink(remote); }
+      else url = medalink(remote) +  adminlink(remote);
+      if (menu == undefined) url;
+      else url = url + menu;
+    } else {
+      url = medalink(remote) + "app/" + klienslink();
+      if (menu == undefined) url;
+      else url = url + menu;
+    }
+  }
+  console.log(url + " meda url összerakva");
+  return url;
+}
+
+/*export function medaurl(remote: boolean, menu?: string) {
+  let url = "";
+  if (menu == "remote" || menu == "local") {
+    url = medalink(remote) + "m3/call?app=" + klienslink();
+    // http://medalyse.beta.local/m3/call?app=medalyse3app
     return url;
   } else {
     if (misc.admin) {
@@ -60,7 +82,7 @@ export function medaurl(remote: boolean, menu?: string) {
       else return url + menu;
     }
   }
-}
+}*/
 
 /*export function medaurl(menu?: string) {
     let admin = "";

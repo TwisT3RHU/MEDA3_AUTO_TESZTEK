@@ -44,7 +44,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     console.log(testname + " visszaállítva");
   });
 
-  test.skip("partner egyediség megsértése", async ({ page }) => {
+  test.fixme("partner egyediség megsértése", async ({ page }) => {
     // ezt még nem tudom hogy kéne normálisan
 
     await page.getByRole("textbox", { name: "Név" }).click();
