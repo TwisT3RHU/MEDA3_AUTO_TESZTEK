@@ -117,14 +117,7 @@ export async function login(page: any, remote: boolean = false) {
   await page.getByLabel("Password").fill(user.pass);
   await page.getByLabel("Password").press("Enter");
   await expect(page).toHaveURL(medaurl(remote));
-  console.log(
-    "sikeres bejelentkezés: " +
-      branch(remote) +
-      ": " +
-      user.name +
-      " - " +
-      user.pass
-  );
+  console.log("sikeres bejelentkezés: " + branch(remote) + ": " + user.name + " - " + user.pass);
 }
 
 // TÁVOLI SZERVER MENÜ
