@@ -104,3 +104,16 @@ export async function login(page: any, remote: boolean = false) {
       user.pass
   );
 }
+
+// TÁVOLI SZERVER MENÜ
+
+export async function hoptoservers(page: any, remote: string) {
+  await page.getByRole("cell", { name: remote }).click();
+  await page
+    .getByRole("button", { name: " Távoli felhasználók" })
+    .click();
+  await expect(page).toHaveURL(/.#!serverUsers./);
+  await page
+    .locator('td[role="listitem"]:has-text("' + remote + '")')
+    .click();
+}

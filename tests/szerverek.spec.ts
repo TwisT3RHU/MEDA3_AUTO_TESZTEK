@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { branch, login, medaurl, randomname } from "./globalis";
+import { branch, hoptoservers, login, medaurl, randomname } from "./globalis";
 import { misc, user } from "./core.json";
 
 const randname = randomname("_autoteszt");
@@ -66,149 +66,101 @@ test.describe.serial("szerverek összekötése", () => {
   test.describe.serial("szerverek felhasználói", () => {
     test.describe.serial(misc.branch + " szerver felhasználója", () => {
       test(misc.branch + " új távoli felhasználó hozzáadása", async ({ page }) => {
-          await page.getByRole("cell", { name: remotename }).click();
-          await page
-            .getByRole("button", { name: " Távoli felhasználók" })
-            .click();
-          await expect(page).toHaveURL(/.#!serverUsers./);
-          await page.getByRole("combobox").locator("div").click();
-          await page
-            .locator('td[role="listitem"]:has-text("' + remotename + '")')
-            .click();
-          await page.getByRole("cell", { name: user.name }).first().click();
-          await page.getByRole("button", { name: " Hozzáad" }).first().click();
-        });
+        hoptoservers(page, remotename);
+        await page.getByRole("cell", { name: user.name }).first().click();
+        await page.getByRole("button", { name: " Hozzáad" }).first().click();
+      });
       test(misc.branch + " felhasználó hozzáadása a " + user.usergroup + " csoporthoz", async ({ page }) => {
-          await page.getByRole("cell", { name: remotename }).click();
-          await page
-            .getByRole("button", { name: " Távoli felhasználók" })
-            .click();
-          await expect(page).toHaveURL(/.#!serverUsers./);
-          await page.getByRole("combobox").locator("div").click();
-          await page
-            .locator('td[role="listitem"]:has-text("' + remotename + '")')
-            .click();
-          await page
-            .getByRole("row", { name: remotename + " " + user.name })
-            .getByRole("cell", { name: user.name })
-            .click();
-          await page
-            .getByRole("row", { name: user.usergroup })
-            .getByLabel("")
-            .check();
-          await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
-        });
+        hoptoservers(page, remotename);
+        await page
+          .getByRole("row", { name: remotename + " " + user.name })
+          .getByRole("cell", { name: user.name })
+          .click();
+        await page
+          .getByRole("row", { name: user.usergroup })
+          .getByLabel("")
+          .check();
+        await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+      });
       test(misc.branch + " távoli felhasználó és csoportjának törlése", async ({ page }) => {
-          await page.getByRole("cell", { name: remotename }).click();
-          await page
-            .getByRole("button", { name: " Távoli felhasználók" })
-            .click();
-          await expect(page).toHaveURL(/.#!serverUsers./);
-          await page.getByRole("combobox").locator("div").click();
-          await page
-            .locator('td[role="listitem"]:has-text("' + remotename + '")')
-            .click();
-          await page
-            .getByRole("row", { name: remotename + " " + user.name })
-            .getByRole("cell", { name: user.name })
-            .click();
-          await page
-            .locator('table:has-text("Név' + user.usergroup + '")')
-            .getByRole("cell")
-            .nth(2)
-            .click();
-          await page
-            .getByRole("button", { name: " Eltávolít" })
-            .nth(1)
-            .click();
-          await page
-            .getByRole("button", { name: " Eltávolít" })
-            .first()
-            .click();
-          jumpbranch = true;
-        });
+        hoptoservers(page, remotename);
+        await page
+          .getByRole("row", { name: remotename + " " + user.name })
+          .getByRole("cell", { name: user.name })
+          .click();
+        await page
+          .locator('table:has-text("Név' + user.usergroup + '")')
+          .getByRole("cell")
+          .nth(2)
+          .click();
+        await page
+          .getByRole("button", { name: " Eltávolít" })
+          .nth(1)
+          .click();
+        await page
+          .getByRole("button", { name: " Eltávolít" })
+          .first()
+          .click();
+        jumpbranch = true;
+      });
     });
     test.describe.serial(misc.branch_remote + " szerver felhasználója", () => {
       test(misc.branch_remote + " új távoli felhasználó hozzáadása", async ({ page }) => {
-          await page.getByRole("cell", { name: servername }).click();
-          await page
-            .getByRole("button", { name: " Távoli felhasználók" })
-            .click();
-          await expect(page).toHaveURL(/.#!serverUsers./);
-          await page.getByRole("combobox").locator("div").click();
-          await page
-            .locator('td[role="listitem"]:has-text("' + servername + '")')
-            .click();
-          await page.getByRole("cell", { name: user.name }).first().click();
-          await page.getByRole("button", { name: " Hozzáad" }).first().click();
-        });
+        hoptoservers(page, servername);
+        await page.getByRole("cell", { name: user.name }).first().click();
+        await page.getByRole("button", { name: " Hozzáad" }).first().click();
+      });
       test(misc.branch_remote + " felhasználó hozzáadása a " + user.usergroup + " csoporthoz", async ({ page }) => {
-          await page.getByRole("cell", { name: servername }).click();
-          await page
-            .getByRole("button", { name: " Távoli felhasználók" })
-            .click();
-          await expect(page).toHaveURL(/.#!serverUsers./);
-          await page.getByRole("combobox").locator("div").click();
-          await page
-            .locator('td[role="listitem"]:has-text("' + servername + '")')
-            .click();
-          await page
-            .getByRole("row", { name: servername + " " + user.name })
-            .getByRole("cell", { name: user.name })
-            .click();
-          await page
-            .getByRole("row", { name: user.usergroup })
-            .getByLabel("")
-            .check();
-          await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
-        });
+        hoptoservers(page, servername);
+        await page
+          .getByRole("row", { name: servername + " " + user.name })
+          .getByRole("cell", { name: user.name })
+          .click();
+        await page
+          .getByRole("row", { name: user.usergroup })
+          .getByLabel("")
+          .check();
+        await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+      });
       test(misc.branch_remote + " távoli felhasználó és csoportjának törlése", async ({ page }) => {
-          await page.getByRole("cell", { name: servername }).click();
-          await page
-            .getByRole("button", { name: " Távoli felhasználók" })
-            .click();
-          await expect(page).toHaveURL(/.#!serverUsers./);
-          await page.getByRole("combobox").locator("div").click();
-          await page
-            .locator('td[role="listitem"]:has-text("' + servername + '")')
-            .click();
-          await page
-            .getByRole("row", { name: servername + " " + user.name })
-            .getByRole("cell", { name: user.name })
-            .click();
-          await page
-            .locator('table:has-text("Név' + user.usergroup + '")')
-            .getByRole("cell")
-            .nth(2)
-            .click();
-          await page
-            .getByRole("button", { name: " Eltávolít" })
-            .nth(1)
-            .click();
-          await page
-            .getByRole("button", { name: " Eltávolít" })
-            .first()
-            .click();
-          jumpbranch = false;
-        });
+        hoptoservers(page, servername);
+        await page
+          .getByRole("row", { name: servername + " " + user.name })
+          .getByRole("cell", { name: user.name })
+          .click();
+        await page
+          .locator('table:has-text("Név' + user.usergroup + '")')
+          .getByRole("cell")
+          .nth(2)
+          .click();
+        await page
+          .getByRole("button", { name: " Eltávolít" })
+          .nth(1)
+          .click();
+        await page
+          .getByRole("button", { name: " Eltávolít" })
+          .first()
+          .click();
+        jumpbranch = false;
+      });
     });
     test.describe.serial("szerverek törlése", () => {
       test(misc.branch + " távoli szerver törlése + megerősítő ablak", async ({ page }) => {
-          await page.getByRole("cell", { name: remotename }).click();
-          await page.getByRole("button", { name: " Törlés" }).click();
-          await page.getByRole("button", { name: "Nem" }).click();
-          await page.getByRole("button", { name: " Törlés" }).click();
-          await page.getByRole("button", { name: "Igen" }).click();
-          jumpbranch = true;
-        });
+        await page.getByRole("cell", { name: remotename }).click();
+        await page.getByRole("button", { name: " Törlés" }).click();
+        await page.getByRole("button", { name: "Nem" }).click();
+        await page.getByRole("button", { name: " Törlés" }).click();
+        await page.getByRole("button", { name: "Igen" }).click();
+        jumpbranch = true;
+      });
       test(misc.branch_remote + " távoli szerver törlése + megerősítő ablak", async ({ page }) => {
-          await page.getByRole("cell", { name: servername }).click();
-          await page.getByRole("button", { name: " Törlés" }).click();
-          await page.getByRole("button", { name: "Nem" }).click();
-          await page.getByRole("button", { name: " Törlés" }).click();
-          await page.getByRole("button", { name: "Igen" }).click();
-          jumpbranch = false;
-        });
+        await page.getByRole("cell", { name: servername }).click();
+        await page.getByRole("button", { name: " Törlés" }).click();
+        await page.getByRole("button", { name: "Nem" }).click();
+        await page.getByRole("button", { name: " Törlés" }).click();
+        await page.getByRole("button", { name: "Igen" }).click();
+        jumpbranch = false;
+      });
     });
   });
 });
