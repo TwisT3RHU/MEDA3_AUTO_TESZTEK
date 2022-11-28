@@ -33,6 +33,7 @@ test.describe.serial("szerverek összekötése", () => {
     let kimenokod = await page
       .getByRole("textbox", { name: "Kimenő kapcsolat kód" })
       .inputValue();
+    console.log(kimenokod + " kimenő kapcsolat kód tárolva")
 
     const context = page.context();
     const page2 = await context.newPage();
@@ -55,6 +56,7 @@ test.describe.serial("szerverek összekötése", () => {
     let bejovokod = await page2
       .getByRole("textbox", { name: "Kimenő kapcsolat kód" })
       .inputValue();
+    console.log(bejovokod + " bejövő kapcsolat kód tárolva")
 
     await page
       .getByRole("textbox", { name: "Bejövő kapcsolat kód" })
