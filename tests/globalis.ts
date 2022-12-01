@@ -21,7 +21,7 @@ export function branch(remote: boolean = false) {
   if (!remote) branch = misc.branch;
   else branch = misc.branch_remote;
   return branch;
-}
+};
 
 /**
  * `medalink` is a function that returns a string based on the value of the `branch` function
@@ -43,12 +43,12 @@ function medalink(remote: boolean = false) {
       return prod;
     default:
       return gamma;
-  }
-}
+  };
+};
 
 function klienslink() {
   return "medalyse3app/";
-}
+};
 
 /**
  * If the branch is pre or prod, return medalyse3admin/; otherwise, return admin/.
@@ -58,7 +58,7 @@ function klienslink() {
 function adminlink(remote: boolean) {
   if (branch(remote) == "pre" || branch(remote) == "prod") return "medalyse3admin/";
   else return "admin/";
-}
+};
 
 /**
  * It returns a url based on the parameters.
@@ -86,7 +86,7 @@ export function medaurl(remote: boolean, menu?: string) {
   }
   console.log(url + " meda url összerakva");
   return url;
-}
+};
 
 /*export function medaurl(remote: boolean, menu?: string) {
   let url = "";
@@ -128,7 +128,7 @@ export function randomname(name: string) {
   let randomname = name + "_" + randomname_num;
   console.log(randomname + " generálva");
   return randomname;
-}
+};
 
 // DÁTUM
 
@@ -139,7 +139,7 @@ export function randomname(name: string) {
 export function datum() {
   const now = new Date().toISOString();
   return now;
-}
+};
 
 // KI ÉS BE
 
@@ -158,7 +158,7 @@ export async function login(page: any, remote: boolean = false) {
   await page.getByLabel("Password").press("Enter");
   await expect(page).toHaveURL(medaurl(remote));
   console.log("sikeres bejelentkezés: " + branch(remote) + ": " + user.name + " - " + user.pass);
-}
+};
 
 // TÁVOLI SZERVER MENÜ
 
@@ -179,4 +179,4 @@ export async function hoptoserverusers(page: any, remote: string) {
   await page
     .locator('td[role="listitem"]:has-text("' + remote + '")')
     .click();
-}
+};
