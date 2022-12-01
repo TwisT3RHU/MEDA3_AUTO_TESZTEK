@@ -76,8 +76,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
     await page.getByRole("cell", { name: testname }).click();
     await page
       .locator(
-        ".v-splitpanel-second-container > .v-panel > .v-panel-content > .v-verticallayout > .v-expand > div > .v-grid > .v-grid-tablewrapper > table > .v-grid-body > tr > td"
-      )
+        ".v-splitpanel-second-container > .v-panel > .v-panel-content > .v-verticallayout > .v-expand > div > .v-grid > .v-grid-tablewrapper > table > .v-grid-body > tr > td")
       .first()
       .click();
     await page.getByRole("button", { name: " Eltávolít" }).click();
