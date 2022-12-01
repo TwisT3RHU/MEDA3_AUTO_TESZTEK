@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { login, medaurl } from "../globalis";
+import { login, medaurl } from "globalis";
 
 test("szimpla login/logout", async ({ page }) => {
     login(page);

@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { login, medaurl, randomname } from "./globalis";
+import { login, medaurl, randomname } from "globalis";
 
 const testname = randomname("geriautpart");
 

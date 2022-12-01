@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
-import { branch, hoptoserverusers, login, medaurl, randomname } from "./globalis";
-import { misc, user } from "./core.json";
+import { branch, hoptoserverusers, login, medaurl, randomname } from "globalis";
+import { misc, user } from "core.json";
 
 const randname = randomname("_autoteszt");
 const remotename = branch(true) + randname;

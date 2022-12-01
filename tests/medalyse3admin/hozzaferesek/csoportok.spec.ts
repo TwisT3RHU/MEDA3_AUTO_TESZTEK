@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
-import { branch, datum, login, medaurl, randomname } from "./globalis";
-import { misc, user } from "./core.json";
+import { branch, datum, login, medaurl, randomname } from "globalis";
+import { misc, user } from "core.json";
 
 const testname = randomname("geriautcsp");
 

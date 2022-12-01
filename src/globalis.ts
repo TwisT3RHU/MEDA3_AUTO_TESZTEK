@@ -1,5 +1,5 @@
 import { expect } from "@playwright/test";
-import { misc, user } from "./core.json";
+import { misc, user } from "core.json";
 
 // LINK ÖSSZERAKÁSOK
 
