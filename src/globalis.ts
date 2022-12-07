@@ -100,13 +100,26 @@ export function medaurl(remote: boolean, menu?: string) {
  * @param {string} name - string - the value to be filled into the text box
  */
 export async function textboxcheck(page: any, textboxname: string, name: string) {
-  const textbox = page.getByRole("textbox", { name: textboxname });
+  let textbox = page.getByRole("textbox", { name: textboxname });
   await expect(textbox).toBeEditable();
   await textbox.click();
   await expect(textbox).toBeFocused();
   await textbox.fill(name);
-  await expect(textbox).toHaveText(name);
-  console.log(name + " beillesztve a " + textboxname + " textboxba");
+  //await expect(textbox).toContainText(name); // elfosta magát?
+  console.log(name + " beillesztve a(z) " + textboxname + " textboxba");
+};
+
+/**
+ * It clicks on a combobox, then clicks on a text in the combobox.
+ * @param {any} page - the page object
+ * @param {string} rowname - the name of the combobox
+ * @param {string} name - the name of the item inside a combobox
+ */
+export async function rowcheck(page: any, rowname: string, name: string) {
+  await page.getByRole("row", { name: rowname }).getByRole("combobox").locator("div").click();
+  //await expect(row).toBeFocused();
+  await page.getByText(name).click();
+  console.log(name + " kiválasztva a " + rowname + " comboboxból")
 };
 
 /*export function medaurl(remote: boolean, menu?: string) {

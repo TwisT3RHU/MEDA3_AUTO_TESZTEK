@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { login, medaurl, randomname, textboxcheck } from "globalis";
+import { login, medaurl, randomname, rowcheck, textboxcheck } from "globalis";
 import { misc, user } from "core.json";
 
 const testname = randomname("geriautusr");
@@ -27,25 +27,14 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
       ["Név", "Jelszó", "Jelszó mégegyszer", "Teljes név", "Email cím", "Bejelentkező kód"],
       [testname, testname, testname, "autoteszt user", "autoteszt@example.com", testname]
     ];
-    for (let i in textboxes)
-    { 
-      textboxcheck(page, textboxes[0][i], textboxes[1][i]);
+    for (let i= 0; i < 6; i++) {
+      await textboxcheck(page, textboxes[0][i], textboxes[1][i]);
     };
     //await page.getByRole('row', { name: 'B. kód érvényesség' }).locator('button').click();
     //await page.getByRole('button', { name: '»' }).click();
     //await page.getByRole('row', { name: '23 24 25 26 27 28 29' }).getByText('29').click();
-    await page
-      .getByRole("row", { name: "Partner" })
-      .getByRole("combobox")
-      .locator("div")
-      .click();
-    await page.getByText(user.partner).click();
-    await page
-      .getByRole("row", { name: "Alapértelmezett nyelv" })
-      .getByRole("combobox")
-      .locator("div")
-      .click();
-    await page.getByText("Magyar").click();
+    await rowcheck(page, "Partner", user.partner);
+    await rowcheck(page, "Alapértelmezett nyelv", "Magyar");
     await page.getByRole("button", { name: " Mentés" }).click();
     console.log(testname + " létrehozva");
   });
