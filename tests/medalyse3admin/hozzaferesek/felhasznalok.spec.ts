@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { login, medaurl, randomname } from "globalis";
+import { login, medaurl, randomname, textboxcheck } from "globalis";
 import { misc, user } from "core.json";
 
 const testname = randomname("geriautusr");
@@ -23,24 +23,14 @@ test.afterEach(async ({ page }) => {
 
 test.describe.serial("egy felhasználót érintő tesztek", () => {
   test("felhasználó létrehozása", async ({ page }) => {
-    await page.getByRole("textbox", { name: "Név" }).fill(testname);
-    await page.getByRole("textbox", { name: "Név" }).press("Tab");
-    await page.getByRole("textbox", { name: "Jelszó" }).fill(testname);
-    await page.getByRole("textbox", { name: "Jelszó" }).press("Tab");
-    await page
-      .getByRole("textbox", { name: "Jelszó mégegyszer" })
-      .fill(testname);
-    await page
-      .getByRole("textbox", { name: "Teljes név" })
-      .fill("autoteszt user");
-    await page.getByRole("textbox", { name: "Teljes név" }).press("Tab");
-    await page
-      .getByRole("textbox", { name: "Email cím" })
-      .fill("autoteszt@example.com");
-    await page.getByRole("textbox", { name: "Email cím" }).press("Tab");
-    await page
-      .getByRole("textbox", { name: "Bejelentkező kód" })
-      .fill(testname);
+    const textboxes: string[][] = [
+      ["Név", "Jelszó", "Jelszó mégegyszer", "Teljes név", "Email cím", "Bejelentkező kód"],
+      [testname, testname, testname, "autoteszt user", "autoteszt@example.com", testname]
+    ];
+    for (let i in textboxes)
+    { 
+      textboxcheck(page, textboxes[0][i], textboxes[1][i]);
+    };
     //await page.getByRole('row', { name: 'B. kód érvényesség' }).locator('button').click();
     //await page.getByRole('button', { name: '»' }).click();
     //await page.getByRole('row', { name: '23 24 25 26 27 28 29' }).getByText('29').click();
@@ -58,6 +48,15 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
     await page.getByText("Magyar").click();
     await page.getByRole("button", { name: " Mentés" }).click();
     console.log(testname + " létrehozva");
+  });
+
+  test.fixme("WIP felhasználó hozzáadása egy csoporthoz", async ({ page }) => {
+    await page.getByRole("cell", { name: user.name }).click();
+    //await page.getByRole("row", { name: /.*geriautocsop/ }).locator("span").click();
+    //await page.getByRole("row", { name: /.*geriautocsop/ }).locator('v-grid-scroller').nth(2).evaluate(e => e.scrollIntoView());
+    //await csoport.click() // EGYELŐRE NEM TUDOM FUTURE-PROOFOLNI :)
+    //await page.getByRole("button", { name: " Hozzáad" }).click();
+    console.log(testname + " hozzáadva egy csoporthoz");
   });
 
   test("felhasználó hozzáadása egy csoporthoz", async ({ page }) => {

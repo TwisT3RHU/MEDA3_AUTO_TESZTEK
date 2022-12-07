@@ -46,6 +46,10 @@ function medalink(remote: boolean = false) {
   };
 };
 
+/**
+ * The function klienslink() returns the string "medalyse3app/"
+ * @returns The function klienslink() is being returned.
+ */
 function klienslink() {
   return "medalyse3app/";
 };
@@ -86,6 +90,23 @@ export function medaurl(remote: boolean, menu?: string) {
   }
   console.log(url + " meda url összerakva");
   return url;
+};
+
+/**
+ * It checks if a textbox is editable, then clicks on it, checks if it's focused, fills it with a name,
+ * and checks if it has the name.
+ * @param {any} page - the page object
+ * @param {any} textboxname - string - the name of the specified textbox
+ * @param {string} name - string - the value to be filled into the text box
+ */
+export async function textboxcheck(page: any, textboxname: string, name: string) {
+  const textbox = page.getByRole("textbox", { name: textboxname });
+  await expect(textbox).toBeEditable();
+  await textbox.click();
+  await expect(textbox).toBeFocused();
+  await textbox.fill(name);
+  await expect(textbox).toHaveText(name);
+  console.log(name + " beillesztve a " + textboxname + " textboxba");
 };
 
 /*export function medaurl(remote: boolean, menu?: string) {
