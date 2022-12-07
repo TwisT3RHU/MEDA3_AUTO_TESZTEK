@@ -27,7 +27,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
       ["Név", "Jelszó", "Jelszó mégegyszer", "Teljes név", "Email cím", "Bejelentkező kód"],
       [testname, testname, testname, "autoteszt user", "autoteszt@example.com", testname]
     ];
-    for (let i= 0; i < 6; i++) {
+    for (let i= 0; i < textboxes[0].length; i++) {
       await textboxcheck(page, textboxes[0][i], textboxes[1][i]);
     };
     //await page.getByRole('row', { name: 'B. kód érvényesség' }).locator('button').click();
