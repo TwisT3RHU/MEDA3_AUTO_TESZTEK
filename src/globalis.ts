@@ -121,34 +121,6 @@ export async function rowcheck(page: any, rowname: string, name: string) {
   console.log(name + " kiválasztva a " + row + " comboboxból")
 };
 
-/*export function medaurl(remote: boolean, menu?: string) {
-  let url = "";
-  if (menu == "remote" || menu == "local") {
-    url = medalink(remote) + "m3/call?app=" + klienslink();
-    // http://medalyse.beta.local/m3/call?app=medalyse3app
-    return url;
-  } else {
-    if (misc.admin) {
-      if (branch(remote) == "pre" || branch(remote) == "prod") url = medalink(remote) + "app/" + adminlink(remote);
-      else url = medalink(remote) +  adminlink(remote);
-      if (menu == undefined) return url;
-      else return url + menu;
-    } else {
-      url = medalink(remote) + "app/" + klienslink();
-      if (menu == undefined) return url;
-      else return url + menu;
-    }
-  }
-}*/
-
-/*export function medaurl(menu?: string) {
-    let admin = "";
-    if (misc.branch != "alfa") admin = medalink() + "app/" + adminlink();
-    else admin = medalink() + adminlink();
-    if (menu == undefined) return admin;
-    else return admin + menu;
-};*/
-
 // NÉV GENERÁLÁS
 
 /**
