@@ -199,3 +199,24 @@ export async function hoptoserverusers(page: any, remote: string) {
     .locator('td[role="listitem"]:has-text("' + remote + '")')
     .click();
 };
+
+export async function removeitem(page: any, buttonname: string) {
+  const removebutton = page.getByRole("button", { name: buttonname });
+  await expect(removebutton).toBeEnabled();
+  await removebutton.click();
+  console.log(removebutton + " meg lett nyomva");
+
+  const nem = page.getByRole("button", { name: "Nem" });
+  await expect(nem).toBeEnabled();
+  await nem.click();
+  console.log(nem + " meg lett nyomva");
+
+  await expect(removebutton).toBeEnabled();
+  await removebutton.click();
+  console.log(removebutton + " meg lett nyomva");
+  
+  const igen = page.getByRole("button", { name: "Igen" });
+  await expect(igen).toBeEnabled();
+  await igen.click();
+  console.log(igen + " meg lett nyomva");
+};

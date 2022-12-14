@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { login, medaurl, randomname, rowcheck, textboxcheck } from "globalis";
+import { login, medaurl, randomname, removeitem, rowcheck, textboxcheck } from "globalis";
 import { misc, user } from "core.json";
 
 const testname = randomname("geriautusr");
@@ -66,10 +66,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
         ".v-splitpanel-second-container > .v-panel > .v-panel-content > .v-verticallayout > .v-expand > div > .v-grid > .v-grid-tablewrapper > table > .v-grid-body > tr > td")
       .first()
       .click();
-    await page.getByRole("button", { name: " Eltávolít" }).click();
-    await page.getByRole("button", { name: "Nem" }).click();
-    await page.getByRole("button", { name: " Eltávolít" }).click();
-    await page.getByRole("button", { name: "Igen" }).click();
+    removeitem(page, " Eltávolít");
     console.log(testname + " eltávolítva egy csoportból");
   });
 
@@ -214,3 +211,4 @@ test.describe.serial(misc.bulkcount + " felhasználót érintő tesztek", () => 
     }
   });
 });
+
