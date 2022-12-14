@@ -157,6 +157,7 @@ export function datum() {
  */
 export async function login(page: any, remote: boolean = false) {
   await page.goto(medaurl(remote));
+  await expect(page).toHaveURL(/.auth\/realms\/healthware\/protocol\/openid-connect./); // SSO
   const username = page.getByLabel("Username or email");
   await expect(username).toBeEditable();
   await username.click();
