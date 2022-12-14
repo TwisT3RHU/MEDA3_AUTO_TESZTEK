@@ -87,12 +87,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
     //await page.getByRole('row', { name: '23 24 25 26 27 28 29' }).getByText('29').click();
     //await page.getByRole('row', { name: 'Partner' }).getByRole('combobox').locator('div').click();
     //await page.getByText(user.usergroup).click();
-    await page
-      .getByRole("row", { name: "Alapértelmezett nyelv" })
-      .getByRole("combobox")
-      .locator("div")
-      .click();
-    await page.getByText("English").click();
+    await rowcheck(page, "Alapértelmezett nyelv", "English");
     await page.getByRole("button", { name: " Mentés" }).click();
     console.log(testname + " módosítva: " + testnamedit);
   });

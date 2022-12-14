@@ -102,7 +102,8 @@ export async function textboxcheck(page: any, textboxname: string, name: string)
   await textbox.click();
   await expect(textbox).toBeFocused();
   await textbox.fill(name);
-  //await expect(textbox).toContainText(name); // elfosta magát?
+  await expect(textbox).not.toBeEmpty(); // ez legalább működik
+  //await expect(textbox).toHaveText(name); // elfosta magát? received string "" közben nem?
   console.log(name + " beillesztve a(z) " + textboxname + " textboxba");
 };
 
