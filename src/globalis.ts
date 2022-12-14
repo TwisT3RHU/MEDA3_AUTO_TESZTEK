@@ -54,9 +54,9 @@ function klienslink() {
   return "medalyse3app/";
 };
 
+
 /**
- * If the branch is pre or prod, return medalyse3admin/; otherwise, return admin/.
- * @param {boolean} remote - true if the site is being used as a remote server, false if it's used locally.
+ * It returns a string.
  * @returns The function adminlink() is being returned.
  */
 function adminlink() {
