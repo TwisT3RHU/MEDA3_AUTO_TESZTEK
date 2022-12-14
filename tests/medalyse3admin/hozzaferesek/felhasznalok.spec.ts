@@ -75,20 +75,13 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
 
   test("felhasználó adatainak módosítása", async ({ page }) => {
     await page.getByRole("cell", { name: testname }).click();
-    await page.getByRole("textbox", { name: "Jelszó" }).fill(testnamedit);
-    await page.getByRole("textbox", { name: "Jelszó" }).press("Tab");
-    await page
-      .getByRole("textbox", { name: "Jelszó mégegyszer" })
-      .fill(testnamedit);
-    await page.getByRole("textbox", { name: "Teljes név" }).fill(testnamedit);
-    await page.getByRole("textbox", { name: "Teljes név" }).press("Tab");
-    await page
-      .getByRole("textbox", { name: "Email cím" })
-      .fill("autoteszt_edited@example.com");
-    await page.getByRole("textbox", { name: "Email cím" }).press("Tab");
-    await page
-      .getByRole("textbox", { name: "Bejelentkező kód" })
-      .fill(testnamedit);
+    const textboxes: string[][] = [
+      ["Jelszó", "Jelszó mégegyszer", "Teljes név", "Email cím", "Bejelentkező kód"],
+      [testnamedit, testnamedit, testnamedit, "autoteszt_edited@example.com", testnamedit]
+    ];
+    for (let i= 0; i < textboxes[0].length; i++) {
+      await textboxcheck(page, textboxes[0][i], textboxes[1][i]);
+    };
     //await page.getByRole('row', { name: 'B. kód érvényesség' }).locator('button').click();
     //await page.getByRole('button', { name: '»' }).click();
     //await page.getByRole('row', { name: '23 24 25 26 27 28 29' }).getByText('29').click();

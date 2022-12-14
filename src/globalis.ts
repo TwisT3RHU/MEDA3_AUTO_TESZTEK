@@ -59,9 +59,8 @@ function klienslink() {
  * @param {boolean} remote - true if the site is being used as a remote server, false if it's used locally.
  * @returns The function adminlink() is being returned.
  */
-function adminlink(remote: boolean) {
-  if (branch(remote) == "pre" || branch(remote) == "prod") return "medalyse3admin/";
-  else return "admin/";
+function adminlink() {
+  return "admin/";
 };
 
 /**
@@ -77,9 +76,7 @@ export function medaurl(remote: boolean, menu?: string) {
     url = medalink(remote) + "m3/call?app=" + klienslink();
   } else {
     if (misc.admin) {
-      if (branch(remote) == "pre" || branch(remote) == "prod") {
-        url = medalink(remote) + "app/" + adminlink(remote); }
-      else url = medalink(remote) +  adminlink(remote);
+      url = medalink(remote) +  adminlink();
       if (menu == undefined) url;
       else url = url + menu;
     } else {
