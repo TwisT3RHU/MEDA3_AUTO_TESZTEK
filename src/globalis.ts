@@ -97,14 +97,14 @@ export function medaurl(remote: boolean, menu?: string) {
  * @param {string} name - string - the value to be filled into the text box
  */
 export async function textboxcheck(page: any, textboxname: string, name: string) {
-  let textbox = page.getByRole("textbox", { name: textboxname });
+  const textbox = page.getByRole("textbox", { name: textboxname });
   await expect(textbox).toBeEditable();
   await textbox.click();
   await expect(textbox).toBeFocused();
   await textbox.fill(name);
   await expect(textbox).not.toBeEmpty(); // ez legalább működik
   //await expect(textbox).toHaveText(name); // elfosta magát? received string "" közben nem?
-  console.log(name + " beillesztve a(z) " + textboxname + " textboxba");
+  console.log(name + " beillesztve a " + textbox + " textboxba");
 };
 
 /**
@@ -114,10 +114,11 @@ export async function textboxcheck(page: any, textboxname: string, name: string)
  * @param {string} name - the name of the item inside a combobox
  */
 export async function rowcheck(page: any, rowname: string, name: string) {
-  await page.getByRole("row", { name: rowname }).getByRole("combobox").locator("div").click();
+  const row = await page.getByRole("row", { name: rowname }).getByRole("combobox").locator("div");
+  await row.click();
   //await expect(row).toBeFocused();
   await page.getByText(name).click();
-  console.log(name + " kiválasztva a " + rowname + " comboboxból")
+  console.log(name + " kiválasztva a " + row + " comboboxból")
 };
 
 /*export function medaurl(remote: boolean, menu?: string) {
@@ -184,10 +185,23 @@ export function datum() {
  */
 export async function login(page: any, remote: boolean = false) {
   await page.goto(medaurl(remote));
-  await page.getByLabel("Username or email").fill(user.name);
-  await page.getByLabel("Username or email").press("Tab");
-  await page.getByLabel("Password").fill(user.pass);
-  await page.getByLabel("Password").press("Enter");
+  const username = page.getByLabel("Username or email");
+  await expect(username).toBeEditable();
+  await username.click();
+  await expect(username).toBeFocused();
+  await username.fill(user.name);
+  await expect(username).not.toBeEmpty();
+  console.log(user.name + " beillesztve a " + username + " textboxba");
+
+  const password = page.getByLabel("Password");
+  await expect(password).toBeEditable();
+  await password.click();
+  await expect(password).toBeFocused();
+  await password.fill(user.pass);
+  await expect(password).not.toBeEmpty();
+  console.log(user.pass + " beillesztve a " + password + " textboxba");
+
+  await password.press("Enter");
   await expect(page).toHaveURL(medaurl(remote));
   console.log("sikeres bejelentkezés: " + branch(remote) + ": " + user.name + " - " + user.pass);
 };
