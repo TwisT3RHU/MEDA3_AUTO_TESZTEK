@@ -73,7 +73,7 @@ function adminlink() {
 export function medaurl(remote: boolean, menu?: string) {
   let url = "";
   if (menu == "remote" || menu == "local") {
-    url = medalink(remote) + "m3/call?app=" + klienslink();
+    url = medalink(remote) + "app/call?app=" + klienslink(); // http://medalyse.beta.local/app/call?app=medalyse3app
   } else {
     if (misc.admin) {
       url = medalink(remote) +  adminlink();
@@ -176,8 +176,18 @@ export async function login(page: any, remote: boolean = false) {
 
   await password.press("Enter");
   await expect(page).toHaveURL(medaurl(remote));
-  await page.waitForNavigation();
+  //await page.waitForNavigation();
   console.log("sikeres bejelentkezés: " + branch(remote) + ": " + user.name + " - " + user.pass);
+};
+
+/**
+ * It clicks on the "kilépés" button, then closes the page context
+ * @param {any} page - the page object
+ */
+export async function logout(page: any) {
+  await page.locator('span:has-text("kilépés")').first().click();
+  const context = page.context();
+  await context.close();
 };
 
 // TÁVOLI SZERVER MENÜ

@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { login, medaurl, randomname, removeitem, rowcheck, textboxcheck } from "globalis";
+import { login, logout, medaurl, randomname, removeitem, rowcheck, textboxcheck } from "globalis";
 import { misc, user } from "core.json";
 
 const testname = randomname("geriautusr");
@@ -10,15 +10,10 @@ console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
-
-  login(page);
+  await login(page);
   await page.getByText("►Hozzáférések").click();
   await page.getByText("Felhasználók").click();
   await expect(page).toHaveURL(medaurl(false, "#!usrs"));
-});
-
-test.afterEach(async ({ page }) => {
-  await page.locator('span:has-text("kilépés")').first().click();
 });
 
 test.describe.serial("egy felhasználót érintő tesztek", () => {
@@ -66,7 +61,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
         ".v-splitpanel-second-container > .v-panel > .v-panel-content > .v-verticallayout > .v-expand > div > .v-grid > .v-grid-tablewrapper > table > .v-grid-body > tr > td")
       .first()
       .click();
-    removeitem(page, " Eltávolít");
+    await removeitem(page, " Eltávolít");
     console.log(testname + " eltávolítva egy csoportból");
   });
 
@@ -111,6 +106,9 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
     await page.getByRole("button", { name: " Törlés" }).click();
     await page.getByRole("button", { name: "Igen" }).click();
     console.log(testnamedit + " ismét törölve");
+  });
+  test.afterEach(async ({ page }) => {
+    await logout(page);
   });
 });
 
@@ -157,9 +155,7 @@ test.describe.serial(misc.bulkcount + " felhasználót érintő tesztek", () => 
     }
   });
 
-  test(
-    misc.bulkcount + " felhasználó adatainak módosítása",
-    async ({ page }) => {
+  test(misc.bulkcount + " felhasználó adatainak módosítása", async ({ page }) => {
       for (let index = 1; index < misc.bulkcount + 1; index++) {
         const randomname2 = testname + "_" + index;
         await page.getByRole("cell", { name: randomname2 }).click();
@@ -210,5 +206,7 @@ test.describe.serial(misc.bulkcount + " felhasználót érintő tesztek", () => 
       console.log(randomname2edit + " törölve");
     }
   });
+  test.afterEach(async ({ page }) => {
+    await logout(page);
+  });
 });
-

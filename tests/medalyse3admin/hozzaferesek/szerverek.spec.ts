@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { branch, hoptoserverusers, login, medaurl, randomname } from "globalis";
+import { branch, hoptoserverusers, login, logout, medaurl, randomname } from "globalis";
 import { misc, user } from "core.json";
 
 const randname = randomname("_autoteszt");
@@ -10,17 +10,14 @@ let jumpbranch: boolean = false;
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
-  if (jumpbranch) login(page, true);
-  else login(page, false);
+  if (jumpbranch) await login(page, true);
+  else await login(page, false);
   //login(page, jumpbranch);
   await page.getByText("►Hozzáférések").click();
   await page.getByText("Szerverek").click();
   await expect(page).toHaveURL(medaurl(jumpbranch, "#!servers"));
 });
 
-test.afterEach(async ({ page }) => {
-  //await page.locator('span:has-text("kilépés")').first().click();
-});
 test.describe.serial("szerverek összekötése", () => {
   test("új távoli szerver hozzáadása", async ({ page }) => {
     await page.getByRole("button", { name: " Új" }).click();

@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { branch, datum, login, medaurl, randomname } from "globalis";
+import { branch, datum, login, logout, medaurl, randomname } from "globalis";
 import { misc, user } from "core.json";
 
 const testname = randomname("geriautcsp");
@@ -10,14 +10,10 @@ console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
 
-  login(page);
+  await login(page);
   await page.getByText("►Hozzáférések").click();
   await page.getByText("Csoportok").click();
   await expect(page).toHaveURL(medaurl(false, "#!grps"));
-});
-
-test.afterEach(async ({ page }) => {
-  await page.locator('span:has-text("kilépés")').first().click();
 });
 
 test.describe.serial("egy csoportot érintő tesztek", () => {
@@ -355,6 +351,9 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
     await page.getByRole("button", { name: "Igen" }).click();
     console.log(testname + " csoport törölve");
   });
+  test.afterEach(async ({ page }) => {
+    await logout(page);
+  });
 });
 
 test.describe.serial(misc.bulkcount + " csoportot érintő tesztek", () => {
@@ -383,5 +382,8 @@ test.describe.serial(misc.bulkcount + " csoportot érintő tesztek", () => {
       await page.getByRole("button", { name: "Igen" }).click();
       console.log(randomname2 + " csoport törölve");
     }
+  });
+  test.afterEach(async ({ page }) => {
+    await logout(page);
   });
 });

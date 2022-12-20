@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { login, medaurl, randomname } from "globalis";
+import { login, logout, medaurl, randomname } from "globalis";
 
 const testname = randomname("geriautpart");
 
@@ -9,14 +9,10 @@ console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
 
-  login(page);
+  await login(page);
   await page.getByText("►Hozzáférések").click();
   await page.getByText("Partnerek").click();
   await expect(page).toHaveURL(medaurl(false, "#!partners"));
-});
-
-test.afterEach(async ({ page }) => {
-  await page.locator('span:has-text("kilépés")').first().click();
 });
 
 test.describe.serial("egy partnert érintő tesztek", () => {
@@ -69,5 +65,8 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     await page.getByRole("button", { name: " Törlés" }).click();
     await page.getByRole("button", { name: "Igen" }).click(); // EZEKBŐL FUNKCIÓT CSINÁLNI, MERT LEHET! HOLNAP! 
     console.log(testname + " ismételten törölve");
+  });
+  test.afterEach(async ({ page }) => {
+    await logout(page);
   });
 });
