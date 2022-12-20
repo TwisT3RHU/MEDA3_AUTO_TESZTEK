@@ -176,6 +176,7 @@ export async function login(page: any, remote: boolean = false) {
 
   await password.press("Enter");
   await expect(page).toHaveURL(medaurl(remote));
+  await page.waitForNavigation();
   console.log("sikeres bejelentkezés: " + branch(remote) + ": " + user.name + " - " + user.pass);
 };
 
@@ -200,6 +201,12 @@ export async function hoptoserverusers(page: any, remote: string) {
     .click();
 };
 
+/**
+ * It clicks on a button, then clicks on a modal's "Nem" button, then clicks on the original button
+ * again, then clicks on the modal's "Igen" button.
+ * @param {any} page - any - the page object
+ * @param {string} buttonname - the name of the button you want to click
+ */
 export async function removeitem(page: any, buttonname: string) {
   const removebutton = page.getByRole("button", { name: buttonname });
   await expect(removebutton).toBeEnabled();
