@@ -86,10 +86,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
 
   test("felhasználó törlése + megerősítő ablak", async ({ page }) => {
     await page.getByRole("cell", { name: testnamedit }).click();
-    await page.getByRole("button", { name: " Törlés" }).click();
-    await page.getByRole("button", { name: "Nem" }).click();
-    await page.getByRole("button", { name: " Törlés" }).click();
-    await page.getByRole("button", { name: "Igen" }).click();
+    await removeitem(page, " Törlés");
     console.log(testnamedit + " törölve");
   });
 
@@ -103,8 +100,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
 
   test("felhasználó ismételt törlése", async ({ page }) => {
     await page.getByRole("cell", { name: testnamedit }).click();
-    await page.getByRole("button", { name: " Törlés" }).click();
-    await page.getByRole("button", { name: "Igen" }).click();
+    await removeitem(page, " Törlés");
     console.log(testnamedit + " ismét törölve");
   });
   test.afterEach(async ({ page }) => {
@@ -201,8 +197,7 @@ test.describe.serial(misc.bulkcount + " felhasználót érintő tesztek", () => 
       const randomname2edit = testname + "_" + index;
       +"_edited";
       await page.getByRole("cell", { name: randomname2edit }).click();
-      await page.getByRole("button", { name: " Törlés" }).click();
-      await page.getByRole("button", { name: "Igen" }).click();
+      await removeitem(page, " Törlés");
       console.log(randomname2edit + " törölve");
     }
   });

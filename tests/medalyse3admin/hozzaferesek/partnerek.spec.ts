@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { login, logout, medaurl, randomname } from "globalis";
+import { login, logout, medaurl, randomname, removeitem } from "globalis";
 
 const testname = randomname("geriautpart");
 
@@ -32,10 +32,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     const cellname = page.getByRole("cell", { name: testname });
     await expect(cellname).toHaveText(testname);
     await cellname.click();
-    await page.getByRole("button", { name: " Törlés" }).click();
-    await page.getByRole("button", { name: "Nem" }).click();
-    await page.getByRole("button", { name: " Törlés" }).click();
-    await page.getByRole("button", { name: "Igen" }).click();
+    await removeitem(page, " Törlés");
     console.log(testname + " törölve");
   });
 
@@ -62,8 +59,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     const cellname = page.getByRole("cell", { name: testname });
     await expect(cellname).toHaveText(testname);
     await cellname.click();
-    await page.getByRole("button", { name: " Törlés" }).click();
-    await page.getByRole("button", { name: "Igen" }).click(); // EZEKBŐL FUNKCIÓT CSINÁLNI, MERT LEHET! HOLNAP! 
+    await removeitem(page, " Törlés");    
     console.log(testname + " ismételten törölve");
   });
   test.afterEach(async ({ page }) => {

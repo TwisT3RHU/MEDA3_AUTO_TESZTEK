@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { branch, hoptoserverusers, login, logout, medaurl, randomname } from "globalis";
+import { branch, hoptoserverusers, login, logout, medaurl, randomname, removeitem } from "globalis";
 import { misc, user } from "core.json";
 
 const randname = randomname("_autoteszt");
@@ -146,18 +146,12 @@ test.describe.serial("szerverek összekötése", () => {
     test.describe.serial("szerverek törlése", () => {
       test(misc.branch + " távoli szerver törlése + megerősítő ablak", async ({ page }) => {
         await page.getByRole("cell", { name: remotename }).click();
-        await page.getByRole("button", { name: " Törlés" }).click();
-        await page.getByRole("button", { name: "Nem" }).click();
-        await page.getByRole("button", { name: " Törlés" }).click();
-        await page.getByRole("button", { name: "Igen" }).click();
+        await removeitem(page, " Törlés");
         jumpbranch = true;
       });
       test(misc.branch_remote + " távoli szerver törlése + megerősítő ablak", async ({ page }) => {
         await page.getByRole("cell", { name: servername }).click();
-        await page.getByRole("button", { name: " Törlés" }).click();
-        await page.getByRole("button", { name: "Nem" }).click();
-        await page.getByRole("button", { name: " Törlés" }).click();
-        await page.getByRole("button", { name: "Igen" }).click();
+        await removeitem(page, " Törlés");
         jumpbranch = false;
       });
     });

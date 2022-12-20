@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { branch, datum, login, logout, medaurl, randomname } from "globalis";
+import { branch, datum, login, logout, medaurl, randomname, removeitem } from "globalis";
 import { misc, user } from "core.json";
 
 const testname = randomname("geriautcsp");
@@ -317,10 +317,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
     expect(
       await page.isChecked("input[type=checkbox]:nth-child(1)")
     ).toBeTruthy();
-    await page.getByRole("button", { name: " Eltávolít" }).first().click();
-    await page.getByRole("button", { name: "Nem" }).click();
-    await page.getByRole("button", { name: " Eltávolít" }).first().click();
-    await page.getByRole("button", { name: "Igen" }).click();
+    await removeitem(page, " Eltávolít" );
     console.log(user.name + " eltávolítva a " + testname + " csoportból");
   });
 
@@ -335,20 +332,14 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
         )
         .first()
         .click();
-      await page.getByRole("button", { name: " Eltávolít" }).nth(1).click();
-      await page.getByRole("button", { name: "Nem" }).click();
-      await page.getByRole("button", { name: " Eltávolít" }).nth(1).click();
-      await page.getByRole("button", { name: "Igen" }).click();
+      await removeitem(page, " Eltávolít" );
       console.log(testname + " csoport jogosultságai törölve");
     } else test.skip();
   });
 
   test("csoport törlése + megerősítő ablak", async ({ page }) => {
     await page.getByRole("cell", { name: testname }).click();
-    await page.getByRole("button", { name: " Törlés" }).click();
-    await page.getByRole("button", { name: "Nem" }).click();
-    await page.getByRole("button", { name: " Törlés" }).click();
-    await page.getByRole("button", { name: "Igen" }).click();
+    await removeitem(page, " Törlés");
     console.log(testname + " csoport törölve");
   });
   test.afterEach(async ({ page }) => {
@@ -378,8 +369,7 @@ test.describe.serial(misc.bulkcount + " csoportot érintő tesztek", () => {
     for (let index = 1; index < misc.bulkcount + 1; index++) {
       const randomname2 = testname + "_" + index;
       await page.getByRole("cell", { name: randomname2 }).click();
-      await page.getByRole("button", { name: " Törlés" }).click();
-      await page.getByRole("button", { name: "Igen" }).click();
+      await removeitem(page, " Törlés");
       console.log(randomname2 + " csoport törölve");
     }
   });
