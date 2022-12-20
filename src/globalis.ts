@@ -206,6 +206,7 @@ export async function hoptoserverusers(page: any, remote: string) {
     .getByRole("button", { name: " Távoli felhasználók" })
     .click();
   await expect(page).toHaveURL(/.#!serverUsers./);
+  await page.getByRole('textbox', { name: 'Szerver' }).click(); // talán ez hiányzott
   await page
     .locator('td[role="listitem"]:has-text("' + remote + '")')
     .click();
