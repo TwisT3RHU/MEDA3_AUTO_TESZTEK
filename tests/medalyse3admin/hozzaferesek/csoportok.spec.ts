@@ -317,7 +317,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
     expect(
       await page.isChecked("input[type=checkbox]:nth-child(1)")
     ).toBeTruthy();
-    await removeitem(page, " Eltávolít" );
+    await removeitem(page, " Eltávolít" ); // nth(1) kéne de hogyan?:D
     console.log(user.name + " eltávolítva a " + testname + " csoportból");
   });
 
