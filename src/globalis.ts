@@ -214,13 +214,15 @@ export async function hoptoserverusers(page: any, remote: string) {
 };
 
 /**
- * It clicks on a button, then clicks on a modal's "Nem" button, then clicks on the original button
- * again, then clicks on the modal's "Igen" button.
- * @param {any} page - any - the page object
+ * It clicks on a button, then clicks on a "Nem" button, then clicks on the original button again, then
+ * clicks on an "Igen" button.
+ * @param {any} page - the page object
  * @param {string} buttonname - the name of the button you want to click
+ * @param {number} [position=0] - 0 = first item, 1 = second item, 2 = third item, etc.
  */
-export async function removeitem(page: any, buttonname: string) {
-  const removebutton = page.getByRole("button", { name: buttonname });
+export async function removeitem(page: any, buttonname: string, position: number = 0) {
+  const removebutton = page.getByRole("button", { name: buttonname }).nth(position);
+  //if (position > 0) removebutton = page.getByRole("button", { name: buttonname }).nth(position);
   await expect(removebutton).toBeEnabled();
   await removebutton.click();
   console.log(removebutton + " meg lett nyomva");
