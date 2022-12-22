@@ -222,7 +222,6 @@ export async function hoptoserverusers(page: any, remote: string) {
  */
 export async function removeitem(page: any, buttonname: string, position: number = 0) {
   const removebutton = page.getByRole("button", { name: buttonname }).nth(position);
-  //if (position > 0) removebutton = page.getByRole("button", { name: buttonname }).nth(position);
   await expect(removebutton).toBeEnabled();
   await removebutton.click();
   console.log(removebutton + " meg lett nyomva");
