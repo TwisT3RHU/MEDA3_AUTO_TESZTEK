@@ -2,6 +2,9 @@ import { test, expect } from "@playwright/test";
 
 import { login, logout, medaurl, randomname, removeitem, rowcheck, textboxcheck } from "globalis";
 import { misc, user } from "core.json";
+//import { smoothscroll } from "smoothscroll-polyfill";
+
+//smoothscroll.polyfill();
 
 const testname = randomname("geriautusr");
 const testnamedit = testname + "_edited";
@@ -34,20 +37,11 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
     console.log(testname + " létrehozva");
   });
 
-  test.fixme("WIP felhasználó hozzáadása egy csoporthoz", async ({ page }) => {
-    await page.getByRole("cell", { name: user.name }).click();
-    //await page.getByRole("row", { name: /.*geriautocsop/ }).locator("span").click();
-    //await page.getByRole("row", { name: /.*geriautocsop/ }).locator('v-grid-scroller').nth(2).evaluate(e => e.scrollIntoView());
-    //await csoport.click() // EGYELŐRE NEM TUDOM FUTURE-PROOFOLNI :)
-    //await page.getByRole("button", { name: " Hozzáad" }).click();
-    console.log(testname + " hozzáadva egy csoporthoz");
-  });
-
   test("felhasználó hozzáadása egy csoporthoz", async ({ page }) => {
     await page.getByRole("cell", { name: testname }).click();
-    await page.getByRole("row", { name: new RegExp(user.usergroup) }).locator("span").click();
-    //await autocsop.scrollIntoViewIfNeeded();
-    //await autocsop.click();
+    const autocsop = page.getByRole("row", { name: new RegExp(user.usergroup) }).locator("span");
+    await autocsop.scrollIntoViewIfNeeded();
+    await autocsop.click();
     await page.getByRole("button", { name: " Hozzáad" }).click();
     console.log(testname + " hozzáadva egy csoporthoz");
   });
