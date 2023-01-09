@@ -253,7 +253,7 @@ export async function scrollOnElement(page: any, selector: any) {
 };
 
 /**
- * "Scrolls" down until the element is visible.
+ * "Scrolls" down by holding the ArrowDown key inside until the element becomes visible.
  * This workaround exists only because Medalyse isn't capable of running the already existing scrollIntoView(IfNeeded) function.
  * @param {any} page - the page object
  * @param {string} headername - The name of the header you want to "click on"
