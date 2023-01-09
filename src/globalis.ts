@@ -240,3 +240,29 @@ export async function removeitem(page: any, buttonname: string, position: number
   await igen.click();
   console.log(igen + " meg lett nyomva");
 };
+
+/**
+ * It scrolls to the element that matches the selector.
+ * @param {any} page - the page object from puppeteer
+ * @param {any} selector - The selector of the element you want to scroll to.
+ */
+export async function scrollOnElement(page: any, selector: any) {
+  await page.$eval(selector, (element: any) => {
+    element.scrollIntoView();
+  });
+};
+
+/**
+ * "Scrolls" down until the element is visible.
+ * This workaround exists only because Medalyse isn't capable of running the already existing scrollIntoView(IfNeeded) function.
+ * @param {any} page - the page object
+ * @param {string} headername - The name of the header you want to "click on"
+ * @param {any} locator - the element you want to scroll to
+ */
+export async function scrollUntilVisible(page: any, headername: string, locator: any) {
+  await page.getByText(headername).nth(1).dblclick({ delay: 2000 });
+  do await page.keyboard.down('ArrowDown');
+  while (await locator.isVisible() == false);
+  console.log(locator + " megtalálva")
+  await page.keyboard.up('ArrowDown');
+};

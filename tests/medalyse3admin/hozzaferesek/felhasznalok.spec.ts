@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { login, logout, medaurl, randomname, removeitem, rowcheck, textboxcheck } from "globalis";
+import { login, logout, medaurl, randomname, removeitem, rowcheck, scrollUntilVisible, textboxcheck } from "globalis";
 import { misc, user } from "core.json";
 //import { smoothscroll } from "smoothscroll-polyfill";
 
@@ -40,7 +40,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
   test("felhasználó hozzáadása egy csoporthoz", async ({ page }) => {
     await page.getByRole("cell", { name: testname }).click();
     const autocsop = page.getByRole("row", { name: new RegExp(user.usergroup) }).locator("span");
-    await autocsop.scrollIntoViewIfNeeded();
+    await scrollUntilVisible(page, "Azonosító", autocsop); // fenomenális...
     await autocsop.click();
     await page.getByRole("button", { name: " Hozzáad" }).click();
     console.log(testname + " hozzáadva egy csoporthoz");
