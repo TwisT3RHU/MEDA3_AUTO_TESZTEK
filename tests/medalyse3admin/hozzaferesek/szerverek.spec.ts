@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { branch, hoptoserverusers, login, logout, medaurl, randomname, removeitem } from "globalis";
+import { branch, hoptoserverusers, login, logout, medaurl, randomname, removeitem, scrollUntilVisible, textboxcheck } from "globalis";
 import { misc, user } from "core.json";
 
 const randname = randomname("_autoteszt");
@@ -21,15 +21,14 @@ test.beforeEach(async ({ page }) => {
 test.describe.serial("szerverek összekötése", () => {
   test("új távoli szerver hozzáadása", async ({ page }) => {
     await page.getByRole("button", { name: " Új" }).click();
-    await page.getByRole("textbox", { name: "Név" }).click();
-    await page.getByRole("textbox", { name: "Név" }).fill(remotename);
-    await page.getByRole("textbox", { name: "Kimenő kapcsolat URL" }).click();
-    await page
-      .getByRole("textbox", { name: "Kimenő kapcsolat URL" })
-      .fill(medaurl(true, "remote"));
-    let kimenokod = await page
-      .getByRole("textbox", { name: "Kimenő kapcsolat kód" })
-      .inputValue();
+    const textboxes: string[][] = [
+      ["Név", "Kimenő kapcsolat URL"],
+      [remotename, medaurl(true, "remote")]
+    ];
+    for (let i= 0; i < textboxes[0].length; i++) {
+      await textboxcheck(page, textboxes[0][i], textboxes[1][i]);
+    };
+    const kimenokod = await page.getByRole("textbox", { name: "Kimenő kapcsolat kód" }).inputValue();
     console.log(kimenokod + " kimenő kapcsolat kód tárolva")
 
     const context = page.context();
@@ -41,23 +40,17 @@ test.describe.serial("szerverek összekötése", () => {
     await expect(page2).toHaveURL(medaurl(true, "#!servers"));
 
     await page2.getByRole("button", { name: " Új" }).click();
-    await page2.getByRole("textbox", { name: "Név" }).click();
-    await page2.getByRole("textbox", { name: "Név" }).fill(servername);
-    await page2.getByRole("textbox", { name: "Kimenő kapcsolat URL" }).click();
-    await page2
-      .getByRole("textbox", { name: "Kimenő kapcsolat URL" })
-      .fill(medaurl(false, "local"));
-    await page2
-      .getByRole("textbox", { name: "Bejövő kapcsolat kód" })
-      .fill(kimenokod);
-    let bejovokod = await page2
-      .getByRole("textbox", { name: "Kimenő kapcsolat kód" })
-      .inputValue();
+    const textboxes2: string[][] = [
+      ["Név", "Kimenő kapcsolat URL", "Bejövő kapcsolat kód"],
+      [servername, medaurl(false, "local"), kimenokod]
+    ];
+    for (let i= 0; i < textboxes2[0].length; i++) {
+      await textboxcheck(page2, textboxes2[0][i], textboxes2[1][i]);
+    };
+    const bejovokod = await page2.getByRole("textbox", { name: "Kimenő kapcsolat kód" }).inputValue();
     console.log(bejovokod + " bejövő kapcsolat kód tárolva")
 
-    await page
-      .getByRole("textbox", { name: "Bejövő kapcsolat kód" })
-      .fill(bejovokod);
+    await textboxcheck(page, "Bejövő kapcsolat kód", bejovokod);
 
     await page.getByRole("button", { name: " Mentés" }).click();
     await page2.getByRole("button", { name: " Mentés" }).click();
@@ -66,7 +59,7 @@ test.describe.serial("szerverek összekötése", () => {
     test.describe.serial(misc.branch + " szerver felhasználója", () => {
       test(misc.branch + " új távoli felhasználó hozzáadása", async ({ page }) => {
         hoptoserverusers(page, remotename);
-        await page.getByRole("cell", { name: user.name }).first().click();
+        await page.getByRole("cell", { name: user.name }).first().click(); //??? miért nem klikkelsz?
         await page.getByRole("button", { name: " Hozzáad" }).first().click();
       });
       test(misc.branch + " felhasználó hozzáadása a " + user.usergroup + " csoporthoz", async ({ page }) => {
@@ -75,10 +68,9 @@ test.describe.serial("szerverek összekötése", () => {
           .getByRole("row", { name: remotename + " " + user.name })
           .getByRole("cell", { name: user.name })
           .click();
-        await page
-          .getByRole("row", { name: user.usergroup })
-          .getByLabel("")
-          .check();
+        const autocsop = page.getByRole("row", { name: user.usergroup }).getByLabel("");
+        await scrollUntilVisible(page, "Név", 3, autocsop);
+        await autocsop.check(); // scrolluntilvisible
         await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
       });
       test(misc.branch + " távoli felhasználó és csoportjának törlése", async ({ page }) => {
@@ -115,10 +107,9 @@ test.describe.serial("szerverek összekötése", () => {
           .getByRole("row", { name: servername + " " + user.name })
           .getByRole("cell", { name: user.name })
           .click();
-        await page
-          .getByRole("row", { name: user.usergroup })
-          .getByLabel("")
-          .check();
+        const autocsop = page.getByRole("row", { name: user.usergroup }).getByLabel("");
+        await scrollUntilVisible(page, "Név", 3, autocsop);
+        await autocsop.check(); // scrolluntilvisible
         await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
       });
       test(misc.branch_remote + " távoli felhasználó és csoportjának törlése", async ({ page }) => {

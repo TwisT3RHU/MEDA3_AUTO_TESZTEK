@@ -40,7 +40,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
   test("felhasználó hozzáadása egy csoporthoz", async ({ page }) => {
     await page.getByRole("cell", { name: testname }).click();
     const autocsop = page.getByRole("row", { name: new RegExp(user.usergroup) }).locator("span");
-    await scrollUntilVisible(page, "Azonosító", autocsop); // fenomenális...
+    await scrollUntilVisible(page, "Azonosító", 1, autocsop); // fenomenális...
     await autocsop.click();
     await page.getByRole("button", { name: " Hozzáad" }).click();
     console.log(testname + " hozzáadva egy csoporthoz");
@@ -152,7 +152,7 @@ test.describe.serial(misc.bulkcount + " felhasználót érintő tesztek", () => 
       console.log(randomname2edit + " törölve");
     };
   });
-  
+
   test.afterEach(async ({ page }) => {
     await logout(page);
   });

@@ -257,10 +257,11 @@ export async function scrollOnElement(page: any, selector: any) {
  * This workaround exists only because Medalyse isn't capable of running the already existing scrollIntoView(IfNeeded) function.
  * @param {any} page - the page object
  * @param {string} headername - The name of the header you want to "click on"
+ * @param {number} nth - To indicate which header name to be selected if there are multiple with the same name
  * @param {any} locator - the element you want to scroll to
  */
-export async function scrollUntilVisible(page: any, headername: string, locator: any) {
-  await page.getByText(headername).nth(1).dblclick({ delay: 2000 });
+export async function scrollUntilVisible(page: any, headername: string, nth: number, locator: any) {
+  await page.getByText(headername).nth(nth).dblclick({ delay: 2000 });
   do await page.keyboard.down('ArrowDown');
   while (await locator.isVisible() == false);
   console.log(locator + " megtalálva")

@@ -20,8 +20,9 @@ const config = {
     /**
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
+     * LASSÚ medalyse miatt fél perc :D
      */
-    timeout: 15000
+    timeout: 30000
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
