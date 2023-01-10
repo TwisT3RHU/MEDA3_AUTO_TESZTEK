@@ -211,6 +211,7 @@ export async function hoptoserverusers(page: any, remote: string) {
   await page
     .locator('td[role="listitem"]:has-text("' + remote + '")')
     .click();
+  await page.waitForLoadState();
 };
 
 /**

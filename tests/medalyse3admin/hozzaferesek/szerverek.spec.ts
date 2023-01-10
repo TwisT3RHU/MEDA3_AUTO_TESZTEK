@@ -61,6 +61,10 @@ test.describe.serial("szerverek összekötése", () => {
         hoptoserverusers(page, remotename);
         await page.getByRole("cell", { name: user.name }).first().click(); //??? miért nem klikkelsz?
         await page.getByRole("button", { name: " Hozzáad" }).first().click();
+        /*const findname = page.getByRole("cell", { name: user.name }).first(); //??? miért nem klikkelsz?
+        await scrollUntilVisible(page, "Név", 1, findname);
+        await findname.click();
+        await page.getByRole("button", { name: " Hozzáad" }).first().click();*/
       });
       test(misc.branch + " felhasználó hozzáadása a " + user.usergroup + " csoporthoz", async ({ page }) => {
         hoptoserverusers(page, remotename);
