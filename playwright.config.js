@@ -15,14 +15,14 @@ const { devices } = require('@playwright/test');
 const config = {
   testDir: './tests/',
   /* Maximum time one test can run for. */
-  timeout: 18 * 10000,
+  timeout: 24 * 10000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
-     * LASSÚ medalyse miatt fél perc :D
+     * LASSÚ medalyse és safar emulátor miatt háromnegyed perc :D
      */
-    timeout: 30000
+    timeout: 45000
   },
   /* Run tests in files in parallel */
   fullyParallel: true,

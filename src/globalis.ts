@@ -262,7 +262,7 @@ export async function scrollOnElement(page: any, selector: any) {
  * @param {any} locator - the element you want to scroll to
  */
 export async function scrollUntilVisible(page: any, headername: string, nth: number, locator: any) {
-  await page.getByText(headername).nth(nth).click({ delay: 1000 });
+  await page.getByText(headername).nth(nth).dblclick({ delay: 100 });
   do await page.keyboard.down('ArrowDown');
   while (await locator.isVisible() == false);
   console.log(locator + " megtalálva")
