@@ -59,12 +59,9 @@ test.describe.serial("szerverek összekötése", () => {
     test.describe.serial(misc.branch + " szerver felhasználója", () => {
       test(misc.branch + " új távoli felhasználó hozzáadása", async ({ page }) => {
         hoptoserverusers(page, remotename);
+        await page.getByRole('row', { name: 'Név Teljes név' }).getByRole('cell', { name: 'Név' }).getByText('Név').click({ delay: 1000 }); 
         await page.getByRole("cell", { name: user.name }).first().click(); //??? miért nem klikkelsz?
         await page.getByRole("button", { name: " Hozzáad" }).first().click();
-        /*const findname = page.getByRole("cell", { name: user.name }).first(); //??? miért nem klikkelsz?
-        await scrollUntilVisible(page, "Név", 1, findname);
-        await findname.click();
-        await page.getByRole("button", { name: " Hozzáad" }).first().click();*/
       });
       test(misc.branch + " felhasználó hozzáadása a " + user.usergroup + " csoporthoz", async ({ page }) => {
         hoptoserverusers(page, remotename);
@@ -102,6 +99,7 @@ test.describe.serial("szerverek összekötése", () => {
     test.describe.serial(misc.branch_remote + " szerver felhasználója", () => {
       test(misc.branch_remote + " új távoli felhasználó hozzáadása", async ({ page }) => {
         hoptoserverusers(page, servername);
+        await page.getByRole('row', { name: 'Név Teljes név' }).getByRole('cell', { name: 'Név' }).getByText('Név').click({ delay: 1000 }); 
         await page.getByRole("cell", { name: user.name }).first().click();
         await page.getByRole("button", { name: " Hozzáad" }).first().click();
       });
@@ -148,6 +146,7 @@ test.describe.serial("szerverek összekötése", () => {
         await page.getByRole("cell", { name: servername }).click();
         await removeitem(page, " Törlés");
         jumpbranch = false;
+        await logout(page);
       });
     });
   });
