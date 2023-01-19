@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { login, logout, medaurl, randomname, removeitem } from "globalis";
+import { login, logout, medaurl, randomname, removeitem, textboxcheck } from "globalis";
 
 const testname = randomname("geriautpart");
 
@@ -8,7 +8,6 @@ console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
-
   await login(page);
   await page.getByText("►Hozzáférések").click();
   await page.getByText("Partnerek").click();
@@ -17,13 +16,10 @@ test.beforeEach(async ({ page }) => {
 
 test.describe.serial("egy partnert érintő tesztek", () => {
   test("partner hozzáadás", async ({ page }) => {
-    const textboxname = page.getByRole("textbox", { name: "Név" });
-    const cellname = page.getByRole("cell", { name: testname });
-    await expect(textboxname).toBeEditable();
-    await textboxname.click();
-    await expect(textboxname).toBeFocused();
-    await textboxname.fill(testname);
+    await page.getByRole('button', { name: ' Új' }).click();
+    await textboxcheck(page, "Név", testname);
     await page.getByRole("button", { name: " Mentés" }).click();
+    const cellname = page.getByRole("cell", { name: testname });
     await expect(cellname).toHaveText(testname);
     console.log(testname + " létrehozva");
   });

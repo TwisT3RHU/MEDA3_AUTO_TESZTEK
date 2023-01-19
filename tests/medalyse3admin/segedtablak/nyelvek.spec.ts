@@ -1,9 +1,12 @@
 import { test, expect } from '@playwright/test';
+
 import { login, logout, medaurl, randomname, removeitem, textboxcheck } from 'globalis';
 
 const testname = randomname("Playwright");
 const testshort = "PW";
 const testshortedit = testshort + "E";
+
+console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
