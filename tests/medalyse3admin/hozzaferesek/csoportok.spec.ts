@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { branch, datum, login, logout, medaurl, randomname, removeitem } from "globalis";
+import { branch, datum, login, logout, medaurl, pressbutton, randomname, removeitem } from "globalis";
 import { misc, user } from "core.json";
 
 const testname = randomname("geriautcsp");
@@ -18,7 +18,7 @@ test.beforeEach(async ({ page }) => {
 
 test.describe.serial("egy csoportot érintő tesztek", () => {
   test("csoport létrehozása", async ({ page }) => {
-    await page.getByRole("button", { name: " Új" }).click();
+    await pressbutton(page, " Új" , 0);
     await page.getByRole("textbox", { name: "Név" }).click();
     await page.getByRole("textbox", { name: "Név" }).fill(testname);
     await page.getByRole("textbox", { name: "Név" }).press("Tab");
@@ -26,7 +26,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
     await page
       .getByRole("textbox", { name: "Információ" })
       .fill(datum() + " playwright teszt " + testname);
-    await page.getByRole("button", { name: " Mentés" }).click();
+    await pressbutton(page, " Mentés", 0);
     console.log(testname + " csoport létrehozva");
   });
 
@@ -35,7 +35,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
       await page.getByRole("cell", { name: testname }).click();
       await page.getByRole("combobox").locator("div").click();
       await page.getByText("General.Admin").click();
-      await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+      await pressbutton(page, " Hozzáad", 1);
       await page.getByRole("combobox").locator("div").click();
       await page.getByText("Client.Menu").click();
       await page
@@ -58,7 +58,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
         .click();
       //for (let i = 0; i < 5; i++) await page.getByText('Menü címe').press('PageDown');
       await page.getByText("Tesztriportok").click();
-      await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+      await pressbutton(page, " Hozzáad", 1);
       await page
         .getByRole("row", { name: "Jogosultság" })
         .getByRole("combobox")
@@ -86,7 +86,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
         .locator("div")
         .click();
       await page.getByText("QUERY_FOR_ROWS_EXPORT").click();
-      await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+      await pressbutton(page, " Hozzáad", 1);
       await page
         .getByRole("row", { name: "Jogosultság" })
         .getByRole("combobox")
@@ -101,7 +101,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
         .locator("div")
         .click();
       await page.getByText("QUERY_FOR_TABLE_EXPORT").click();
-      await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+      await pressbutton(page, " Hozzáad", 1);
       await page
         .getByRole("row", { name: "Jogosultság" })
         .getByRole("combobox")
@@ -136,7 +136,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
         .getByRole("textbox", { name: "Lekérdezés" })
         .press("Backspace");
       await page.getByText("DIAGRAM_BOXPLOT").click();
-      await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+      await pressbutton(page, " Hozzáad", 1);
       await page
         .getByRole("row", { name: "Jogosultság" })
         .getByRole("combobox")
@@ -149,7 +149,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
         .locator("div")
         .click();
       await page.locator('td[role="listitem"]:has-text("ID")').click();
-      await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+      await pressbutton(page, " Hozzáad", 1);
       await page
         .getByRole("row", { name: "Riport" })
         .getByRole("combobox")
@@ -194,7 +194,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
         .getByRole("textbox", { name: "Dinamikus gomb" })
         .press("Backspace");
       await page.getByText("docupdesc").click();
-      await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+      await pressbutton(page, " Hozzáad", 1);
       await page
         .getByRole("row", { name: "Jogosultság" })
         .getByRole("combobox")
@@ -216,7 +216,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
         .getByRole("textbox", { name: "Alkalmazás" })
         .press("Backspace");
       await page.locator('span:has-text("medalyse3app")').click();
-      await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+      await pressbutton(page, " Hozzáad", 1);
       await page
         .getByRole("row", { name: "Jogosultság" })
         .getByRole("combobox")
@@ -260,7 +260,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
         .getByRole("textbox", { name: "Dinamikus gomb" })
         .press("Backspace");
       await page.getByText("floatingchart").click();
-      await page.getByRole("button", { name: " Hozzáad" }).nth(1).click();
+      await pressbutton(page, " Hozzáad", 1);
       await page
         .getByRole("row", { name: "Jogosultság" })
         .getByRole("combobox")
@@ -291,7 +291,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
     await page
       .getByRole("textbox", { name: "Információ" })
       .fill(datum() + " playwright teszt_edited");
-    await page.getByRole("button", { name: " Mentés" }).click();
+    await pressbutton(page, " Mentés", 0);
     console.log(testname + " leírás módosítva");
   });
 
@@ -303,7 +303,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
     expect(
       await page.isChecked("input[type=checkbox]:nth-child(1)")
     ).toBeTruthy();
-    await page.getByRole("button", { name: " Hozzáad" }).first().click();
+    await pressbutton(page, " Hozzáad", 0);
     console.log(
       user.name + " felhasználó hozzáadva a " + testname + " csoporthoz"
     );
@@ -351,7 +351,7 @@ test.describe.serial(misc.bulkcount + " csoportot érintő tesztek", () => {
   test(misc.bulkcount + " csoport létrehozása", async ({ page }) => {
     for (let index = 1; index < misc.bulkcount + 1; index++) {
       const randomname2 = testname + "_" + index;
-      await page.getByRole("button", { name: " Új" }).click();
+      await pressbutton(page, " Új" , 0);
       await page.getByRole("textbox", { name: "Név" }).click();
       await page.getByRole("textbox", { name: "Név" }).fill(randomname2);
       await page.getByRole("textbox", { name: "Név" }).press("Tab");
@@ -359,7 +359,7 @@ test.describe.serial(misc.bulkcount + " csoportot érintő tesztek", () => {
       await page
         .getByRole("textbox", { name: "Információ" })
         .fill(datum() + " playwright teszt " + randomname2);
-      await page.getByRole("button", { name: " Mentés" }).click();
+      await pressbutton(page, " Mentés", 0);
       console.log(randomname2 + " csoport létrehozva");
       await page.getByRole("cell", { name: randomname2 }).click();
     }

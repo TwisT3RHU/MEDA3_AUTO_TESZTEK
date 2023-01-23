@@ -214,6 +214,13 @@ export async function hoptoserverusers(page: any, remote: string) {
   await page.waitForLoadState();
 };
 
+export async function pressbutton(page: any, buttonname: string, position: number = 0) {
+  const button = page.getByRole("button", { name: buttonname }).nth(position);
+  await expect(button).toBeEnabled();
+  await button.click();
+  console.log(button + " meg lett nyomva");
+};
+
 /**
  * It clicks on a button, then clicks on a "Nem" button, then clicks on the original button again, then
  * clicks on an "Igen" button.
@@ -222,24 +229,10 @@ export async function hoptoserverusers(page: any, remote: string) {
  * @param {number} [position=0] - 0 = first item, 1 = second item, 2 = third item, etc.
  */
 export async function removeitem(page: any, buttonname: string, position: number = 0) {
-  const removebutton = page.getByRole("button", { name: buttonname }).nth(position);
-  await expect(removebutton).toBeEnabled();
-  await removebutton.click();
-  console.log(removebutton + " meg lett nyomva");
-
-  const nem = page.getByRole("button", { name: "Nem" });
-  await expect(nem).toBeEnabled();
-  await nem.click();
-  console.log(nem + " meg lett nyomva");
-
-  await expect(removebutton).toBeEnabled();
-  await removebutton.click();
-  console.log(removebutton + " meg lett nyomva");
-  
-  const igen = page.getByRole("button", { name: "Igen" });
-  await expect(igen).toBeEnabled();
-  await igen.click();
-  console.log(igen + " meg lett nyomva");
+  await pressbutton(page, buttonname, position);
+  await pressbutton(page, "Nem", 0);
+  await pressbutton(page, buttonname, position);
+  await pressbutton(page, "Igen", 0);
 };
 
 /**
@@ -247,26 +240,13 @@ export async function removeitem(page: any, buttonname: string, position: number
  * clicks on an ok button.
  * @param {any} page - any - the page object
  * @param {string} buttonname - the name of the button you want to click
+ * @param {number} [position=0] - 0 = first item, 1 = second item, 2 = third item, etc.
  */
-export async function removeitemeng(page: any, buttonname: string) {
-  const removebutton = page.getByRole("button", { name: buttonname });
-  await expect(removebutton).toBeEnabled();
-  await removebutton.click();
-  console.log(removebutton + " meg lett nyomva");
-
-  const nem = page.getByRole("button", { name: "Cancel" });
-  await expect(nem).toBeEnabled();
-  await nem.click();
-  console.log(nem + " meg lett nyomva");
-
-  await expect(removebutton).toBeEnabled();
-  await removebutton.click();
-  console.log(removebutton + " meg lett nyomva");
-  
-  const igen = page.getByRole("button", { name: "Ok" });
-  await expect(igen).toBeEnabled();
-  await igen.click();
-  console.log(igen + " meg lett nyomva");
+export async function removeitemeng(page: any, buttonname: string, position = 0) {
+  await pressbutton(page, buttonname, position);
+  await pressbutton(page, "Cancel", 0);
+  await pressbutton(page, buttonname, position);
+  await pressbutton(page, "Ok", 0);
 };
 
 /**

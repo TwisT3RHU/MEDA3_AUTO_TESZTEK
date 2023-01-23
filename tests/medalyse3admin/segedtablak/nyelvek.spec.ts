@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import { login, logout, medaurl, randomname, removeitem, textboxcheck } from 'globalis';
+import { login, logout, medaurl, pressbutton, randomname, removeitem, textboxcheck } from 'globalis';
 
 const testname = randomname("Playwright");
 const testshort = "PW";
@@ -21,7 +21,7 @@ test.describe.serial("egy nyelvet érintő tesztek", () => {
     await page.getByRole('button', { name: ' Új' }).click();
     await textboxcheck(page, "Név", testname);
     await textboxcheck(page, "Rövid név", testshort);
-    await page.getByRole("button", { name: " Mentés" }).click();
+    await pressbutton(page, " Mentés", 0);
     const cellname = page.getByRole("cell", { name: testname });
     const cellshort = page.getByRole("cell", { name: testshort });
     await expect(cellname).toHaveText(testname);
@@ -34,7 +34,7 @@ test.describe.serial("egy nyelvet érintő tesztek", () => {
     const cellshort = page.getByRole("cell", { name: testshortedit });
     await cellname.click();
     await textboxcheck(page, "Rövid név", testshortedit);
-    await page.getByRole("button", { name: " Mentés" }).click();
+    await pressbutton(page, " Mentés", 0);
     await expect(cellshort).toHaveText(testshortedit);
     console.log(testshort + " szerkesztve, új rövid név: " + testshortedit);
   });

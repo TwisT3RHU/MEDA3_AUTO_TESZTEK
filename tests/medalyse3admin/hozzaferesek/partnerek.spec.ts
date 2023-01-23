@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { login, logout, medaurl, randomname, removeitem, textboxcheck } from "globalis";
+import { login, logout, medaurl, pressbutton, randomname, removeitem, textboxcheck } from "globalis";
 
 const testname = randomname("geriautpart");
 
@@ -18,7 +18,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
   test("partner hozzáadás", async ({ page }) => {
     await page.getByRole('button', { name: ' Új' }).click();
     await textboxcheck(page, "Név", testname);
-    await page.getByRole("button", { name: " Mentés" }).click();
+    await pressbutton(page, " Mentés", 0);
     const cellname = page.getByRole("cell", { name: testname });
     await expect(cellname).toHaveText(testname);
     console.log(testname + " létrehozva");
@@ -37,7 +37,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     const cellname = page.getByRole("cell", { name: testname });
     await expect(cellname).toHaveText(testname);
     await cellname.click();
-    await page.getByRole("button", { name: " Visszaállítás" }).click();
+    await pressbutton(page,  " Visszaállítás", 0);
     await page.getByText("Töröltek").click();
     console.log(testname + " visszaállítva");
   });
@@ -47,7 +47,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
 
     await page.getByRole("textbox", { name: "Név" }).click();
     await page.getByRole("textbox", { name: "Név" }).fill(testname);
-    await page.getByRole("button", { name: " Mentés" }).click();
+    await pressbutton(page, " Mentés", 0);
     //await expect(page).toContain('Hiba');
   });
 

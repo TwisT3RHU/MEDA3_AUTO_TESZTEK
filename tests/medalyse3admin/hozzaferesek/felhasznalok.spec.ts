@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { login, logout, medaurl, randomname, removeitem, rowcheck, scrollUntilVisible, textboxcheck } from "globalis";
+import { login, logout, medaurl, pressbutton, randomname, removeitem, rowcheck, scrollUntilVisible, textboxcheck } from "globalis";
 import { misc, user } from "core.json";
 //import { smoothscroll } from "smoothscroll-polyfill";
 
@@ -33,7 +33,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
     //await page.getByRole('row', { name: '23 24 25 26 27 28 29' }).getByText('29').click();
     await rowcheck(page, "Partner", user.partner);
     await rowcheck(page, "Alapértelmezett nyelv", "Magyar");
-    await page.getByRole("button", { name: " Mentés" }).click();
+    await pressbutton(page, " Mentés", 0);
     console.log(testname + " létrehozva");
   });
 
@@ -42,7 +42,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
     const autocsop = page.getByRole("row", { name: new RegExp(user.usergroup) }).locator("span");
     await scrollUntilVisible(page, "Azonosító", 1, autocsop); // fenomenális...
     await autocsop.click();
-    await page.getByRole("button", { name: " Hozzáad" }).click();
+    await pressbutton(page, " Hozzáad", 0);
     console.log(testname + " hozzáadva egy csoporthoz");
   });
 
@@ -74,7 +74,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
     //await page.getByRole('row', { name: 'Partner' }).getByRole('combobox').locator('div').click();
     //await page.getByText(user.usergroup).click();
     await rowcheck(page, "Alapértelmezett nyelv", "English");
-    await page.getByRole("button", { name: " Mentés" }).click();
+    await pressbutton(page, " Mentés", 0);
     console.log(testname + " módosítva: " + testnamedit);
   });
 
@@ -87,7 +87,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
   test("felhasználó visszaállítása", async ({ page }) => {
     await page.getByText("Töröltek").click();
     await page.getByRole("cell", { name: testnamedit }).click();
-    await page.getByRole("button", { name: " Visszaállítás" }).click();
+    await pressbutton(page,  " Visszaállítás", 0);
     await page.getByText("Töröltek").click();
     console.log(testnamedit + " visszaállítva");
   });
@@ -118,7 +118,7 @@ test.describe.serial(misc.bulkcount + " felhasználót érintő tesztek", () => 
       //await page.getByRole('row', { name: '23 24 25 26 27 28 29' }).getByText('29').click();
       await rowcheck(page, "Partner", user.partner);
       await rowcheck(page, "Alapértelmezett nyelv", "Magyar");
-      await page.getByRole("button", { name: " Mentés" }).click();
+      await pressbutton(page, " Mentés", 0);
       console.log(randomname2 + " létrehozva");
       await page.getByRole("cell", { name: randomname2 }).click();
     };
@@ -137,7 +137,7 @@ test.describe.serial(misc.bulkcount + " felhasználót érintő tesztek", () => 
           await textboxcheck(page, textboxes[0][i], textboxes[1][i]);
         };
         await rowcheck(page, "Alapértelmezett nyelv", "English");
-        await page.getByRole("button", { name: " Mentés" }).click();
+        await pressbutton(page, " Mentés", 0);
         console.log(randomname2edit + " módosítva");
         await page.getByRole("cell", { name: randomname2 }).click();
       };

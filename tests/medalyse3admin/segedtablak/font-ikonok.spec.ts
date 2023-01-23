@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import { login, logout, medaurl, scrollUntilVisible, textboxcheck } from 'globalis';
+import { login, logout, medaurl, pressbutton, scrollUntilVisible, textboxcheck } from 'globalis';
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
@@ -15,9 +15,7 @@ test.describe.serial("font ikonokat érintő tesztek", () => {
     const font = page.getByRole('row', { name: 'BEHANCE f1b4 ' }).getByRole('cell').first();
     await scrollUntilVisible(page, "Név", 0, font);
     await font.click();
-    const gomb = page.getByRole('button', { name: '' });
-    await expect(gomb).toBeEnabled();
-    await gomb.click();
+    await pressbutton(page, '', 0);
     console.log(font + " hozzáadva a készlethez");
   });
 
@@ -25,9 +23,7 @@ test.describe.serial("font ikonokat érintő tesztek", () => {
     const font = page.getByRole('row', { name: 'BEHANCE f1b4 ' }).getByRole('cell').first();
     await scrollUntilVisible(page, "Név", 1, font);
     await font.click();
-    const gomb = page.getByRole('button', { name: '' }).nth(1);
-    await expect(gomb).toBeEnabled();
-    await gomb.click();
+    await pressbutton(page, '', 1);
     console.log(font + " törölve a készletből");
   });
 

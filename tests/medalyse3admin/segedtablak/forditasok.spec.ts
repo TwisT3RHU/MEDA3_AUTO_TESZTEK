@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import { login, logout, medaurl, randomname, removeitem, rowcheck, textboxcheck } from 'globalis';
+import { login, logout, medaurl, pressbutton, randomname, removeitem, rowcheck, textboxcheck } from 'globalis';
 
 const origname = "adatmódosítás";
 const testname = randomname("fordítás");
@@ -22,7 +22,7 @@ test.describe.serial("egy fordítást érintő tesztek", () => {
     await rowcheck(page, "Nyelv", "Playwright");
     await textboxcheck(page, "Eredeti", origname);
     await textboxcheck(page, "Fordítás", testname);
-    await page.getByRole("button", { name: " Mentés" }).click();
+    await pressbutton(page, " Mentés", 0);
     const celltest = page.getByRole("cell", { name: testname });
     await expect(celltest).toHaveText(testname);
     console.log(celltest + " fordítás létrehozva");
@@ -33,7 +33,7 @@ test.describe.serial("egy fordítást érintő tesztek", () => {
     const celltest = page.getByRole("cell", { name: testnamedit });
     await cellorig.nth(0).click();
     await textboxcheck(page, "Fordítás", testnamedit);
-    await page.getByRole("button", { name: " Mentés" }).click();
+    await pressbutton(page, " Mentés", 0);
     await expect(celltest).toHaveText(testnamedit);
     console.log(cellorig + " szerkesztve, új fordítás: " + celltest);
   });

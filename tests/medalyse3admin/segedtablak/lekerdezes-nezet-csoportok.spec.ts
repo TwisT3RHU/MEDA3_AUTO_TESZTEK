@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import { login, logout, medaurl, randomname, removeitemeng, textboxcheck } from 'globalis';
+import { login, logout, medaurl, pressbutton, randomname, removeitemeng, textboxcheck } from 'globalis';
 
 const testname = randomname("PWLEKNEZCSOP");
 const testnamedit = testname + "_edited";
@@ -22,7 +22,7 @@ test.describe.serial("egy lekérdezés nézet csoportot érintő tesztek", () =>
     await page.getByRole('button', { name: ' Új' }).click();
     await textboxcheck(page, "Név", testname);
     await textboxcheck(page, "Leírás", testtitle);
-    await page.getByRole("button", { name: " Mentés" }).click();
+    await pressbutton(page, " Mentés", 0);
     const cellname = page.getByRole("cell", { name: testname });
     const cellshort = page.getByRole("cell", { name: testtitle });
     await expect(cellname).toHaveText(testname);
@@ -36,7 +36,7 @@ test.describe.serial("egy lekérdezés nézet csoportot érintő tesztek", () =>
     await cellname.click();
     await textboxcheck(page, "Név", testnamedit);
     await textboxcheck(page, "Leírás", testtitledit);
-    await page.getByRole("button", { name: " Mentés" }).click();
+    await pressbutton(page, " Mentés", 0);
     const cellnamedit = page.getByRole("cell", { name: testnamedit });
     await expect(cellnamedit).toHaveText(testnamedit);
     await expect(cellshort).toHaveText(testtitledit);
