@@ -38,7 +38,7 @@ test.describe.serial("egy fordítást érintő tesztek", () => {
     console.log(cellorig + " szerkesztve, új fordítás: " + celltest);
   });
 
-  test("fordítás törlés + megerősítő ablak", async ({ page }) => {
+  test("fordítás törlés", async ({ page }) => {
     const cellname = page.getByRole("cell", { name: testnamedit });
     await expect(cellname).toHaveText(testnamedit);
     await cellname.click();

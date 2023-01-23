@@ -39,7 +39,7 @@ test.describe.serial("egy lekérdezés csoportot érintő tesztek", () => {
     console.log(testtitle + " szerkesztve, új cím: " + testtitledit);
   });
 
-  test("lekérdezés csoport törlés + megerősítő ablak", async ({ page }) => {
+  test("lekérdezés csoport törlés", async ({ page }) => {
     const cellname = page.getByRole("cell", { name: testname });
     await expect(cellname).toHaveText(testname);
     await cellname.click();

@@ -309,7 +309,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
     );
   });
 
-  test("felhasználó eltávolítása a csoportból + megerősítő ablak", async ({ page, }) => {
+  test("felhasználó eltávolítása a csoportból", async ({ page, }) => {
     await page.getByRole("cell", { name: testname }).click();
     await page.locator("#gwt-uid-91").click();
     await page.locator("#gwt-uid-91").fill(user.name);
@@ -321,7 +321,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
     console.log(user.name + " eltávolítva a " + testname + " csoportból");
   });
 
-  test("csoport jogosultságainak törlése + megerősítő ablak", async ({
+  test("csoport jogosultságainak törlése", async ({
     page,
   }) => {
     if (branch() == "gamma") {
@@ -337,7 +337,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
     } else test.skip();
   });
 
-  test("csoport törlése + megerősítő ablak", async ({ page }) => {
+  test("csoport törlése", async ({ page }) => {
     await page.getByRole("cell", { name: testname }).click();
     await removeitem(page, " Törlés");
     console.log(testname + " csoport törölve");

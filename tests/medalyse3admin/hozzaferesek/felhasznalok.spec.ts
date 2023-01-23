@@ -42,11 +42,11 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
     const autocsop = page.getByRole("row", { name: new RegExp(user.usergroup) }).locator("span");
     await scrollUntilVisible(page, "Azonosító", 1, autocsop); // fenomenális...
     await autocsop.click();
-    await pressbutton(page, " Hozzáad", 0);
+    await pressbutton(page, " Hozzáad", 0);
     console.log(testname + " hozzáadva egy csoporthoz");
   });
 
-  test("felhasználó eltávolítása egy csoportból + megerősítő ablak", async ({
+  test("felhasználó eltávolítása egy csoportból", async ({
     page,
   }) => {
     await page.getByRole("cell", { name: testname }).click();
@@ -78,7 +78,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
     console.log(testname + " módosítva: " + testnamedit);
   });
 
-  test("felhasználó törlése + megerősítő ablak", async ({ page }) => {
+  test("felhasználó törlése", async ({ page }) => {
     await page.getByRole("cell", { name: testnamedit }).click();
     await removeitem(page, " Törlés");
     console.log(testnamedit + " törölve");

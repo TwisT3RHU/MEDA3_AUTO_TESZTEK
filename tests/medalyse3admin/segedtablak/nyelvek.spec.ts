@@ -39,7 +39,7 @@ test.describe.serial("egy nyelvet érintő tesztek", () => {
     console.log(testshort + " szerkesztve, új rövid név: " + testshortedit);
   });
 
-  test("nyelv törlés + megerősítő ablak", async ({ page }) => {
+  test("nyelv törlés", async ({ page }) => {
     const cellname = page.getByRole("cell", { name: testname });
     await expect(cellname).toHaveText(testname);
     await cellname.click();

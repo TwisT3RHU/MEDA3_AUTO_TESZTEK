@@ -24,7 +24,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     console.log(testname + " létrehozva");
   });
 
-  test("partner törlés + megerősítő ablak", async ({ page }) => {
+  test("partner törlés", async ({ page }) => {
     const cellname = page.getByRole("cell", { name: testname });
     await expect(cellname).toHaveText(testname);
     await cellname.click();

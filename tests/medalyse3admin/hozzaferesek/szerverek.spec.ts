@@ -125,12 +125,12 @@ test.describe.serial("szerverek összekötése", () => {
       });
     });
     test.describe.serial("szerverek törlése", () => {
-      test(misc.branch + " távoli szerver törlése + megerősítő ablak", async ({ page }) => {
+      test(misc.branch + " távoli szerver törlése", async ({ page }) => {
         await page.getByRole("cell", { name: remotename }).click();
         await removeitem(page, " Törlés");
         jumpbranch = true;
       });
-      test(misc.branch_remote + " távoli szerver törlése + megerősítő ablak", async ({ page }) => {
+      test(misc.branch_remote + " távoli szerver törlése", async ({ page }) => {
         await page.getByRole("cell", { name: servername }).click();
         await removeitem(page, " Törlés");
         jumpbranch = false;
