@@ -243,6 +243,33 @@ export async function removeitem(page: any, buttonname: string, position: number
 };
 
 /**
+ * It clicks on a button, then clicks on a cancel button, then clicks on the same button again, then
+ * clicks on an ok button.
+ * @param {any} page - any - the page object
+ * @param {string} buttonname - the name of the button you want to click
+ */
+export async function removeitemeng(page: any, buttonname: string) {
+  const removebutton = page.getByRole("button", { name: buttonname });
+  await expect(removebutton).toBeEnabled();
+  await removebutton.click();
+  console.log(removebutton + " meg lett nyomva");
+
+  const nem = page.getByRole("button", { name: "Cancel" });
+  await expect(nem).toBeEnabled();
+  await nem.click();
+  console.log(nem + " meg lett nyomva");
+
+  await expect(removebutton).toBeEnabled();
+  await removebutton.click();
+  console.log(removebutton + " meg lett nyomva");
+  
+  const igen = page.getByRole("button", { name: "Ok" });
+  await expect(igen).toBeEnabled();
+  await igen.click();
+  console.log(igen + " meg lett nyomva");
+};
+
+/**
  * It scrolls to the element that matches the selector.
  * @param {any} page - the page object from puppeteer
  * @param {any} selector - The selector of the element you want to scroll to.
