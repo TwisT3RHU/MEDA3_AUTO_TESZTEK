@@ -85,14 +85,8 @@ test.describe.serial("szerverek összekötése", () => {
           .getByRole("cell")
           .nth(2)
           .click();
-        await page
-          .getByRole("button", { name: " Eltávolít" })
-          .nth(1)
-          .click();
-        await page
-          .getByRole("button", { name: " Eltávolít" })
-          .first()
-          .click();
+        await pressbutton(page,  " Eltávolít", 1);
+        await pressbutton(page,  " Eltávolít", 0);
         jumpbranch = true;
       });
     });
@@ -125,14 +119,8 @@ test.describe.serial("szerverek összekötése", () => {
           .getByRole("cell")
           .nth(2)
           .click();
-        await page
-          .getByRole("button", { name: " Eltávolít" })
-          .nth(1)
-          .click();
-        await page
-          .getByRole("button", { name: " Eltávolít" })
-          .first()
-          .click();
+        await pressbutton(page,  " Eltávolít", 1);
+        await pressbutton(page,  " Eltávolít", 0);
         jumpbranch = false;
       });
     });

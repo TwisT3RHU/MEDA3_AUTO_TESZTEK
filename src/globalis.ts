@@ -202,9 +202,7 @@ export async function logout(page: any) {
  */
 export async function hoptoserverusers(page: any, remote: string) {
   await page.getByRole("cell", { name: remote }).click();
-  await page
-    .getByRole("button", { name: " Távoli felhasználók" })
-    .click();
+  await pressbutton(page,  " Távoli felhasználók", 0);
   await expect(page).toHaveURL(/.#!serverUsers./);
   await page.getByRole('textbox', { name: 'Szerver' }).click(); // ez is :D
   await page.getByRole('combobox').locator('div').click(); // talán ez hiányzott
