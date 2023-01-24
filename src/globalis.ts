@@ -240,7 +240,7 @@ export async function removeitem(page: any, buttonname: string, position: number
  * @param {string} buttonname - the name of the button you want to click
  * @param {number} [position=0] - 0 = first item, 1 = second item, 2 = third item, etc.
  */
-export async function removeitemeng(page: any, buttonname: string, position = 0) {
+export async function removeitemeng(page: any, buttonname: string, position: number = 0) {
   await pressbutton(page, buttonname, position);
   await pressbutton(page, "Cancel", 0);
   await pressbutton(page, buttonname, position);
