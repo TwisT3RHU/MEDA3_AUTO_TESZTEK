@@ -47,11 +47,13 @@ function medalink(remote: boolean = false) {
 };
 
 /**
- * The function klienslink() returns the string "medalyse3app/"
+ * It returns a string.
+ * @param {string} [appurl] - The URL of the application you want to link to.
  * @returns The function klienslink() is being returned.
  */
-function klienslink() {
-  return "medalyse3app/";
+function klienslink(appurl?: string) {
+  if (appurl == undefined) return "medalyse-ng-dev/";
+  else return "medalyse-ng-dev/" + appurl;
 };
 
 
@@ -76,11 +78,11 @@ export function medaurl(remote: boolean, menu?: string) {
     url = medalink(remote) + "app/call?app=" + klienslink(); // http://medalyse.beta.local/app/call?app=medalyse3app
   } else {
     if (misc.admin) {
-      url = medalink(remote) +  adminlink();
+      url = medalink(remote) + adminlink();
       if (menu == undefined) url;
       else url = url + menu;
     } else {
-      url = medalink(remote) + "app/" + klienslink();
+      url = medalink(remote) + klienslink();
       if (menu == undefined) url;
       else url = url + menu;
     }
@@ -185,7 +187,11 @@ export async function login(page: any, remote: boolean = false) {
  * @param {any} page - the page object
  */
 export async function logout(page: any) {
-  await page.locator('span:has-text("kilépés")').first().click();
+  if (misc.admin) await page.locator('span:has-text("kilépés")').first().click();
+  else {
+    await page.getByRole('button', { name: "avatar" + user.name }).click();
+    await page.getByRole('menuitem', { name: 'Kijelentkezés' }).click();
+  };
   const context = page.context();
   await context.close();
 };
@@ -272,4 +278,19 @@ export async function scrollUntilVisible(page: any, headername: string, nth: num
   while (await locator.isVisible() == false);
   console.log(locator + " megtalálva")
   await page.keyboard.up('ArrowDown');
+};
+
+/**
+ * It clicks on the "Alkalmazás" menu, then clicks on the appname, then clicks on the "BELÉPÉS" button,
+ * then checks if the URL is correct
+ * @param {any} page - the page object
+ * @param {string} appname - the name of the application
+ * @param {string} appurl - the url of the application
+ * @param {boolean} [remote=false] - boolean = false
+ */
+export async function selectApp(page: any, appname: string, appurl: string, remote: boolean = false) {
+  await page.locator('div:has-text("Alkalmazás")').nth(4).click();
+  await page.getByText(appname).click();
+  await pressbutton(page, "BELÉPÉS");
+  await expect(page).toHaveURL(medaurl(remote, appurl));
 };
