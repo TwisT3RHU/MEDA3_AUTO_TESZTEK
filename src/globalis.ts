@@ -294,3 +294,9 @@ export async function selectApp(page: any, appname: string, appurl: string, remo
   await pressbutton(page, "BELÉPÉS");
   await expect(page).toHaveURL(medaurl(remote, appurl));
 };
+
+export async function getElementColor(locator: any) {
+  const color = await locator.evaluate((e) => { return window.getComputedStyle(e).getPropertyValue("background-color") });
+  console.log(color);
+  //return color;
+};
