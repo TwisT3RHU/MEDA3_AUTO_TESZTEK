@@ -13,6 +13,7 @@ test.describe.serial("témát érintő teszt", () => {
         await page.locator('button:has-text("settings")').click();
         const sidebar = page.locator('#mat-slide-toggle-2 > .mat-slide-toggle-label > .mat-slide-toggle-bar');
 
+        await expect(sidebar).toBeEnabled();
         await sidebar.click();
         await setTimeout(1000);
         const menuszin = page.locator('.mat-slide-toggle-bar').first();
@@ -20,6 +21,7 @@ test.describe.serial("témát érintő teszt", () => {
         expect(color).toBe("rgb(27, 106, 61)");
         console.log(color); // dark szín
 
+        await expect(sidebar).toBeEnabled();
         await sidebar.click();
         await setTimeout(1000);
         color = await menuszin.evaluate((e) => { return window.getComputedStyle(e).getPropertyValue("background-color") });
