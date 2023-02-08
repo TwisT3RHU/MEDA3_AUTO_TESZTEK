@@ -7,8 +7,8 @@ test.beforeEach(async ({ page }) => {
     await selectApp(page, "Medalyse3 App", "medalyse3app");
 });
   
-test.describe.serial("témát érintő teszt", () => {
-    test('névjegy', async ({ page }) => {
+test.describe.serial("névjegyet érintő teszt", () => {
+    test('névjegy megtekintése', async ({ page }) => {
         await page.locator('button:has-text("settings")').click();
 
         await pressbutton(page, "Névjegy", 0, "menuitem");
