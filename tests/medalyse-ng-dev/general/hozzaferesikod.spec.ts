@@ -1,0 +1,39 @@
+import { expect, test } from "@playwright/test";
+import { user } from "core.json";
+
+import { datum, login, logout, pressbutton, removeitem, selectApp } from "globalis";
+
+test.beforeEach(async ({ page }) => {
+    await login(page);
+    await selectApp(page, "Medalyse3 App", "medalyse3app");
+});
+  
+test.describe.serial("hozzáférési kódot érintő teszt", () => {
+    test('hozzáférési kód generálása', async ({ page }) => {
+        let datum = new Date();
+        let day = datum.getDate();
+        let day2 = day + 2;
+        //const day2 = datum.setDate(datum.getDate() + 2);
+        await page.locator('button:has-text("security")').click();
+        await pressbutton(page, "Hozzáférési kódok", 0, "menuitem");
+        await page.getByRole('combobox', { name: 'Felhasználói csoportok' }).locator('div').nth(3).click();
+        await page.getByText(user.usergroup).click();
+        await page.locator('.cdk-overlay-backdrop').click();
+        await pressbutton(page, "Open calendar");
+        await pressbutton(page, "February " + day + ", 2023");
+        await pressbutton(page, "February " + day2 + ", 2023");
+        await pressbutton(page, "Hozzáférési kód generálása");
+        await page.getByRole('cell', { name: user.usergroup }).click();
+        let napelenulla = day.toString();
+        let napelenulla2 = day2.toString();
+        if(napelenulla.length < 2) napelenulla = "0" + day;
+        if(napelenulla2.length < 2) napelenulla2 = "0" + day2;
+        await page.getByRole('cell', { name: "2023-02-" + napelenulla2 + " 23:59" }).click();
+        await page.getByRole('cell', { name: "2023-02-" + napelenulla + " 00:00" }).click();
+        //await page.getByRole('cell', { name: '47a1d84b-f9bd-491b-879d-d20aec94d351' }).click();
+        await removeitem(page, "not needed...", 0, 2);
+    });
+    test.afterEach(async ({ page }) => {
+        await logout(page);
+    });
+});

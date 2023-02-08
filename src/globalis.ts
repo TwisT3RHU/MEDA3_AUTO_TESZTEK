@@ -234,31 +234,36 @@ export async function pressbutton(page: any, buttonname: string, position: numbe
 };
 
 /**
- * It clicks on a button, then clicks on a "Nem" button, then clicks on the original button again, then
- * clicks on an "Igen" button.
+ * It clicks on a button, then it clicks on the first button with the text "Nem" (Cancel), then it
+ * clicks on the original button again, then it clicks on the first button with the text "Igen" (Ok).
  * @param {any} page - the page object
- * @param {string} buttonname - the name of the button you want to click
- * @param {number} [position=0] - 0 = first item, 1 = second item, 2 = third item, etc.
+ * @param {string} buttonname - the name of the button you want to press
+ * @param {number} [position=0] - 0 = first button, 1 = second button, etc.
+ * @param {number} [environment=0] - 0 = English, 1 = Hungarian, 2 = Hungarian (again)
  */
-export async function removeitem(page: any, buttonname: string, position: number = 0) {
-  await pressbutton(page, buttonname, position);
-  await pressbutton(page, "Nem", 0);
-  await pressbutton(page, buttonname, position);
-  await pressbutton(page, "Igen", 0);
-};
-
-/**
- * It clicks on a button, then clicks on a cancel button, then clicks on the same button again, then
- * clicks on an ok button.
- * @param {any} page - any - the page object
- * @param {string} buttonname - the name of the button you want to click
- * @param {number} [position=0] - 0 = first item, 1 = second item, 2 = third item, etc.
- */
-export async function removeitemeng(page: any, buttonname: string, position: number = 0) {
-  await pressbutton(page, buttonname, position);
-  await pressbutton(page, "Cancel", 0);
-  await pressbutton(page, buttonname, position);
-  await pressbutton(page, "Ok", 0);
+export async function removeitem(page: any, buttonname: string, position: number = 0, environment: number = 0) {
+  let nem: string, igen: string;
+  const nemstr: string[] = ['Nem', 'Cancel', 'Mégsem'];
+  const igenstr: string[] = ['Igen', 'Ok', 'Igen'];
+  for (let i = 0; i < environment + 1; i++) {
+    if (environment = i) {
+      nem = nemstr[environment];
+      igen = igenstr[environment];
+      console.log(nemstr[environment] + " " + igenstr[environment]);
+    };
+  };
+  if (environment = 2) {
+    await page.locator('button:has-text("delete_outline")').click();
+    await pressbutton(page, nem, 0);
+    await page.locator('button:has-text("delete_outline")').click();
+    await pressbutton(page, igen, 0);
+  }
+  else {
+    await pressbutton(page, buttonname, position);
+    await pressbutton(page, nem, 0);
+    await pressbutton(page, buttonname, position);
+    await pressbutton(page, igen, 0);
+  }
 };
 
 /**
