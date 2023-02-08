@@ -218,8 +218,16 @@ export async function hoptoserverusers(page: any, remote: string) {
   await page.waitForLoadState();
 };
 
-export async function pressbutton(page: any, buttonname: string, position: number = 0) {
-  const button = page.getByRole("button", { name: buttonname }).nth(position);
+/**
+ * It clicks on a button with a given name and position on the page
+ * @param {any} page - the page object
+ * @param {string} buttonname - the name of the button
+ * @param {number} [position=0] - number = 0 -&gt; if there are multiple buttons with the same name,
+ * you can specify which one you want to click on.
+ * @param {string} [role=button] - the role of the button, usually "button"
+ */
+export async function pressbutton(page: any, buttonname: string, position: number = 0, role: string = "button") {
+  const button = page.getByRole(role, { name: buttonname }).nth(position);
   await expect(button).toBeEnabled();
   await button.click();
   console.log(button + " meg lett nyomva");
