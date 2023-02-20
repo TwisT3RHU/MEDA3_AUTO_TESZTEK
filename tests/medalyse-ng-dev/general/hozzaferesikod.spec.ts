@@ -1,7 +1,7 @@
-import { expect, test } from "@playwright/test";
+import { test } from "@playwright/test";
 import { user } from "core.json";
 
-import { datum, login, logout, pressbutton, removeitem, selectApp } from "globalis";
+import { login, logout, pressbutton, removeitem, selectApp } from "globalis";
 
 test.beforeEach(async ({ page }) => {
     await login(page);
