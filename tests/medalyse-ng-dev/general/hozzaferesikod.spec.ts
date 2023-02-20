@@ -10,18 +10,22 @@ test.beforeEach(async ({ page }) => {
   
 test.describe.serial("hozzáférési kódot érintő teszt", () => {
     test('hozzáférési kód generálása', async ({ page }) => {
+        const formatter = new Intl.DateTimeFormat('en-us', { month: 'long' });
         let datum = new Date();
+        let ev = datum.getFullYear();
+        let honap = formatter.format(datum);
         let day = datum.getDate();
         let day2 = day + 2;
-        //const day2 = datum.setDate(datum.getDate() + 2);
+        console.log(datum + " év " + ev + " hónap " + honap + " napok " + day + " - " + day2); // dátum formázása, future-proofing
+
         await page.locator('button:has-text("security")').click();
         await pressbutton(page, "Hozzáférési kódok", 0, "menuitem");
         await page.getByRole('combobox', { name: 'Felhasználói csoportok' }).locator('div').nth(3).click();
         await page.getByText(user.usergroup).click();
         await page.locator('.cdk-overlay-backdrop').click();
         await pressbutton(page, "Open calendar");
-        await pressbutton(page, "February " + day + ", 2023");
-        await pressbutton(page, "February " + day2 + ", 2023");
+        await pressbutton(page, honap + " " + day + ", " + ev);
+        await pressbutton(page, honap + " " + day2 + ", " + ev);
         await pressbutton(page, "Hozzáférési kód generálása");
         await page.getByRole('cell', { name: user.usergroup }).click();
         let napelenulla = day.toString();
