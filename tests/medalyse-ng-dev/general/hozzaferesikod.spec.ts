@@ -14,6 +14,7 @@ test.describe.serial("hozzáférési kódot érintő teszt", () => {
         let datum = new Date();
         let ev = datum.getFullYear();
         let honap = formatter.format(datum);
+        let honapszam = datum.getMonth() + 1; //zero-based érték
         let day = datum.getDate();
         let day2 = day + 2;
         console.log(datum + " év " + ev + " hónap " + honap + " napok " + day + " - " + day2); // dátum formázása, future-proofing
@@ -30,10 +31,12 @@ test.describe.serial("hozzáférési kódot érintő teszt", () => {
         await page.getByRole('cell', { name: user.usergroup }).click();
         let napelenulla = day.toString();
         let napelenulla2 = day2.toString();
-        if(napelenulla.length < 2) napelenulla = "0" + day;
-        if(napelenulla2.length < 2) napelenulla2 = "0" + day2;
-        await page.getByRole('cell', { name: "2023-02-" + napelenulla2 + " 23:59" }).click();
-        await page.getByRole('cell', { name: "2023-02-" + napelenulla + " 00:00" }).click();
+        if (napelenulla.length < 2) napelenulla = "0" + day;
+        if (napelenulla2.length < 2) napelenulla2 = "0" + day2;
+        let honapnulla = honapszam.toString();
+        if (honapnulla.length < 2) honapnulla = "0" + honapszam;
+        await page.getByRole('cell', { name: ev + "-" + honapnulla + "-" + napelenulla2 + " 23:59" }).click();
+        await page.getByRole('cell', { name: ev + "-" + honapnulla + "-" + napelenulla + " 00:00" }).click();
         //await page.getByRole('cell', { name: '47a1d84b-f9bd-491b-879d-d20aec94d351' }).click();
         await removeitem(page, "not needed...", 0, 2);
     });
