@@ -105,7 +105,7 @@ export async function textboxcheck(page: any, textboxname: string, name: string)
   await expect(textbox).toBeFocused();
   await textbox.fill(name);
   await expect(textbox).not.toBeEmpty(); // ez legalább működik
-  //await expect(textbox).toHaveText(name); // elfosta magát? received string "" közben nem?
+  //await expect(textbox).toHaveText(name); // nem értem, received string "" közben nem?
   console.log(name + " beillesztve a " + textbox + " textboxba");
 };
 
@@ -308,6 +308,10 @@ export async function selectApp(page: any, appname: string, appurl: string, remo
   await expect(page).toHaveURL(medaurl(remote, appurl));
 };
 
+/**
+ * It takes a locator as an argument, and returns the background color of the element
+ * @param {any} locator - The element you want to get the color of.
+ */
 export async function getElementColor(locator: any) {
   const color = await locator.evaluate((e) => { return window.getComputedStyle(e).getPropertyValue("background-color") });
   console.log(color);
