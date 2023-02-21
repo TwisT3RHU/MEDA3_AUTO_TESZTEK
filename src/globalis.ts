@@ -242,30 +242,24 @@ export async function pressbutton(page: any, buttonname: string, position: numbe
  * @param {any} page - the page object
  * @param {string} buttonname - the name of the button you want to press
  * @param {number} [position=0] - 0 = first button, 1 = second button, etc.
- * @param {number} [environment=0] - 0 = English, 1 = Hungarian, 2 = Hungarian (again)
+ * @param {number} [environment=0] - 0 = Medalyse admin Hungarian, 1 = Medalyse admin English, 2 = Angular Hungarian
  */
 export async function removeitem(page: any, buttonname: string, position: number = 0, environment: number = 0) {
-  let nem: string, igen: string;
   const nemstr: string[] = ['Nem', 'Cancel', 'Mégsem'];
   const igenstr: string[] = ['Igen', 'Ok', 'Igen'];
+  let nem = nemstr[environment], igen = igenstr[environment];
+  console.log(nem + " " + igen);
 
-  for (let i = 0; i < environment + 1; i++) {
-    if (environment = i) {
-      nem = nemstr[environment];
-      igen = igenstr[environment];
-      console.log(nemstr[environment] + " " + igenstr[environment]);
-    };
-  }; //DO WHILE VAGY CSAK SIMÁN WHILE, EZ 1 KALAP SZAR ÉS FELESLEGES ÍGY
-  if (environment != 2) {
-    await pressbutton(page, buttonname, position);
+  if (environment == 2) {
+    await page.locator('button:has-text("delete_outline")').click();
     await pressbutton(page, nem, 0);
-    await pressbutton(page, buttonname, position);
+    await page.locator('button:has-text("delete_outline")').click();
     await pressbutton(page, igen, 0);
   }
   else {
-    await page.locator('button:has-text("delete_outline")').click();
+    await pressbutton(page, buttonname, position);
     await pressbutton(page, nem, 0);
-    await page.locator('button:has-text("delete_outline")').click();
+    await pressbutton(page, buttonname, position);
     await pressbutton(page, igen, 0);
   }
 };

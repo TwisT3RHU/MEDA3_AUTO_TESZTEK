@@ -127,7 +127,7 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 11483,
+                      "duration": 10677,
                       "errors": [],
                       "stdout": [
                         {
@@ -149,13 +149,13 @@
                           "text": "http://medalyse.gamma.local/admin/#!usrs meda url összerakva\n"
                         },
                         {
-                          "text": "geriautusr_4374279 beillesztve a Locator@role=textbox[name=\"Név\"i] textboxba\n"
+                          "text": "geriautusr_7026677 beillesztve a Locator@role=textbox[name=\"Név\"i] textboxba\n"
                         },
                         {
-                          "text": "geriautusr_4374279 beillesztve a Locator@role=textbox[name=\"Jelszó\"i] textboxba\n"
+                          "text": "geriautusr_7026677 beillesztve a Locator@role=textbox[name=\"Jelszó\"i] textboxba\n"
                         },
                         {
-                          "text": "geriautusr_4374279 beillesztve a Locator@role=textbox[name=\"Jelszó mégegyszer\"i] textboxba\n"
+                          "text": "geriautusr_7026677 beillesztve a Locator@role=textbox[name=\"Jelszó mégegyszer\"i] textboxba\n"
                         },
                         {
                           "text": "autoteszt user beillesztve a Locator@role=textbox[name=\"Teljes név\"i] textboxba\n"
@@ -164,7 +164,7 @@
                           "text": "autoteszt@example.com beillesztve a Locator@role=textbox[name=\"Email cím\"i] textboxba\n"
                         },
                         {
-                          "text": "geriautusr_4374279 beillesztve a Locator@role=textbox[name=\"Bejelentkező kód\"i] textboxba\n"
+                          "text": "geriautusr_7026677 beillesztve a Locator@role=textbox[name=\"Bejelentkező kód\"i] textboxba\n"
                         },
                         {
                           "text": "geriautousers kiválasztva a Locator@role=row[name=\"Partner\"i] >> role=combobox >> div comboboxból\n"
@@ -176,12 +176,12 @@
                           "text": "Locator@role=button[name=\" Mentés\"i] >> nth=0 meg lett nyomva\n"
                         },
                         {
-                          "text": "geriautusr_4374279 létrehozva\n"
+                          "text": "geriautusr_7026677 létrehozva\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-21T12:41:41.398Z",
+                      "startTime": "2023-02-21T13:26:19.270Z",
                       "attachments": []
                     }
                   ],
@@ -208,7 +208,7 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 35137,
+                      "duration": 35317,
                       "errors": [],
                       "stdout": [
                         {
@@ -236,12 +236,12 @@
                           "text": "Locator@role=button[name=\" Hozzáad\"i] >> nth=0 meg lett nyomva\n"
                         },
                         {
-                          "text": "geriautusr_4374279 hozzáadva egy csoporthoz\n"
+                          "text": "geriautusr_7026677 hozzáadva egy csoporthoz\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-21T12:41:54.068Z",
+                      "startTime": "2023-02-21T13:26:31.208Z",
                       "attachments": []
                     }
                   ],
@@ -255,7 +255,7 @@
             },
             {
               "title": "felhasználó eltávolítása egy csoportból",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -267,22 +267,9 @@
                   "results": [
                     {
                       "workerIndex": 0,
-                      "status": "failed",
-                      "duration": 41785,
-                      "error": {
-                        "message": "\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m()\u001b[22m\nCall log:\n  \u001b[2m- expect.toBeEnabled with timeout 45000ms\u001b[22m\n\u001b[2m  - waiting for selector \"role=button[name=\" Eltávolít\"i] >> nth=0\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m()\u001b[22m\nCall log:\n  \u001b[2m- expect.toBeEnabled with timeout 45000ms\u001b[22m\n\u001b[2m  - waiting for selector \"role=button[name=\" Eltávolít\"i] >> nth=0\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\n    at pressbutton (c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts:234:24)\n    at removeitem (c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts:261:11)\n    at c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\tests\\medalyse3admin\\hozzaferesek\\felhasznalok.spec.ts:58:5"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts",
-                            "column": 24,
-                            "line": 234
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m()\u001b[22m\nCall log:\n  \u001b[2m- expect.toBeEnabled with timeout 45000ms\u001b[22m\n\u001b[2m  - waiting for selector \"role=button[name=\" Eltávolít\"i] >> nth=0\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\n\n\u001b[90m   at \u001b[39m..\\src\\globalis.ts:234\n\n  232 | export async function pressbutton(page: any, buttonname: string, position: number = 0, role: string = \"button\") {\n  233 |   const button = page.getByRole(role, { name: buttonname }).nth(position);\n> 234 |   await expect(button).toBeEnabled();\n      |                        ^\n  235 |   await button.click();\n  236 |   console.log(button + \" meg lett nyomva\");\n  237 | };\n\n\u001b[2m    at pressbutton (c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts:234:24)\u001b[22m\n\u001b[2m    at removeitem (c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts:261:11)\u001b[22m\n\u001b[2m    at c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\tests\\medalyse3admin\\hozzaferesek\\felhasznalok.spec.ts:58:5\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 9560,
+                      "errors": [],
                       "stdout": [
                         {
                           "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
@@ -303,24 +290,31 @@
                           "text": "http://medalyse.gamma.local/admin/#!usrs meda url összerakva\n"
                         },
                         {
+                          "text": "Nem Igen\n"
+                        },
+                        {
                           "text": "Locator@role=button[name=\" Eltávolít\"i] >> nth=0 meg lett nyomva\n"
                         },
                         {
-                          "text": "Locator@role=button >> nth=0 meg lett nyomva\n"
+                          "text": "Locator@role=button[name=\"Nem\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Eltávolít\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\"Igen\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "geriautusr_7026677 eltávolítva egy csoportból\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-21T12:42:29.207Z",
-                      "attachments": [],
-                      "errorLocation": {
-                        "file": "c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts",
-                        "column": 24,
-                        "line": 234
-                      }
+                      "startTime": "2023-02-21T13:27:06.528Z",
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "789616eb214b1429ebbd-98d03aef47d132944c76",
@@ -334,25 +328,68 @@
               "tags": [],
               "tests": [
                 {
-                  "timeout": 0,
+                  "timeout": 240000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "chromium",
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": -1,
-                      "status": "skipped",
-                      "duration": 0,
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 9276,
                       "errors": [],
-                      "stdout": [],
+                      "stdout": [
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Username or email textboxba\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Password textboxba\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "sikeres bejelentkezés: gamma: kotel.g_autotestuser - kotel.g_autotestuser\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/#!usrs meda url összerakva\n"
+                        },
+                        {
+                          "text": "geriautusr_7026677_edited beillesztve a Locator@role=textbox[name=\"Jelszó\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_7026677_edited beillesztve a Locator@role=textbox[name=\"Jelszó mégegyszer\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_7026677_edited beillesztve a Locator@role=textbox[name=\"Teljes név\"i] textboxba\n"
+                        },
+                        {
+                          "text": "autoteszt_edited@example.com beillesztve a Locator@role=textbox[name=\"Email cím\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_7026677_edited beillesztve a Locator@role=textbox[name=\"Bejelentkező kód\"i] textboxba\n"
+                        },
+                        {
+                          "text": "English kiválasztva a Locator@role=row[name=\"Alapértelmezett nyelv\"i] >> role=combobox >> div comboboxból\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Mentés\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "geriautusr_7026677 módosítva: geriautusr_7026677_edited\n"
+                        }
+                      ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-21T12:43:11.020Z",
+                      "startTime": "2023-02-21T13:27:16.091Z",
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "789616eb214b1429ebbd-9f3e61572522d662f294",
@@ -366,25 +403,62 @@
               "tags": [],
               "tests": [
                 {
-                  "timeout": 0,
+                  "timeout": 240000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "chromium",
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": -1,
-                      "status": "skipped",
-                      "duration": 0,
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 11224,
                       "errors": [],
-                      "stdout": [],
+                      "stdout": [
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Username or email textboxba\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Password textboxba\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "sikeres bejelentkezés: gamma: kotel.g_autotestuser - kotel.g_autotestuser\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/#!usrs meda url összerakva\n"
+                        },
+                        {
+                          "text": "Nem Igen\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Törlés\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\"Nem\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Törlés\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\"Igen\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "geriautusr_7026677_edited törölve\n"
+                        }
+                      ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-21T12:43:11.021Z",
+                      "startTime": "2023-02-21T13:27:25.362Z",
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "789616eb214b1429ebbd-305f5fcfc88611001c7c",
@@ -398,25 +472,50 @@
               "tags": [],
               "tests": [
                 {
-                  "timeout": 0,
+                  "timeout": 240000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "chromium",
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": -1,
-                      "status": "skipped",
-                      "duration": 0,
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 7753,
                       "errors": [],
-                      "stdout": [],
+                      "stdout": [
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Username or email textboxba\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Password textboxba\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "sikeres bejelentkezés: gamma: kotel.g_autotestuser - kotel.g_autotestuser\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/#!usrs meda url összerakva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Visszaállítás\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "geriautusr_7026677_edited visszaállítva\n"
+                        }
+                      ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-21T12:43:11.021Z",
+                      "startTime": "2023-02-21T13:27:36.587Z",
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "789616eb214b1429ebbd-618a334dbb967a36bd9d",
@@ -430,25 +529,62 @@
               "tags": [],
               "tests": [
                 {
-                  "timeout": 0,
+                  "timeout": 240000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "chromium",
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": -1,
-                      "status": "skipped",
-                      "duration": 0,
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 8096,
                       "errors": [],
-                      "stdout": [],
+                      "stdout": [
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Username or email textboxba\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Password textboxba\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "sikeres bejelentkezés: gamma: kotel.g_autotestuser - kotel.g_autotestuser\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/#!usrs meda url összerakva\n"
+                        },
+                        {
+                          "text": "Nem Igen\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Törlés\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\"Nem\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Törlés\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\"Igen\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "geriautusr_7026677_edited ismét törölve\n"
+                        }
+                      ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-21T12:43:11.021Z",
+                      "startTime": "2023-02-21T13:27:44.342Z",
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "789616eb214b1429ebbd-27fa8b1a1f98cc937102",
@@ -466,7 +602,7 @@
           "specs": [
             {
               "title": "2 felhasználó létrehozása",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -478,39 +614,96 @@
                   "results": [
                     {
                       "workerIndex": 1,
-                      "status": "failed",
-                      "duration": 1315,
-                      "error": {
-                        "message": "page.goto: Navigation failed because page was closed!\n=========================== logs ===========================\nnavigating to \"http://medalyse.gamma.local/admin/\", waiting until \"load\"\n============================================================",
-                        "stack": "page.goto: Navigation failed because page was closed!\n=========================== logs ===========================\nnavigating to \"http://medalyse.gamma.local/admin/\", waiting until \"load\"\n============================================================\n    at login (c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts:164:14)\n    at c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\tests\\medalyse3admin\\hozzaferesek\\felhasznalok.spec.ts:16:9"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts",
-                            "column": 14,
-                            "line": 164
-                          },
-                          "message": "page.goto: Navigation failed because page was closed!\n=========================== logs ===========================\nnavigating to \"http://medalyse.gamma.local/admin/\", waiting until \"load\"\n============================================================\n\n\u001b[90m   at \u001b[39m..\\src\\globalis.ts:164\n\n  162 |  */\n  163 | export async function login(page: any, remote: boolean = false) {\n> 164 |   await page.goto(medaurl(remote));\n      |              ^\n  165 |   await expect(page).toHaveURL(/.auth\\/realms\\/healthware\\/protocol\\/openid-connect./); // SSO\n  166 |   const username = page.getByLabel(\"Username or email\");\n  167 |   await expect(username).toBeEditable();\n\n\u001b[2m    at login (c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts:164:14)\u001b[22m\n\u001b[2m    at c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\tests\\medalyse3admin\\hozzaferesek\\felhasznalok.spec.ts:16:9\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 14421,
+                      "errors": [],
                       "stdout": [
                         {
                           "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Username or email textboxba\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Password textboxba\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "sikeres bejelentkezés: gamma: kotel.g_autotestuser - kotel.g_autotestuser\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/#!usrs meda url összerakva\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_1 beillesztve a Locator@role=textbox[name=\"Név\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_1 beillesztve a Locator@role=textbox[name=\"Jelszó\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_1 beillesztve a Locator@role=textbox[name=\"Jelszó mégegyszer\"i] textboxba\n"
+                        },
+                        {
+                          "text": "autoteszt user beillesztve a Locator@role=textbox[name=\"Teljes név\"i] textboxba\n"
+                        },
+                        {
+                          "text": "autoteszt1@example.com beillesztve a Locator@role=textbox[name=\"Email cím\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_1 beillesztve a Locator@role=textbox[name=\"Bejelentkező kód\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautousers kiválasztva a Locator@role=row[name=\"Partner\"i] >> role=combobox >> div comboboxból\n"
+                        },
+                        {
+                          "text": "Magyar kiválasztva a Locator@role=row[name=\"Alapértelmezett nyelv\"i] >> role=combobox >> div comboboxból\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Mentés\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_1 létrehozva\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_2 beillesztve a Locator@role=textbox[name=\"Név\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_2 beillesztve a Locator@role=textbox[name=\"Jelszó\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_2 beillesztve a Locator@role=textbox[name=\"Jelszó mégegyszer\"i] textboxba\n"
+                        },
+                        {
+                          "text": "autoteszt user beillesztve a Locator@role=textbox[name=\"Teljes név\"i] textboxba\n"
+                        },
+                        {
+                          "text": "autoteszt2@example.com beillesztve a Locator@role=textbox[name=\"Email cím\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_2 beillesztve a Locator@role=textbox[name=\"Bejelentkező kód\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautousers kiválasztva a Locator@role=row[name=\"Partner\"i] >> role=combobox >> div comboboxból\n"
+                        },
+                        {
+                          "text": "Magyar kiválasztva a Locator@role=row[name=\"Alapértelmezett nyelv\"i] >> role=combobox >> div comboboxból\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Mentés\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_2 létrehozva\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-21T12:41:41.413Z",
-                      "attachments": [],
-                      "errorLocation": {
-                        "file": "c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts",
-                        "column": 14,
-                        "line": 164
-                      }
+                      "startTime": "2023-02-21T13:26:19.348Z",
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "789616eb214b1429ebbd-0f4081cac349ada16fa5",
@@ -524,25 +717,92 @@
               "tags": [],
               "tests": [
                 {
-                  "timeout": 0,
+                  "timeout": 240000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "chromium",
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": -1,
-                      "status": "skipped",
-                      "duration": 0,
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 12225,
                       "errors": [],
-                      "stdout": [],
+                      "stdout": [
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Username or email textboxba\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Password textboxba\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "sikeres bejelentkezés: gamma: kotel.g_autotestuser - kotel.g_autotestuser\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/#!usrs meda url összerakva\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_1_edited beillesztve a Locator@role=textbox[name=\"Jelszó\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_1_edited beillesztve a Locator@role=textbox[name=\"Jelszó mégegyszer\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_1_edited beillesztve a Locator@role=textbox[name=\"Teljes név\"i] textboxba\n"
+                        },
+                        {
+                          "text": "autoteszt1_edited@example.com beillesztve a Locator@role=textbox[name=\"Email cím\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_1_edited beillesztve a Locator@role=textbox[name=\"Bejelentkező kód\"i] textboxba\n"
+                        },
+                        {
+                          "text": "English kiválasztva a Locator@role=row[name=\"Alapértelmezett nyelv\"i] >> role=combobox >> div comboboxból\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Mentés\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_1_edited módosítva\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_2_edited beillesztve a Locator@role=textbox[name=\"Jelszó\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_2_edited beillesztve a Locator@role=textbox[name=\"Jelszó mégegyszer\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_2_edited beillesztve a Locator@role=textbox[name=\"Teljes név\"i] textboxba\n"
+                        },
+                        {
+                          "text": "autoteszt2_edited@example.com beillesztve a Locator@role=textbox[name=\"Email cím\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_2_edited beillesztve a Locator@role=textbox[name=\"Bejelentkező kód\"i] textboxba\n"
+                        },
+                        {
+                          "text": "English kiválasztva a Locator@role=row[name=\"Alapértelmezett nyelv\"i] >> role=combobox >> div comboboxból\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Mentés\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_2_edited módosítva\n"
+                        }
+                      ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-21T12:43:12.410Z",
+                      "startTime": "2023-02-21T13:28:06.899Z",
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "789616eb214b1429ebbd-eeba8ff4159e15f24c29",
@@ -556,25 +816,80 @@
               "tags": [],
               "tests": [
                 {
-                  "timeout": 0,
+                  "timeout": 240000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "chromium",
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": -1,
-                      "status": "skipped",
-                      "duration": 0,
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 9011,
                       "errors": [],
-                      "stdout": [],
+                      "stdout": [
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Username or email textboxba\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Password textboxba\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "sikeres bejelentkezés: gamma: kotel.g_autotestuser - kotel.g_autotestuser\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/#!usrs meda url összerakva\n"
+                        },
+                        {
+                          "text": "Nem Igen\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Törlés\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\"Nem\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Törlés\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\"Igen\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_1 törölve\n"
+                        },
+                        {
+                          "text": "Nem Igen\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Törlés\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\"Nem\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Törlés\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\"Igen\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "geriautusr_1448679_2 törölve\n"
+                        }
+                      ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-21T12:43:12.410Z",
+                      "startTime": "2023-02-21T13:28:19.127Z",
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "789616eb214b1429ebbd-0ae30f9178be523b84c7",
