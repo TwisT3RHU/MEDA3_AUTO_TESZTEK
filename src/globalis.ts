@@ -247,7 +247,7 @@ export async function pressbutton(page: any, buttonname: string, position: numbe
 export async function removeitem(page: any, buttonname: string, position: number = 0, environment: number = 0) {
   const nemstr: string[] = ['Nem', 'Cancel', 'Mégsem'];
   const igenstr: string[] = ['Igen', 'Ok', 'Igen'];
-  let nem = nemstr[environment], igen = igenstr[environment];
+  const nem = nemstr[environment], igen = igenstr[environment];
   console.log(nem + " " + igen);
 
   if (environment == 2) {
