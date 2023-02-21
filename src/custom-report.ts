@@ -1,5 +1,5 @@
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
-import { Reporter } from '@playwright/test/reporter';
+import { Reporter, TestCase, TestResult, TestStep } from '@playwright/test/reporter';
 
 async function createPdf() {
     const pdfDoc = await PDFDocument.create()
@@ -23,15 +23,18 @@ class MyReporter implements Reporter {
   onBegin(config, suite) {
     console.log(`Starting the run with ${suite.allTests().length} tests`);
   }
-
   onTestBegin(test) {
     console.log(`Starting test ${test.title}`);
   }
-
+  onStepBegin(test, result, step) {
+    console.log(`Starting test step ${step.title} inside ${test.title}`)
+  }
+  onStepEnd(test: TestCase, result: TestResult, step: TestStep): void {
+    console.log(`Finished test step ${step.title} inside ${test.title}: ${result.status}`)
+  }
   onTestEnd(test, result) {
     console.log(`Finished test ${test.title}: ${result.status}`);
   }
-
   onEnd(result) {
     console.log(`Finished the run: ${result.status}`);
   }
