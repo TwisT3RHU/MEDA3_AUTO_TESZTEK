@@ -52,8 +52,11 @@ function medalink(remote: boolean = false) {
  * @returns The function klienslink() is being returned.
  */
 function klienslink(appurl?: string) {
-  if (appurl == undefined) return "medalyse-ng-dev/";
-  else return "medalyse-ng-dev/" + appurl;
+  if (branch() == "alfa") {
+    if (appurl == undefined) return "medalyse-ng-dev/";
+    else return "medalyse-ng-dev/" + appurl;
+  }
+  else return "medalyse3app/";
 };
 
 
@@ -245,23 +248,24 @@ export async function removeitem(page: any, buttonname: string, position: number
   let nem: string, igen: string;
   const nemstr: string[] = ['Nem', 'Cancel', 'Mégsem'];
   const igenstr: string[] = ['Igen', 'Ok', 'Igen'];
+
   for (let i = 0; i < environment + 1; i++) {
     if (environment = i) {
       nem = nemstr[environment];
       igen = igenstr[environment];
       console.log(nemstr[environment] + " " + igenstr[environment]);
     };
-  };
-  if (environment = 2) {
-    await page.locator('button:has-text("delete_outline")').click();
+  }; //DO WHILE VAGY CSAK SIMÁN WHILE, EZ 1 KALAP SZAR ÉS FELESLEGES ÍGY
+  if (environment != 2) {
+    await pressbutton(page, buttonname, position);
     await pressbutton(page, nem, 0);
-    await page.locator('button:has-text("delete_outline")').click();
+    await pressbutton(page, buttonname, position);
     await pressbutton(page, igen, 0);
   }
   else {
-    await pressbutton(page, buttonname, position);
+    await page.locator('button:has-text("delete_outline")').click();
     await pressbutton(page, nem, 0);
-    await pressbutton(page, buttonname, position);
+    await page.locator('button:has-text("delete_outline")').click();
     await pressbutton(page, igen, 0);
   }
 };

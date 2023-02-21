@@ -1,8 +1,8 @@
 {
   "misc": {
-    "admin": false,
+    "admin": true,
     "bulkcount": 2,
-    "branch": "alfa",
+    "branch": "gamma",
     "branch_remote": "beta"
   },
   "user": {

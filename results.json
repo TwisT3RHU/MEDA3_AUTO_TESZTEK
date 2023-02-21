@@ -1,0 +1,591 @@
+{
+  "config": {
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "c:/Users/kotel.g/Desktop/MEDA3_AUTO_TESZTEK/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "c:/Users/kotel.g/Desktop/MEDA3_AUTO_TESZTEK/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/?(*.)@(spec|test).*"
+        ],
+        "timeout": 240000
+      },
+      {
+        "outputDir": "c:/Users/kotel.g/Desktop/MEDA3_AUTO_TESZTEK/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "c:/Users/kotel.g/Desktop/MEDA3_AUTO_TESZTEK/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/?(*.)@(spec|test).*"
+        ],
+        "timeout": 240000
+      },
+      {
+        "outputDir": "c:/Users/kotel.g/Desktop/MEDA3_AUTO_TESZTEK/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "c:/Users/kotel.g/Desktop/MEDA3_AUTO_TESZTEK/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/?(*.)@(spec|test).*"
+        ],
+        "timeout": 240000
+      },
+      {
+        "outputDir": "c:/Users/kotel.g/Desktop/MEDA3_AUTO_TESZTEK/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "id": "Microsoft Edge",
+        "name": "Microsoft Edge",
+        "testDir": "c:/Users/kotel.g/Desktop/MEDA3_AUTO_TESZTEK/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/?(*.)@(spec|test).*"
+        ],
+        "timeout": 240000
+      },
+      {
+        "outputDir": "c:/Users/kotel.g/Desktop/MEDA3_AUTO_TESZTEK/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "id": "Google Chrome",
+        "name": "Google Chrome",
+        "testDir": "c:/Users/kotel.g/Desktop/MEDA3_AUTO_TESZTEK/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/?(*.)@(spec|test).*"
+        ],
+        "timeout": 240000
+      }
+    ],
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 15000
+    },
+    "configFile": "c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\playwright.config.js",
+    "rootDir": "c:/Users/kotel.g/Desktop/MEDA3_AUTO_TESZTEK/tests",
+    "quiet": false,
+    "shard": null,
+    "updateSnapshots": "missing",
+    "version": "1.27.1",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "medalyse3admin\\hozzaferesek\\felhasznalok.spec.ts",
+      "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "egy felhasználót érintő tesztek",
+          "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+          "line": 22,
+          "column": 15,
+          "specs": [
+            {
+              "title": "felhasználó létrehozása",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 11483,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Username or email textboxba\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Password textboxba\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "sikeres bejelentkezés: gamma: kotel.g_autotestuser - kotel.g_autotestuser\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/#!usrs meda url összerakva\n"
+                        },
+                        {
+                          "text": "geriautusr_4374279 beillesztve a Locator@role=textbox[name=\"Név\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_4374279 beillesztve a Locator@role=textbox[name=\"Jelszó\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_4374279 beillesztve a Locator@role=textbox[name=\"Jelszó mégegyszer\"i] textboxba\n"
+                        },
+                        {
+                          "text": "autoteszt user beillesztve a Locator@role=textbox[name=\"Teljes név\"i] textboxba\n"
+                        },
+                        {
+                          "text": "autoteszt@example.com beillesztve a Locator@role=textbox[name=\"Email cím\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautusr_4374279 beillesztve a Locator@role=textbox[name=\"Bejelentkező kód\"i] textboxba\n"
+                        },
+                        {
+                          "text": "geriautousers kiválasztva a Locator@role=row[name=\"Partner\"i] >> role=combobox >> div comboboxból\n"
+                        },
+                        {
+                          "text": "Magyar kiválasztva a Locator@role=row[name=\"Alapértelmezett nyelv\"i] >> role=combobox >> div comboboxból\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Mentés\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "geriautusr_4374279 létrehozva\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-21T12:41:41.398Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-4f775a517d9b299f8fb4",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 23,
+              "column": 3
+            },
+            {
+              "title": "felhasználó hozzáadása egy csoporthoz",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 35137,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Username or email textboxba\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Password textboxba\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "sikeres bejelentkezés: gamma: kotel.g_autotestuser - kotel.g_autotestuser\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/#!usrs meda url összerakva\n"
+                        },
+                        {
+                          "text": "Locator@role=row[name=/geriautocsop/] >> span megtalálva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Hozzáad\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "geriautusr_4374279 hozzáadva egy csoporthoz\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-21T12:41:54.068Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-f4e2060966419a3413b8",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 40,
+              "column": 3
+            },
+            {
+              "title": "felhasználó eltávolítása egy csoportból",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "failed",
+                      "duration": 41785,
+                      "error": {
+                        "message": "\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m()\u001b[22m\nCall log:\n  \u001b[2m- expect.toBeEnabled with timeout 45000ms\u001b[22m\n\u001b[2m  - waiting for selector \"role=button[name=\" Eltávolít\"i] >> nth=0\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m()\u001b[22m\nCall log:\n  \u001b[2m- expect.toBeEnabled with timeout 45000ms\u001b[22m\n\u001b[2m  - waiting for selector \"role=button[name=\" Eltávolít\"i] >> nth=0\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\n    at pressbutton (c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts:234:24)\n    at removeitem (c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts:261:11)\n    at c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\tests\\medalyse3admin\\hozzaferesek\\felhasznalok.spec.ts:58:5"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts",
+                            "column": 24,
+                            "line": 234
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m()\u001b[22m\nCall log:\n  \u001b[2m- expect.toBeEnabled with timeout 45000ms\u001b[22m\n\u001b[2m  - waiting for selector \"role=button[name=\" Eltávolít\"i] >> nth=0\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\u001b[2m  -   selector resolved to <div tabindex=\"-1\" role=\"button\" aria-disabled=\"true\"…>…</div>\u001b[22m\n\u001b[2m  -   unexpected value \"false\"\u001b[22m\n\n\n\u001b[90m   at \u001b[39m..\\src\\globalis.ts:234\n\n  232 | export async function pressbutton(page: any, buttonname: string, position: number = 0, role: string = \"button\") {\n  233 |   const button = page.getByRole(role, { name: buttonname }).nth(position);\n> 234 |   await expect(button).toBeEnabled();\n      |                        ^\n  235 |   await button.click();\n  236 |   console.log(button + \" meg lett nyomva\");\n  237 | };\n\n\u001b[2m    at pressbutton (c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts:234:24)\u001b[22m\n\u001b[2m    at removeitem (c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts:261:11)\u001b[22m\n\u001b[2m    at c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\tests\\medalyse3admin\\hozzaferesek\\felhasznalok.spec.ts:58:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Username or email textboxba\n"
+                        },
+                        {
+                          "text": "kotel.g_autotestuser beillesztve a Locator@internal:label=Password textboxba\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        },
+                        {
+                          "text": "sikeres bejelentkezés: gamma: kotel.g_autotestuser - kotel.g_autotestuser\n"
+                        },
+                        {
+                          "text": "http://medalyse.gamma.local/admin/#!usrs meda url összerakva\n"
+                        },
+                        {
+                          "text": "Locator@role=button[name=\" Eltávolít\"i] >> nth=0 meg lett nyomva\n"
+                        },
+                        {
+                          "text": "Locator@role=button >> nth=0 meg lett nyomva\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-21T12:42:29.207Z",
+                      "attachments": [],
+                      "errorLocation": {
+                        "file": "c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts",
+                        "column": 24,
+                        "line": 234
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-98d03aef47d132944c76",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 49,
+              "column": 3
+            },
+            {
+              "title": "felhasználó adatainak módosítása",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 0,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-21T12:43:11.020Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-9f3e61572522d662f294",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 62,
+              "column": 3
+            },
+            {
+              "title": "felhasználó törlése",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 0,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-21T12:43:11.021Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-305f5fcfc88611001c7c",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 81,
+              "column": 3
+            },
+            {
+              "title": "felhasználó visszaállítása",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 0,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-21T12:43:11.021Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-618a334dbb967a36bd9d",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 87,
+              "column": 3
+            },
+            {
+              "title": "felhasználó ismételt törlése",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 0,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-21T12:43:11.021Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-27fa8b1a1f98cc937102",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 95,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "2 felhasználót érintő tesztek",
+          "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+          "line": 105,
+          "column": 15,
+          "specs": [
+            {
+              "title": "2 felhasználó létrehozása",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "failed",
+                      "duration": 1315,
+                      "error": {
+                        "message": "page.goto: Navigation failed because page was closed!\n=========================== logs ===========================\nnavigating to \"http://medalyse.gamma.local/admin/\", waiting until \"load\"\n============================================================",
+                        "stack": "page.goto: Navigation failed because page was closed!\n=========================== logs ===========================\nnavigating to \"http://medalyse.gamma.local/admin/\", waiting until \"load\"\n============================================================\n    at login (c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts:164:14)\n    at c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\tests\\medalyse3admin\\hozzaferesek\\felhasznalok.spec.ts:16:9"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts",
+                            "column": 14,
+                            "line": 164
+                          },
+                          "message": "page.goto: Navigation failed because page was closed!\n=========================== logs ===========================\nnavigating to \"http://medalyse.gamma.local/admin/\", waiting until \"load\"\n============================================================\n\n\u001b[90m   at \u001b[39m..\\src\\globalis.ts:164\n\n  162 |  */\n  163 | export async function login(page: any, remote: boolean = false) {\n> 164 |   await page.goto(medaurl(remote));\n      |              ^\n  165 |   await expect(page).toHaveURL(/.auth\\/realms\\/healthware\\/protocol\\/openid-connect./); // SSO\n  166 |   const username = page.getByLabel(\"Username or email\");\n  167 |   await expect(username).toBeEditable();\n\n\u001b[2m    at login (c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts:164:14)\u001b[22m\n\u001b[2m    at c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\tests\\medalyse3admin\\hozzaferesek\\felhasznalok.spec.ts:16:9\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "http://medalyse.gamma.local/admin/ meda url összerakva\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-21T12:41:41.413Z",
+                      "attachments": [],
+                      "errorLocation": {
+                        "file": "c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts",
+                        "column": 14,
+                        "line": 164
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-0f4081cac349ada16fa5",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 106,
+              "column": 3
+            },
+            {
+              "title": "2 felhasználó adatainak módosítása",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 0,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-21T12:43:12.410Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-eeba8ff4159e15f24c29",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 127,
+              "column": 3
+            },
+            {
+              "title": "2 felhasználó törlése",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 0,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-21T12:43:12.410Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-0ae30f9178be523b84c7",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 146,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

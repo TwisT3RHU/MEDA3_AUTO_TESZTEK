@@ -1,0 +1,121 @@
+<testsuites id="" name="" tests="10" failures="2" skipped="6" errors="0" time="116.02204699993133">
+<testsuite name="medalyse3admin\hozzaferesek\felhasznalok.spec.ts" timestamp="1676982789639" hostname="" tests="10" failures="2" skipped="6" time="113.155" errors="0">
+<testcase name="egy felhasználót érintő tesztek felhasználó létrehozása" classname="[chromium] › medalyse3admin\hozzaferesek\felhasznalok.spec.ts › egy felhasználót érintő tesztek › felhasználó létrehozása" time="10.675">
+<system-out>
+<![CDATA[http://medalyse.gamma.local/admin/ meda url összerakva
+kotel.g_autotestuser beillesztve a Locator@internal:label=Username or email textboxba
+kotel.g_autotestuser beillesztve a Locator@internal:label=Password textboxba
+http://medalyse.gamma.local/admin/ meda url összerakva
+sikeres bejelentkezés: gamma: kotel.g_autotestuser - kotel.g_autotestuser
+http://medalyse.gamma.local/admin/#!usrs meda url összerakva
+geriautusr_5747717 beillesztve a Locator@role=textbox[name="Név"i] textboxba
+geriautusr_5747717 beillesztve a Locator@role=textbox[name="Jelszó"i] textboxba
+geriautusr_5747717 beillesztve a Locator@role=textbox[name="Jelszó mégegyszer"i] textboxba
+autoteszt user beillesztve a Locator@role=textbox[name="Teljes név"i] textboxba
+autoteszt@example.com beillesztve a Locator@role=textbox[name="Email cím"i] textboxba
+geriautusr_5747717 beillesztve a Locator@role=textbox[name="Bejelentkező kód"i] textboxba
+geriautousers kiválasztva a Locator@role=row[name="Partner"i] >> role=combobox >> div comboboxból
+Magyar kiválasztva a Locator@role=row[name="Alapértelmezett nyelv"i] >> role=combobox >> div comboboxból
+Locator@role=button[name=" Mentés"i] >> nth=0 meg lett nyomva
+geriautusr_5747717 létrehozva
+]]>
+</system-out>
+</testcase>
+<testcase name="egy felhasználót érintő tesztek felhasználó hozzáadása egy csoporthoz" classname="[chromium] › medalyse3admin\hozzaferesek\felhasznalok.spec.ts › egy felhasználót érintő tesztek › felhasználó hozzáadása egy csoporthoz" time="35.867">
+<system-out>
+<![CDATA[http://medalyse.gamma.local/admin/ meda url összerakva
+kotel.g_autotestuser beillesztve a Locator@internal:label=Username or email textboxba
+kotel.g_autotestuser beillesztve a Locator@internal:label=Password textboxba
+http://medalyse.gamma.local/admin/ meda url összerakva
+sikeres bejelentkezés: gamma: kotel.g_autotestuser - kotel.g_autotestuser
+http://medalyse.gamma.local/admin/#!usrs meda url összerakva
+Locator@role=row[name=/geriautocsop/] >> span megtalálva
+Locator@role=button[name=" Hozzáad"i] >> nth=0 meg lett nyomva
+geriautusr_5747717 hozzáadva egy csoporthoz
+]]>
+</system-out>
+</testcase>
+<testcase name="egy felhasználót érintő tesztek felhasználó eltávolítása egy csoportból" classname="[chromium] › medalyse3admin\hozzaferesek\felhasznalok.spec.ts › egy felhasználót érintő tesztek › felhasználó eltávolítása egy csoportból" time="64.826">
+<failure message="felhasznalok.spec.ts:49:3 felhasználó eltávolítása egy csoportból" type="FAILURE">
+<![CDATA[  [chromium] › medalyse3admin\hozzaferesek\felhasznalok.spec.ts:49:3 › egy felhasználót érintő tesztek › felhasználó eltávolítása egy csoportból 
+
+    locator.click: Target closed
+    =========================== logs ===========================
+    waiting for selector "button:has-text("delete_outline")"
+    ============================================================
+
+       at ..\src\globalis.ts:259
+
+      257 |   };
+      258 |   if (environment = 2) {
+    > 259 |     await page.locator('button:has-text("delete_outline")').click();
+          |                                                             ^
+      260 |     await pressbutton(page, nem, 0);
+      261 |     await page.locator('button:has-text("delete_outline")').click();
+      262 |     await pressbutton(page, igen, 0);
+
+        at removeitem (c:\Users\kotel.g\Desktop\MEDA3_AUTO_TESZTEK\src\globalis.ts:259:61)
+        at c:\Users\kotel.g\Desktop\MEDA3_AUTO_TESZTEK\tests\medalyse3admin\hozzaferesek\felhasznalok.spec.ts:58:11
+]]>
+</failure>
+<system-out>
+<![CDATA[http://medalyse.gamma.local/admin/ meda url összerakva
+kotel.g_autotestuser beillesztve a Locator@internal:label=Username or email textboxba
+kotel.g_autotestuser beillesztve a Locator@internal:label=Password textboxba
+http://medalyse.gamma.local/admin/ meda url összerakva
+sikeres bejelentkezés: gamma: kotel.g_autotestuser - kotel.g_autotestuser
+http://medalyse.gamma.local/admin/#!usrs meda url összerakva
+]]>
+</system-out>
+</testcase>
+<testcase name="egy felhasználót érintő tesztek felhasználó adatainak módosítása" classname="[chromium] › medalyse3admin\hozzaferesek\felhasznalok.spec.ts › egy felhasználót érintő tesztek › felhasználó adatainak módosítása" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="egy felhasználót érintő tesztek felhasználó törlése" classname="[chromium] › medalyse3admin\hozzaferesek\felhasznalok.spec.ts › egy felhasználót érintő tesztek › felhasználó törlése" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="egy felhasználót érintő tesztek felhasználó visszaállítása" classname="[chromium] › medalyse3admin\hozzaferesek\felhasznalok.spec.ts › egy felhasználót érintő tesztek › felhasználó visszaállítása" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="egy felhasználót érintő tesztek felhasználó ismételt törlése" classname="[chromium] › medalyse3admin\hozzaferesek\felhasznalok.spec.ts › egy felhasználót érintő tesztek › felhasználó ismételt törlése" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="2 felhasználót érintő tesztek 2 felhasználó létrehozása" classname="[chromium] › medalyse3admin\hozzaferesek\felhasznalok.spec.ts › 2 felhasználót érintő tesztek › 2 felhasználó létrehozása" time="1.787">
+<failure message="felhasznalok.spec.ts:106:3 2 felhasználó létrehozása" type="FAILURE">
+<![CDATA[  [chromium] › medalyse3admin\hozzaferesek\felhasznalok.spec.ts:106:3 › 2 felhasználót érintő tesztek › 2 felhasználó létrehozása 
+
+    expect.toBeEmpty: Target page, context or browser has been closed
+
+       at ..\src\globalis.ts:171
+
+      169 |   await expect(username).toBeFocused();
+      170 |   await username.fill(user.name);
+    > 171 |   await expect(username).not.toBeEmpty();
+          |                              ^
+      172 |   console.log(user.name + " beillesztve a " + username + " textboxba");
+      173 |
+      174 |   const password = page.getByLabel("Password");
+
+        at login (c:\Users\kotel.g\Desktop\MEDA3_AUTO_TESZTEK\src\globalis.ts:171:30)
+        at c:\Users\kotel.g\Desktop\MEDA3_AUTO_TESZTEK\tests\medalyse3admin\hozzaferesek\felhasznalok.spec.ts:16:3
+]]>
+</failure>
+<system-out>
+<![CDATA[http://medalyse.gamma.local/admin/ meda url összerakva
+]]>
+</system-out>
+</testcase>
+<testcase name="2 felhasználót érintő tesztek 2 felhasználó adatainak módosítása" classname="[chromium] › medalyse3admin\hozzaferesek\felhasznalok.spec.ts › 2 felhasználót érintő tesztek › 2 felhasználó adatainak módosítása" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="2 felhasználót érintő tesztek 2 felhasználó törlése" classname="[chromium] › medalyse3admin\hozzaferesek\felhasznalok.spec.ts › 2 felhasználót érintő tesztek › 2 felhasználó törlése" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+</testsuites>
