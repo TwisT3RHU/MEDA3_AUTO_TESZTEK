@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import *  as testfunc from 'globalis';
 //import { logger, login, logout, medaurl, pressbutton, randomname, removeitem, rowcheck, scrollUntilVisible, textboxcheck } from "globalis";
-import { misc, user } from "core.json";
+import * as core from "core.json";
 //import { smoothscroll } from "smoothscroll-polyfill";
 
 //smoothscroll.polyfill();
@@ -31,7 +31,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
     //await page.getByRole('row', { name: 'B. kód érvényesség' }).locator('button').click();
     //await page.getByRole('button', { name: '»' }).click();
     //await page.getByRole('row', { name: '23 24 25 26 27 28 29' }).getByText('29').click();
-    await testfunc.rowcheck(page, "Partner", user.partner);
+    await testfunc.rowcheck(page, "Partner", core.user.partner);
     await testfunc.rowcheck(page, "Alapértelmezett nyelv", "Magyar");
     await testfunc.pressbutton(page, " Mentés", 0);
     testfunc.logger.log(testname + " létrehozva");
@@ -39,7 +39,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
 
   test("felhasználó hozzáadása egy csoporthoz", async ({ page }) => {
     await page.getByRole("cell", { name: testname }).click();
-    const autocsop = page.getByRole("row", { name: new RegExp(user.usergroup) }).locator("span");
+    const autocsop = page.getByRole("row", { name: new RegExp(core.user.usergroup) }).locator("span");
     await testfunc.scrollUntilVisible(page, "Azonosító", 1, autocsop); // fenomenális...
     await autocsop.click();
     await testfunc.pressbutton(page, " Hozzáad", 0);
@@ -102,9 +102,9 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
   });
 });
 
-test.describe.serial(misc.bulkcount + " felhasználót érintő tesztek", () => {
-  test(misc.bulkcount + " felhasználó létrehozása", async ({ page }) => {
-    for (let index = 1; index < misc.bulkcount + 1; index++) {
+test.describe.serial(core.misc.bulkcount + " felhasználót érintő tesztek", () => {
+  test(core.misc.bulkcount + " felhasználó létrehozása", async ({ page }) => {
+    for (let index = 1; index < core.misc.bulkcount + 1; index++) {
       const randomname2 = testname + "_" + index;
       const textboxes: string[][] = [
         ["Név", "Jelszó", "Jelszó mégegyszer", "Teljes név", "Email cím", "Bejelentkező kód"],
@@ -116,7 +116,7 @@ test.describe.serial(misc.bulkcount + " felhasználót érintő tesztek", () => 
       //await page.getByRole('row', { name: 'B. kód érvényesség' }).locator('button').click();
       //await page.getByRole('button', { name: '»' }).click();
       //await page.getByRole('row', { name: '23 24 25 26 27 28 29' }).getByText('29').click();
-      await testfunc.rowcheck(page, "Partner", user.partner);
+      await testfunc.rowcheck(page, "Partner", core.user.partner);
       await testfunc.rowcheck(page, "Alapértelmezett nyelv", "Magyar");
       await testfunc.pressbutton(page, " Mentés", 0);
       testfunc.logger.log(randomname2 + " létrehozva");
@@ -124,8 +124,8 @@ test.describe.serial(misc.bulkcount + " felhasználót érintő tesztek", () => 
     };
   });
 
-  test(misc.bulkcount + " felhasználó adatainak módosítása", async ({ page }) => {
-      for (let index = 1; index < misc.bulkcount + 1; index++) {
+  test(core.misc.bulkcount + " felhasználó adatainak módosítása", async ({ page }) => {
+      for (let index = 1; index < core.misc.bulkcount + 1; index++) {
         const randomname2 = testname + "_" + index;
         await page.getByRole("cell", { name: randomname2 }).click();
         const randomname2edit = randomname2 + "_edited";
@@ -143,8 +143,8 @@ test.describe.serial(misc.bulkcount + " felhasználót érintő tesztek", () => 
       };
   });
 
-  test(misc.bulkcount + " felhasználó törlése", async ({ page }) => {
-    for (let index = 1; index < misc.bulkcount + 1; index++) {
+  test(core.misc.bulkcount + " felhasználó törlése", async ({ page }) => {
+    for (let index = 1; index < core.misc.bulkcount + 1; index++) {
       const randomname2edit = testname + "_" + index;
       +"_edited";
       await page.getByRole("cell", { name: randomname2edit }).click();

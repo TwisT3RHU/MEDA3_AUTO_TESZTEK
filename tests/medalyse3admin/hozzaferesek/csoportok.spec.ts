@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import *  as testfunc from 'globalis';
 //import { branch, datum, logger, login, logout, medaurl, pressbutton, randomname, removeitem } from "globalis";
-import { misc, user } from "core.json";
+import * as core from "core.json";
 
 const testname = testfunc.randomname("geriautcsp");
 
@@ -298,27 +298,27 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
   test("felhasználó hozzáadása a csoporthoz", async ({ page }) => {
     await page.getByRole("cell", { name: testname }).click();
     await page.locator("#gwt-uid-91").click();
-    await page.locator("#gwt-uid-91").fill(user.name);
+    await page.locator("#gwt-uid-91").fill(core.user.name);
     await page.check("input[type=checkbox]:nth-child(1)");
     expect(
       await page.isChecked("input[type=checkbox]:nth-child(1)")
     ).toBeTruthy();
     await testfunc.pressbutton(page, " Hozzáad", 0);
     testfunc.logger.log(
-      user.name + " felhasználó hozzáadva a " + testname + " csoporthoz"
+      core.user.name + " felhasználó hozzáadva a " + testname + " csoporthoz"
     );
   });
 
   test("felhasználó eltávolítása a csoportból", async ({ page, }) => {
     await page.getByRole("cell", { name: testname }).click();
     await page.locator("#gwt-uid-91").click();
-    await page.locator("#gwt-uid-91").fill(user.name);
+    await page.locator("#gwt-uid-91").fill(core.user.name);
     await page.check("input[type=checkbox]:nth-child(1)");
     expect(
       await page.isChecked("input[type=checkbox]:nth-child(1)")
     ).toBeTruthy();
     await testfunc.removeitem(page, " Eltávolít");
-    testfunc.logger.log(user.name + " eltávolítva a " + testname + " csoportból");
+    testfunc.logger.log(core.user.name + " eltávolítva a " + testname + " csoportból");
   });
 
   test("csoport jogosultságainak törlése", async ({
@@ -347,9 +347,9 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
   });
 });
 
-test.describe.serial(misc.bulkcount + " csoportot érintő tesztek", () => {
-  test(misc.bulkcount + " csoport létrehozása", async ({ page }) => {
-    for (let index = 1; index < misc.bulkcount + 1; index++) {
+test.describe.serial(core.misc.bulkcount + " csoportot érintő tesztek", () => {
+  test(core.misc.bulkcount + " csoport létrehozása", async ({ page }) => {
+    for (let index = 1; index < core.misc.bulkcount + 1; index++) {
       const randomname2 = testname + "_" + index;
       await testfunc.pressbutton(page, " Új" , 0);
       await page.getByRole("textbox", { name: "Név" }).click();
@@ -365,8 +365,8 @@ test.describe.serial(misc.bulkcount + " csoportot érintő tesztek", () => {
     }
   });
 
-  test(misc.bulkcount + " csoport törlése", async ({ page }) => {
-    for (let index = 1; index < misc.bulkcount + 1; index++) {
+  test(core.misc.bulkcount + " csoport törlése", async ({ page }) => {
+    for (let index = 1; index < core.misc.bulkcount + 1; index++) {
       const randomname2 = testname + "_" + index;
       await page.getByRole("cell", { name: randomname2 }).click();
       await testfunc.removeitem(page, " Törlés");

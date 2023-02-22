@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { user } from "core.json";
-import *  as testfunc from 'globalis';
+import * as core from "core.json";
+import * as testfunc from 'globalis';
 //import { logger, login, logout, pressbutton, removeitem, selectApp } from "globalis";
 
 test.beforeEach(async ({ page }) => {
@@ -22,13 +22,13 @@ test.describe.serial("hozzáférési kódot érintő teszt", () => {
         await page.locator('button:has-text("security")').click();
         await testfunc.pressbutton(page, "Hozzáférési kódok", 0, "menuitem");
         await page.getByRole('combobox', { name: 'Felhasználói csoportok' }).locator('div').nth(3).click();
-        await page.getByText(user.usergroup).click();
+        await page.getByText(core.user.usergroup).click();
         await page.locator('.cdk-overlay-backdrop').click();
         await testfunc.pressbutton(page, "Open calendar");
         await testfunc.pressbutton(page, honap + " " + day + ", " + ev);
         await testfunc.pressbutton(page, honap + " " + day2 + ", " + ev);
         await testfunc.pressbutton(page, "Hozzáférési kód generálása");
-        await page.getByRole('cell', { name: user.usergroup }).click();
+        await page.getByRole('cell', { name: core.user.usergroup }).click();
         let napelenulla = day.toString();
         let napelenulla2 = day2.toString();
         if (napelenulla.length < 2) napelenulla = "0" + day;

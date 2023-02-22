@@ -1,5 +1,5 @@
 import { expect } from "@playwright/test";
-import { misc, user } from "core.json";
+import * as core from "core.json";
 import { Console } from "console";
 import * as fs from "fs";
 
@@ -26,8 +26,8 @@ const prod = "https://medalyse.hu/";
 
 export function branch(remote: boolean = false) {
   let branch: string;
-  if (!remote) branch = misc.branch;
-  else branch = misc.branch_remote;
+  if (!remote) branch = core.misc.branch;
+  else branch = core.misc.branch_remote;
   return branch;
 };
 
@@ -88,7 +88,7 @@ export function medaurl(remote: boolean, menu?: string) {
   if (menu == "remote" || menu == "local") {
     url = medalink(remote) + "app/call?app=" + klienslink(); // http://medalyse.beta.local/app/call?app=medalyse3app
   } else {
-    if (misc.admin) {
+    if (core.misc.admin) {
       url = medalink(remote) + adminlink();
       if (menu == undefined) url;
       else url = url + menu;
@@ -175,22 +175,22 @@ export async function login(page: any, remote: boolean = false) {
   await expect(username).toBeEditable();
   await username.click();
   await expect(username).toBeFocused();
-  await username.fill(user.name);
+  await username.fill(core.user.name);
   await expect(username).not.toBeEmpty();
-  logger.log(user.name + " beillesztve a " + username + " textboxba");
+  logger.log(core.user.name + " beillesztve a " + username + " textboxba");
 
   const password = page.getByLabel("Password");
   await expect(password).toBeEditable();
   await password.click();
   await expect(password).toBeFocused();
-  await password.fill(user.pass);
+  await password.fill(core.user.pass);
   await expect(password).not.toBeEmpty();
-  logger.log(user.pass + " beillesztve a " + password + " textboxba");
+  logger.log(core.user.pass + " beillesztve a " + password + " textboxba");
 
   await password.press("Enter");
   await expect(page).toHaveURL(medaurl(remote));
   //await page.waitForNavigation();
-  logger.log("sikeres bejelentkezés: " + branch(remote) + ": " + user.name + " - " + user.pass);
+  logger.log("sikeres bejelentkezés: " + branch(remote) + ": " + core.user.name + " - " + core.user.pass);
 };
 
 /**
@@ -198,9 +198,9 @@ export async function login(page: any, remote: boolean = false) {
  * @param {any} page - the page object
  */
 export async function logout(page: any) {
-  if (misc.admin) await page.locator('span:has-text("kilépés")').first().click();
+  if (core.misc.admin) await page.locator('span:has-text("kilépés")').first().click();
   else {
-    await page.getByRole('button', { name: "avatar" + user.name }).click();
+    await page.getByRole('button', { name: "avatar" + core.user.name }).click();
     await page.getByRole('menuitem', { name: 'Kijelentkezés' }).click();
   };
   const context = page.context();

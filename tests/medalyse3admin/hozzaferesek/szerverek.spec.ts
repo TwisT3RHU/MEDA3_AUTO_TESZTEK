@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import *  as testfunc from 'globalis';
 //import { branch, hoptoserverusers, logger, login, logout, medaurl, pressbutton, randomname, removeitem, scrollUntilVisible, textboxcheck } from "globalis";
-import { misc, user } from "core.json";
+import * as core from "core.json";
 
 const randname = testfunc.randomname("_autoteszt");
 const remotename = testfunc.branch(true) + randname;
@@ -56,32 +56,32 @@ test.describe.serial("szerverek összekötése", () => {
     await testfunc.pressbutton(page2, " Mentés", 0);
   });
   test.describe.serial("szerverek felhasználói", () => {
-    test.describe.serial(misc.branch + " szerver felhasználója", () => {
-      test(misc.branch + " új távoli felhasználó hozzáadása", async ({ page }) => {
+    test.describe.serial(core.misc.branch + " szerver felhasználója", () => {
+      test(core.misc.branch + " új távoli felhasználó hozzáadása", async ({ page }) => {
         testfunc.hoptoserverusers(page, remotename);
         await page.getByRole('row', { name: 'Név Teljes név' }).getByRole('cell', { name: 'Név' }).getByText('Név').click({ delay: 1000 }); 
-        await page.getByRole("cell", { name: user.name }).first().click(); //??? miért nem klikkelsz?
+        await page.getByRole("cell", { name: core.user.name }).first().click(); //??? miért nem klikkelsz?
         await testfunc.pressbutton(page,  " Hozzáad", 0);
       });
-      test(misc.branch + " felhasználó hozzáadása a " + user.usergroup + " csoporthoz", async ({ page }) => {
+      test(core.misc.branch + " felhasználó hozzáadása a " + core.user.usergroup + " csoporthoz", async ({ page }) => {
         testfunc.hoptoserverusers(page, remotename);
         await page
-          .getByRole("row", { name: remotename + " " + user.name })
-          .getByRole("cell", { name: user.name })
+          .getByRole("row", { name: remotename + " " + core.user.name })
+          .getByRole("cell", { name: core.user.name })
           .click();
-        const autocsop = page.getByRole("row", { name: user.usergroup }).getByLabel("");
+        const autocsop = page.getByRole("row", { name: core.user.usergroup }).getByLabel("");
         await testfunc.scrollUntilVisible(page, "Név", 3, autocsop);
         await autocsop.check(); // scrolluntilvisible
         await testfunc.pressbutton(page,  " Hozzáad", 1);
       });
-      test(misc.branch + " távoli felhasználó és csoportjának törlése", async ({ page }) => {
+      test(core.misc.branch + " távoli felhasználó és csoportjának törlése", async ({ page }) => {
         testfunc.hoptoserverusers(page, remotename);
         await page
-          .getByRole("row", { name: remotename + " " + user.name })
-          .getByRole("cell", { name: user.name })
+          .getByRole("row", { name: remotename + " " + core.user.name })
+          .getByRole("cell", { name: core.user.name })
           .click();
         await page
-          .locator('table:has-text("Név' + user.usergroup + '")')
+          .locator('table:has-text("Név' + core.user.usergroup + '")')
           .getByRole("cell")
           .nth(2)
           .click();
@@ -90,32 +90,32 @@ test.describe.serial("szerverek összekötése", () => {
         jumpbranch = true;
       });
     });
-    test.describe.serial(misc.branch_remote + " szerver felhasználója", () => {
-      test(misc.branch_remote + " új távoli felhasználó hozzáadása", async ({ page }) => {
+    test.describe.serial(core.misc.branch_remote + " szerver felhasználója", () => {
+      test(core.misc.branch_remote + " új távoli felhasználó hozzáadása", async ({ page }) => {
         testfunc.hoptoserverusers(page, servername);
         await page.getByRole('row', { name: 'Név Teljes név' }).getByRole('cell', { name: 'Név' }).getByText('Név').click({ delay: 1000 }); 
-        await page.getByRole("cell", { name: user.name }).first().click();
+        await page.getByRole("cell", { name: core.user.name }).first().click();
         await testfunc.pressbutton(page,  " Hozzáad", 0);
       });
-      test(misc.branch_remote + " felhasználó hozzáadása a " + user.usergroup + " csoporthoz", async ({ page }) => {
+      test(core.misc.branch_remote + " felhasználó hozzáadása a " + core.user.usergroup + " csoporthoz", async ({ page }) => {
         testfunc.hoptoserverusers(page, servername);
         await page
-          .getByRole("row", { name: servername + " " + user.name })
-          .getByRole("cell", { name: user.name })
+          .getByRole("row", { name: servername + " " + core.user.name })
+          .getByRole("cell", { name: core.user.name })
           .click();
-        const autocsop = page.getByRole("row", { name: user.usergroup }).getByLabel("");
+        const autocsop = page.getByRole("row", { name: core.user.usergroup }).getByLabel("");
         await testfunc.scrollUntilVisible(page, "Név", 3, autocsop);
         await autocsop.check(); // scrolluntilvisible
         await testfunc.pressbutton(page,  " Hozzáad", 1);
       });
-      test(misc.branch_remote + " távoli felhasználó és csoportjának törlése", async ({ page }) => {
+      test(core.misc.branch_remote + " távoli felhasználó és csoportjának törlése", async ({ page }) => {
         testfunc.hoptoserverusers(page, servername);
         await page
-          .getByRole("row", { name: servername + " " + user.name })
-          .getByRole("cell", { name: user.name })
+          .getByRole("row", { name: servername + " " + core.user.name })
+          .getByRole("cell", { name: core.user.name })
           .click();
         await page
-          .locator('table:has-text("Név' + user.usergroup + '")')
+          .locator('table:has-text("Név' + core.user.usergroup + '")')
           .getByRole("cell")
           .nth(2)
           .click();
@@ -125,12 +125,12 @@ test.describe.serial("szerverek összekötése", () => {
       });
     });
     test.describe.serial("szerverek törlése", () => {
-      test(misc.branch + " távoli szerver törlése", async ({ page }) => {
+      test(core.misc.branch + " távoli szerver törlése", async ({ page }) => {
         await page.getByRole("cell", { name: remotename }).click();
         await testfunc.removeitem(page, " Törlés");
         jumpbranch = true;
       });
-      test(misc.branch_remote + " távoli szerver törlése", async ({ page }) => {
+      test(core.misc.branch_remote + " távoli szerver törlése", async ({ page }) => {
         await page.getByRole("cell", { name: servername }).click();
         await testfunc.removeitem(page, " Törlés");
         jumpbranch = false;
