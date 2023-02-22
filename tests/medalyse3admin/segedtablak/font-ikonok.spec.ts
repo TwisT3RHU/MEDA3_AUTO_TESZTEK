@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import { login, logout, medaurl, pressbutton, scrollUntilVisible, textboxcheck } from 'globalis';
+import { logger, login, logout, medaurl, pressbutton, scrollUntilVisible, textboxcheck } from 'globalis';
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
@@ -16,7 +16,7 @@ test.describe.serial("font ikonokat érintő tesztek", () => {
     await scrollUntilVisible(page, "Név", 0, font);
     await font.click();
     await pressbutton(page, '', 0);
-    console.log(font + " hozzáadva a készlethez");
+    logger.log(font + " hozzáadva a készlethez");
   });
 
   test("font ikon törlése a készletből", async ({ page }) => {
@@ -24,7 +24,7 @@ test.describe.serial("font ikonokat érintő tesztek", () => {
     await scrollUntilVisible(page, "Név", 1, font);
     await font.click();
     await pressbutton(page, '', 1);
-    console.log(font + " törölve a készletből");
+    logger.log(font + " törölve a készletből");
   });
 
   test.afterEach(async ({ page }) => {

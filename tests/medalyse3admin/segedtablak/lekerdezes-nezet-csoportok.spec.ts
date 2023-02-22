@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test';
 
-import { login, logout, medaurl, pressbutton, randomname, removeitemeng, textboxcheck } from 'globalis';
+import { logger, login, logout, medaurl, pressbutton, randomname, removeitem, textboxcheck } from 'globalis';
 
 const testname = randomname("PWLEKNEZCSOP");
 const testnamedit = testname + "_edited";
 const testtitle = testname + " lekérdezés nézet csoport";
 const testtitledit = testtitle + " edited";
 
-console.log(testname); // tudjuk már, hogy mit adott meg a script :D
+logger.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
@@ -27,7 +27,7 @@ test.describe.serial("egy lekérdezés nézet csoportot érintő tesztek", () =>
     const cellshort = page.getByRole("cell", { name: testtitle });
     await expect(cellname).toHaveText(testname);
     await expect(cellshort).toHaveText(testtitle);
-    console.log(testname + " létrehozva");
+    logger.log(testname + " létrehozva");
   });
 
   test("lekérdezés nézet csoport szerkesztés", async ({ page }) => {
@@ -40,15 +40,15 @@ test.describe.serial("egy lekérdezés nézet csoportot érintő tesztek", () =>
     const cellnamedit = page.getByRole("cell", { name: testnamedit });
     await expect(cellnamedit).toHaveText(testnamedit);
     await expect(cellshort).toHaveText(testtitledit);
-    console.log(testname + ", " + testtitle + " szerkesztve, új név, leírás: " + testnamedit + ", " + testtitledit);
+    logger.log(testname + ", " + testtitle + " szerkesztve, új név, leírás: " + testnamedit + ", " + testtitledit);
   });
 
   test("lekérdezés nézet csoport törlés", async ({ page }) => {
     const cellname = page.getByRole("cell", { name: testnamedit });
     await expect(cellname).toHaveText(testnamedit);
     await cellname.click();
-    await removeitemeng(page, " Törlés");
-    console.log(testnamedit + " törölve");
+    await removeitem(page, " Törlés", 0, 1);
+    logger.log(testnamedit + " törölve");
   });
 
   test.afterEach(async ({ page }) => {

@@ -1,10 +1,10 @@
 import { test, expect } from "@playwright/test";
 
-import { login, logout, medaurl, pressbutton, randomname, removeitem, textboxcheck } from "globalis";
+import { logger, login, logout, medaurl, pressbutton, randomname, removeitem, textboxcheck } from "globalis";
 
 const testname = randomname("geriautpart");
 
-console.log(testname); // tudjuk már, hogy mit adott meg a script :D
+logger.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
@@ -21,7 +21,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     await pressbutton(page, " Mentés", 0);
     const cellname = page.getByRole("cell", { name: testname });
     await expect(cellname).toHaveText(testname);
-    console.log(testname + " létrehozva");
+    logger.log(testname + " létrehozva");
   });
 
   test("partner törlés", async ({ page }) => {
@@ -29,7 +29,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     await expect(cellname).toHaveText(testname);
     await cellname.click();
     await removeitem(page, " Törlés");
-    console.log(testname + " törölve");
+    logger.log(testname + " törölve");
   });
 
   test("partner visszaállítás", async ({ page }) => {
@@ -39,7 +39,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     await cellname.click();
     await pressbutton(page,  " Visszaállítás", 0);
     await page.getByText("Töröltek").click();
-    console.log(testname + " visszaállítva");
+    logger.log(testname + " visszaállítva");
   });
 
   test.fixme("partner egyediség megsértése", async ({ page }) => {
@@ -56,7 +56,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     await expect(cellname).toHaveText(testname);
     await cellname.click();
     await removeitem(page, " Törlés");    
-    console.log(testname + " ismételten törölve");
+    logger.log(testname + " ismételten törölve");
   });
   test.afterEach(async ({ page }) => {
     await logout(page);

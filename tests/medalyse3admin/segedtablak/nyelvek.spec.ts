@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test';
 
-import { login, logout, medaurl, pressbutton, randomname, removeitem, textboxcheck } from 'globalis';
+import { logger, login, logout, medaurl, pressbutton, randomname, removeitem, textboxcheck } from 'globalis';
 
 const testname = randomname("Playwright");
 const testshort = "PW";
 const testshortedit = testshort + "E";
 
-console.log(testname); // tudjuk már, hogy mit adott meg a script :D
+logger.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
@@ -26,7 +26,7 @@ test.describe.serial("egy nyelvet érintő tesztek", () => {
     const cellshort = page.getByRole("cell", { name: testshort });
     await expect(cellname).toHaveText(testname);
     await expect(cellshort).toHaveText(testshort);
-    console.log(testname + " létrehozva");
+    logger.log(testname + " létrehozva");
   });
 
   test("nyelv rövid név szerkesztés", async ({ page }) => {
@@ -36,7 +36,7 @@ test.describe.serial("egy nyelvet érintő tesztek", () => {
     await textboxcheck(page, "Rövid név", testshortedit);
     await pressbutton(page, " Mentés", 0);
     await expect(cellshort).toHaveText(testshortedit);
-    console.log(testshort + " szerkesztve, új rövid név: " + testshortedit);
+    logger.log(testshort + " szerkesztve, új rövid név: " + testshortedit);
   });
 
   test("nyelv törlés", async ({ page }) => {
@@ -44,7 +44,7 @@ test.describe.serial("egy nyelvet érintő tesztek", () => {
     await expect(cellname).toHaveText(testname);
     await cellname.click();
     await removeitem(page, " Törlés");
-    console.log(testname + " törölve");
+    logger.log(testname + " törölve");
   });
 
   test.afterEach(async ({ page }) => {

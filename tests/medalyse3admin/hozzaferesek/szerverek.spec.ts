@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-import { branch, hoptoserverusers, login, logout, medaurl, pressbutton, randomname, removeitem, scrollUntilVisible, textboxcheck } from "globalis";
+import { branch, hoptoserverusers, logger, login, logout, medaurl, pressbutton, randomname, removeitem, scrollUntilVisible, textboxcheck } from "globalis";
 import { misc, user } from "core.json";
 
 const randname = randomname("_autoteszt");
@@ -29,7 +29,7 @@ test.describe.serial("szerverek összekötése", () => {
       await textboxcheck(page, textboxes[0][i], textboxes[1][i]);
     };
     const kimenokod = await page.getByRole("textbox", { name: "Kimenő kapcsolat kód" }).inputValue();
-    console.log(kimenokod + " kimenő kapcsolat kód tárolva")
+    logger.log(kimenokod + " kimenő kapcsolat kód tárolva")
 
     const context = page.context();
     const page2 = await context.newPage();
@@ -48,7 +48,7 @@ test.describe.serial("szerverek összekötése", () => {
       await textboxcheck(page2, textboxes2[0][i], textboxes2[1][i]);
     };
     const bejovokod = await page2.getByRole("textbox", { name: "Kimenő kapcsolat kód" }).inputValue();
-    console.log(bejovokod + " bejövő kapcsolat kód tárolva")
+    logger.log(bejovokod + " bejövő kapcsolat kód tárolva")
 
     await textboxcheck(page, "Bejövő kapcsolat kód", bejovokod);
 

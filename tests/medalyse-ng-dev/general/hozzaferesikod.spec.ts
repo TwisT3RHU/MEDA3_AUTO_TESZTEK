@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import { user } from "core.json";
 
-import { login, logout, pressbutton, removeitem, selectApp } from "globalis";
+import { logger, login, logout, pressbutton, removeitem, selectApp } from "globalis";
 
 test.beforeEach(async ({ page }) => {
     await login(page);
@@ -17,7 +17,7 @@ test.describe.serial("hozzáférési kódot érintő teszt", () => {
         let honapszam = datum.getMonth() + 1; //zero-based érték
         let day = datum.getDate();
         let day2 = day + 2;
-        console.log(datum + " év " + ev + " hónap " + honap + " napok " + day + " - " + day2); // dátum formázása, future-proofing
+        logger.log(datum + " év " + ev + " hónap " + honap + " napok " + day + " - " + day2); // dátum formázása, future-proofing
 
         await page.locator('button:has-text("security")').click();
         await pressbutton(page, "Hozzáférési kódok", 0, "menuitem");

@@ -96,7 +96,7 @@ http://medalyse.gamma.local/admin/#!usrs meda url összerakva
       170 |   await username.fill(user.name);
     > 171 |   await expect(username).not.toBeEmpty();
           |                              ^
-      172 |   console.log(user.name + " beillesztve a " + username + " textboxba");
+      172 |   logger.log(user.name + " beillesztve a " + username + " textboxba");
       173 |
       174 |   const password = page.getByLabel("Password");
 

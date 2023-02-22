@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test';
 
-import { login, logout, medaurl, pressbutton, randomname, removeitem, rowcheck, textboxcheck } from 'globalis';
+import { logger, login, logout, medaurl, pressbutton, randomname, removeitem, rowcheck, textboxcheck } from 'globalis';
 
 const origname = "adatmódosítás";
 const testname = randomname("fordítás");
 const testnamedit = testname + "_edited";
 
-console.log(testname); // tudjuk már, hogy mit adott meg a script :D
+logger.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
@@ -25,7 +25,7 @@ test.describe.serial("egy fordítást érintő tesztek", () => {
     await pressbutton(page, " Mentés", 0);
     const celltest = page.getByRole("cell", { name: testname });
     await expect(celltest).toHaveText(testname);
-    console.log(celltest + " fordítás létrehozva");
+    logger.log(celltest + " fordítás létrehozva");
   });
 
   test("fordítás szerkesztés", async ({ page }) => {
@@ -35,7 +35,7 @@ test.describe.serial("egy fordítást érintő tesztek", () => {
     await textboxcheck(page, "Fordítás", testnamedit);
     await pressbutton(page, " Mentés", 0);
     await expect(celltest).toHaveText(testnamedit);
-    console.log(cellorig + " szerkesztve, új fordítás: " + celltest);
+    logger.log(cellorig + " szerkesztve, új fordítás: " + celltest);
   });
 
   test("fordítás törlés", async ({ page }) => {
@@ -43,7 +43,7 @@ test.describe.serial("egy fordítást érintő tesztek", () => {
     await expect(cellname).toHaveText(testnamedit);
     await cellname.click();
     await removeitem(page, " Törlés");
-    console.log(cellname + " törölve");
+    logger.log(cellname + " törölve");
   });
 
   test.afterEach(async ({ page }) => {

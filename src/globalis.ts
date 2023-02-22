@@ -1,5 +1,13 @@
 import { expect } from "@playwright/test";
 import { misc, user } from "core.json";
+import { Console } from "console";
+import * as fs from "fs";
+
+/* Creating a new Console object and assigning it to the logger variable. */
+export const logger = new Console({
+  stdout: fs.createWriteStream("normalStdout.txt"),
+  stderr: fs.createWriteStream("errStdErr.txt"),
+});
 
 // LINK ÖSSZERAKÁSOK
 
@@ -90,7 +98,7 @@ export function medaurl(remote: boolean, menu?: string) {
       else url = url + menu;
     }
   }
-  console.log(url + " meda url összerakva");
+  logger.log(url + " meda url összerakva");
   return url;
 };
 
@@ -109,7 +117,7 @@ export async function textboxcheck(page: any, textboxname: string, name: string)
   await textbox.fill(name);
   await expect(textbox).not.toBeEmpty(); // ez legalább működik
   //await expect(textbox).toHaveText(name); // nem értem, received string "" közben nem?
-  console.log(name + " beillesztve a " + textbox + " textboxba");
+  logger.log(name + " beillesztve a " + textbox + " textboxba");
 };
 
 /**
@@ -123,7 +131,7 @@ export async function rowcheck(page: any, rowname: string, name: string) {
   await row.click();
   //await expect(row).toBeFocused();
   await page.getByText(name).click();
-  console.log(name + " kiválasztva a " + row + " comboboxból")
+  logger.log(name + " kiválasztva a " + row + " comboboxból")
 };
 
 // NÉV GENERÁLÁS
@@ -136,7 +144,7 @@ export async function rowcheck(page: any, rowname: string, name: string) {
 export function randomname(name: string) {
   const randomname_num = Math.floor(Math.random() * 10000000);
   let randomname = name + "_" + randomname_num;
-  console.log(randomname + " generálva");
+  logger.log(randomname + " generálva");
   return randomname;
 };
 
@@ -169,7 +177,7 @@ export async function login(page: any, remote: boolean = false) {
   await expect(username).toBeFocused();
   await username.fill(user.name);
   await expect(username).not.toBeEmpty();
-  console.log(user.name + " beillesztve a " + username + " textboxba");
+  logger.log(user.name + " beillesztve a " + username + " textboxba");
 
   const password = page.getByLabel("Password");
   await expect(password).toBeEditable();
@@ -177,12 +185,12 @@ export async function login(page: any, remote: boolean = false) {
   await expect(password).toBeFocused();
   await password.fill(user.pass);
   await expect(password).not.toBeEmpty();
-  console.log(user.pass + " beillesztve a " + password + " textboxba");
+  logger.log(user.pass + " beillesztve a " + password + " textboxba");
 
   await password.press("Enter");
   await expect(page).toHaveURL(medaurl(remote));
   //await page.waitForNavigation();
-  console.log("sikeres bejelentkezés: " + branch(remote) + ": " + user.name + " - " + user.pass);
+  logger.log("sikeres bejelentkezés: " + branch(remote) + ": " + user.name + " - " + user.pass);
 };
 
 /**
@@ -233,7 +241,7 @@ export async function pressbutton(page: any, buttonname: string, position: numbe
   const button = page.getByRole(role, { name: buttonname }).nth(position);
   await expect(button).toBeEnabled();
   await button.click();
-  console.log(button + " meg lett nyomva");
+  logger.log(button + " meg lett nyomva");
 };
 
 /**
@@ -248,7 +256,7 @@ export async function removeitem(page: any, buttonname: string, position: number
   const nemstr: string[] = ['Nem', 'Cancel', 'Mégsem'];
   const igenstr: string[] = ['Igen', 'Ok', 'Igen'];
   const nem = nemstr[environment], igen = igenstr[environment];
-  console.log(nem + " " + igen);
+  logger.log(nem + " " + igen);
 
   if (environment == 2) {
     await page.locator('button:has-text("delete_outline")').click();
@@ -287,7 +295,7 @@ export async function scrollUntilVisible(page: any, headername: string, nth: num
   await page.getByText(headername).nth(nth).click({ delay: 100 });
   do await page.keyboard.down('ArrowDown');
   while (await locator.isVisible() == false);
-  console.log(locator + " megtalálva")
+  logger.log(locator + " megtalálva")
   await page.keyboard.up('ArrowDown');
 };
 
@@ -312,6 +320,6 @@ export async function selectApp(page: any, appname: string, appurl: string, remo
  */
 export async function getElementColor(locator: any) {
   const color = await locator.evaluate((e) => { return window.getComputedStyle(e).getPropertyValue("background-color") });
-  console.log(color);
+  logger.log(color);
   //return color;
 };

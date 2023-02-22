@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-import { login, logout, selectApp } from "globalis";
+import { logger, login, logout, selectApp } from "globalis";
 import { setTimeout } from "timers/promises";
 
 test.beforeEach(async ({ page }) => {
@@ -19,14 +19,14 @@ test.describe.serial("témát érintő teszt", () => {
         const menuszin = page.locator('.mat-slide-toggle-bar').first();
         let color = await menuszin.evaluate((e) => { return window.getComputedStyle(e).getPropertyValue("background-color") });
         expect(color).toBe("rgb(27, 106, 61)");
-        console.log(color); // dark szín
+        logger.log(color); // dark szín
 
         await expect(sidebar).toBeEnabled();
         await sidebar.click();
         await setTimeout(1000);
         color = await menuszin.evaluate((e) => { return window.getComputedStyle(e).getPropertyValue("background-color") });
         expect(color).toBe("rgb(37, 85, 133)");
-        console.log(color); // világos szín
+        logger.log(color); // világos szín
 
         await page.keyboard.press("Escape");
     });

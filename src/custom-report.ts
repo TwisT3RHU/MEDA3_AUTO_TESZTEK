@@ -1,5 +1,6 @@
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
 import { Reporter, TestCase, TestResult, TestStep } from '@playwright/test/reporter';
+import { logger } from 'globalis';
 
 async function createPdf() {
     const pdfDoc = await PDFDocument.create()
@@ -21,22 +22,22 @@ async function createPdf() {
 
 class MyReporter implements Reporter {
   onBegin(config, suite) {
-    console.log(`Starting the run with ${suite.allTests().length} tests`);
+    logger.log(`Teszt megkezdése ${suite.allTests().length} esettel`);
   }
   onTestBegin(test) {
-    console.log(`Starting test ${test.title}`);
+    logger.log(`Teszteset címe: "${test.title}"`);
   }
   onStepBegin(test, result, step) {
-    console.log(`Starting test step ${step.title} inside ${test.title}`)
+    logger.log(`${step.title}`);
   }
-  onStepEnd(test: TestCase, result: TestResult, step: TestStep): void {
-    console.log(`Finished test step ${step.title} inside ${test.title}: ${result.status}`)
-  }
+  /*onStepEnd(test: TestCase, result: TestResult, step: TestStep): void {
+    logger.log(`Finished test step ${step.title} inside ${test.title}: ${result.status}`)
+  }*/
   onTestEnd(test, result) {
-    console.log(`Finished test ${test.title}: ${result.status}`);
+    logger.log(`"${test.title}" teszteset lefuttatva "${result.status}" eredménnyel`);
   }
   onEnd(result) {
-    console.log(`Finished the run: ${result.status}`);
+    logger.log(`Teszt összegzett eredménye: ${result.status}`);
   }
 }
 export default MyReporter;
