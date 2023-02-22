@@ -112,6 +112,1243 @@
   },
   "suites": [
     {
+      "title": "medalyse3admin\\general\\login-logout.spec.ts",
+      "file": "medalyse3admin/general/login-logout.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "szimpla login/logout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 7420,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2023-02-22T12:46:25.847Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9f17248290f1ca554dd0-a8e572a190a4297655ae",
+          "file": "medalyse3admin/general/login-logout.spec.ts",
+          "line": 5,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "medalyse3admin\\hozzaferesek\\csoportok.spec.ts",
+      "file": "medalyse3admin/hozzaferesek/csoportok.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "egy csoportot érintő tesztek",
+          "file": "medalyse3admin/hozzaferesek/csoportok.spec.ts",
+          "line": 19,
+          "column": 15,
+          "specs": [
+            {
+              "title": "csoport létrehozása",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 10642,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:46:25.937Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d937ab071d3300cb5eb4-3f4e3911683982c34de9",
+              "file": "medalyse3admin/hozzaferesek/csoportok.spec.ts",
+              "line": 20,
+              "column": 3
+            },
+            {
+              "title": "csoport jogosultságainak beállítása",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 28684,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:46:38.434Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d937ab071d3300cb5eb4-66090bc6d48c76c3c398",
+              "file": "medalyse3admin/hozzaferesek/csoportok.spec.ts",
+              "line": 33,
+              "column": 3
+            },
+            {
+              "title": "csoport módosítása",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 8937,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:47:07.121Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d937ab071d3300cb5eb4-e38caf76a595caba8a45",
+              "file": "medalyse3admin/hozzaferesek/csoportok.spec.ts",
+              "line": 288,
+              "column": 3
+            },
+            {
+              "title": "felhasználó hozzáadása a csoporthoz",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 8001,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:47:16.060Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d937ab071d3300cb5eb4-b52ac80a89ac3788deac",
+              "file": "medalyse3admin/hozzaferesek/csoportok.spec.ts",
+              "line": 298,
+              "column": 3
+            },
+            {
+              "title": "felhasználó eltávolítása a csoportból",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 10365,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:47:24.063Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d937ab071d3300cb5eb4-6e69d8c0bab4779e2814",
+              "file": "medalyse3admin/hozzaferesek/csoportok.spec.ts",
+              "line": 312,
+              "column": 3
+            },
+            {
+              "title": "csoport jogosultságainak törlése",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 8377,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:47:34.428Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d937ab071d3300cb5eb4-9784a1b2057f2468f058",
+              "file": "medalyse3admin/hozzaferesek/csoportok.spec.ts",
+              "line": 324,
+              "column": 3
+            },
+            {
+              "title": "csoport törlése",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 8696,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:47:42.806Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d937ab071d3300cb5eb4-565ce7c88423ef6a9298",
+              "file": "medalyse3admin/hozzaferesek/csoportok.spec.ts",
+              "line": 340,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "2 csoportot érintő tesztek",
+          "file": "medalyse3admin/hozzaferesek/csoportok.spec.ts",
+          "line": 350,
+          "column": 15,
+          "specs": [
+            {
+              "title": "2 csoport létrehozása",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 11262,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:46:35.318Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d937ab071d3300cb5eb4-d4e3298e3e063b34e104",
+              "file": "medalyse3admin/hozzaferesek/csoportok.spec.ts",
+              "line": 351,
+              "column": 3
+            },
+            {
+              "title": "2 csoport törlése",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 10885,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:46:46.582Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d937ab071d3300cb5eb4-f4915952e8df59de7f28",
+              "file": "medalyse3admin/hozzaferesek/csoportok.spec.ts",
+              "line": 368,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "medalyse3admin\\hozzaferesek\\felhasznalok.spec.ts",
+      "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "egy felhasználót érintő tesztek",
+          "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+          "line": 22,
+          "column": 15,
+          "specs": [
+            {
+              "title": "felhasználó létrehozása",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 14620,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:46:57.493Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-4f775a517d9b299f8fb4",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 23,
+              "column": 3
+            },
+            {
+              "title": "felhasználó hozzáadása egy csoporthoz",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 35351,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:47:12.115Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-f4e2060966419a3413b8",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 40,
+              "column": 3
+            },
+            {
+              "title": "felhasználó eltávolítása egy csoportból",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 8514,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:47:47.465Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-98d03aef47d132944c76",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 49,
+              "column": 3
+            },
+            {
+              "title": "felhasználó adatainak módosítása",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 8581,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:47:55.980Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-9f3e61572522d662f294",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 62,
+              "column": 3
+            },
+            {
+              "title": "felhasználó törlése",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 7553,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:48:04.563Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-305f5fcfc88611001c7c",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 81,
+              "column": 3
+            },
+            {
+              "title": "felhasználó visszaállítása",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 6738,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:48:12.117Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-618a334dbb967a36bd9d",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 87,
+              "column": 3
+            },
+            {
+              "title": "felhasználó ismételt törlése",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 7679,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:48:18.857Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-27fa8b1a1f98cc937102",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 95,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "2 felhasználót érintő tesztek",
+          "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+          "line": 105,
+          "column": 15,
+          "specs": [
+            {
+              "title": "2 felhasználó létrehozása",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 13220,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:47:51.526Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-0f4081cac349ada16fa5",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 106,
+              "column": 3
+            },
+            {
+              "title": "2 felhasználó adatainak módosítása",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 11558,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:48:04.747Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-eeba8ff4159e15f24c29",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 127,
+              "column": 3
+            },
+            {
+              "title": "2 felhasználó törlése",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 8267,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:48:16.307Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "789616eb214b1429ebbd-0ae30f9178be523b84c7",
+              "file": "medalyse3admin/hozzaferesek/felhasznalok.spec.ts",
+              "line": 146,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "medalyse3admin\\hozzaferesek\\partnerek.spec.ts",
+      "file": "medalyse3admin/hozzaferesek/partnerek.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "egy partnert érintő tesztek",
+          "file": "medalyse3admin/hozzaferesek/partnerek.spec.ts",
+          "line": 17,
+          "column": 15,
+          "specs": [
+            {
+              "title": "partner hozzáadás",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 6131,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:48:24.586Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "4edb99a636ed99260c62-4feb859dd56e31af07a7",
+              "file": "medalyse3admin/hozzaferesek/partnerek.spec.ts",
+              "line": 18,
+              "column": 3
+            },
+            {
+              "title": "partner törlés",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 6265,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:48:30.717Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "4edb99a636ed99260c62-f2c15af08896e277ef8c",
+              "file": "medalyse3admin/hozzaferesek/partnerek.spec.ts",
+              "line": 27,
+              "column": 3
+            },
+            {
+              "title": "partner visszaállítás",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 5721,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:48:36.983Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "4edb99a636ed99260c62-4a4bd9044e259a9ac956",
+              "file": "medalyse3admin/hozzaferesek/partnerek.spec.ts",
+              "line": 35,
+              "column": 3
+            },
+            {
+              "title": "partner egyediség megsértése",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [
+                    {
+                      "type": "fixme"
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:48:42.705Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "4edb99a636ed99260c62-57ff0441a4625d06d6cb",
+              "file": "medalyse3admin/hozzaferesek/partnerek.spec.ts",
+              "line": 45,
+              "column": 8
+            },
+            {
+              "title": "partner ismételt törlése",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 6101,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:48:42.705Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "4edb99a636ed99260c62-8264c64209a525210683",
+              "file": "medalyse3admin/hozzaferesek/partnerek.spec.ts",
+              "line": 54,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "medalyse3admin\\hozzaferesek\\szerverek.spec.ts",
+      "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "szerverek összekötése",
+          "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+          "line": 21,
+          "column": 15,
+          "specs": [
+            {
+              "title": "új távoli szerver hozzáadása",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 12648,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2023-02-22T12:48:26.559Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bbc1a48f30326a535028-86bafc2a71d52cb6c578",
+              "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+              "line": 22,
+              "column": 3
+            }
+          ],
+          "suites": [
+            {
+              "title": "szerverek felhasználói",
+              "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+              "line": 58,
+              "column": 17,
+              "specs": [],
+              "suites": [
+                {
+                  "title": "gamma szerver felhasználója",
+                  "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+                  "line": 59,
+                  "column": 19,
+                  "specs": [
+                    {
+                      "title": "gamma új távoli felhasználó hozzáadása",
+                      "ok": true,
+                      "tags": [],
+                      "tests": [
+                        {
+                          "timeout": 240000,
+                          "annotations": [],
+                          "expectedStatus": "passed",
+                          "projectId": "chromium",
+                          "projectName": "chromium",
+                          "results": [
+                            {
+                              "workerIndex": 0,
+                              "status": "passed",
+                              "duration": 7710,
+                              "errors": [],
+                              "stdout": [],
+                              "stderr": [],
+                              "retry": 0,
+                              "startTime": "2023-02-22T12:48:39.209Z",
+                              "attachments": []
+                            }
+                          ],
+                          "status": "expected"
+                        }
+                      ],
+                      "id": "bbc1a48f30326a535028-105aef1a643138dcaa37",
+                      "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+                      "line": 60,
+                      "column": 7
+                    },
+                    {
+                      "title": "gamma felhasználó hozzáadása a geriautocsop csoporthoz",
+                      "ok": true,
+                      "tags": [],
+                      "tests": [
+                        {
+                          "timeout": 240000,
+                          "annotations": [],
+                          "expectedStatus": "passed",
+                          "projectId": "chromium",
+                          "projectName": "chromium",
+                          "results": [
+                            {
+                              "workerIndex": 0,
+                              "status": "passed",
+                              "duration": 29047,
+                              "errors": [],
+                              "stdout": [],
+                              "stderr": [],
+                              "retry": 0,
+                              "startTime": "2023-02-22T12:48:46.920Z",
+                              "attachments": []
+                            }
+                          ],
+                          "status": "expected"
+                        }
+                      ],
+                      "id": "bbc1a48f30326a535028-5309b7455a39c9e5dca4",
+                      "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+                      "line": 66,
+                      "column": 7
+                    },
+                    {
+                      "title": "gamma távoli felhasználó és csoportjának törlése",
+                      "ok": true,
+                      "tags": [],
+                      "tests": [
+                        {
+                          "timeout": 240000,
+                          "annotations": [],
+                          "expectedStatus": "passed",
+                          "projectId": "chromium",
+                          "projectName": "chromium",
+                          "results": [
+                            {
+                              "workerIndex": 0,
+                              "status": "passed",
+                              "duration": 7842,
+                              "errors": [],
+                              "stdout": [],
+                              "stderr": [],
+                              "retry": 0,
+                              "startTime": "2023-02-22T12:49:15.968Z",
+                              "attachments": []
+                            }
+                          ],
+                          "status": "expected"
+                        }
+                      ],
+                      "id": "bbc1a48f30326a535028-1ee54a2f6f58eaa2ddb5",
+                      "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+                      "line": 77,
+                      "column": 7
+                    }
+                  ]
+                },
+                {
+                  "title": "beta szerver felhasználója",
+                  "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+                  "line": 93,
+                  "column": 19,
+                  "specs": [
+                    {
+                      "title": "beta új távoli felhasználó hozzáadása",
+                      "ok": false,
+                      "tags": [],
+                      "tests": [
+                        {
+                          "timeout": 240000,
+                          "annotations": [],
+                          "expectedStatus": "passed",
+                          "projectId": "chromium",
+                          "projectName": "chromium",
+                          "results": [
+                            {
+                              "workerIndex": 0,
+                              "status": "timedOut",
+                              "duration": 240000,
+                              "error": {
+                                "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                              },
+                              "errors": [
+                                {
+                                  "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                                },
+                                {
+                                  "location": {
+                                    "file": "c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts",
+                                    "column": 6,
+                                    "line": 228
+                                  },
+                                  "message": "locator.click: Target closed\n=========================== logs ===========================\nwaiting for selector \"td[role=\"listitem\"]:has-text(\"gamma_autoteszt_3149412\")\"\n============================================================\n\n\u001b[90m   at \u001b[39m..\\src\\globalis.ts:228\n\n  226 |   await page\n  227 |     .locator('td[role=\"listitem\"]:has-text(\"' + remote + '\")')\n> 228 |     .click();\n      |      ^\n  229 |   await page.waitForLoadState();\n  230 | };\n  231 |\n\n\u001b[2m    at Object.hoptoserverusers (c:\\Users\\kotel.g\\Desktop\\MEDA3_AUTO_TESZTEK\\src\\globalis.ts:228:6)\u001b[22m"
+                                },
+                                {
+                                  "message": "Pending operations:\n  - locator.click at src\\globalis.ts:228:6\n  - locator.click at tests\\medalyse3admin\\hozzaferesek\\szerverek.spec.ts:97:72\n"
+                                }
+                              ],
+                              "stdout": [],
+                              "stderr": [],
+                              "retry": 0,
+                              "startTime": "2023-02-22T12:49:23.812Z",
+                              "attachments": []
+                            }
+                          ],
+                          "status": "unexpected"
+                        }
+                      ],
+                      "id": "bbc1a48f30326a535028-44719cc75567bc92ceaa",
+                      "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+                      "line": 94,
+                      "column": 7
+                    },
+                    {
+                      "title": "beta felhasználó hozzáadása a geriautocsop csoporthoz",
+                      "ok": true,
+                      "tags": [],
+                      "tests": [
+                        {
+                          "timeout": 0,
+                          "annotations": [],
+                          "expectedStatus": "passed",
+                          "projectId": "chromium",
+                          "projectName": "chromium",
+                          "results": [
+                            {
+                              "workerIndex": -1,
+                              "status": "skipped",
+                              "duration": 0,
+                              "errors": [],
+                              "stdout": [],
+                              "stderr": [],
+                              "retry": 0,
+                              "startTime": "2023-02-22T12:53:23.878Z",
+                              "attachments": []
+                            }
+                          ],
+                          "status": "skipped"
+                        }
+                      ],
+                      "id": "bbc1a48f30326a535028-96f4d1c5d7c958b4c025",
+                      "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+                      "line": 100,
+                      "column": 7
+                    },
+                    {
+                      "title": "beta távoli felhasználó és csoportjának törlése",
+                      "ok": true,
+                      "tags": [],
+                      "tests": [
+                        {
+                          "timeout": 0,
+                          "annotations": [],
+                          "expectedStatus": "passed",
+                          "projectId": "chromium",
+                          "projectName": "chromium",
+                          "results": [
+                            {
+                              "workerIndex": -1,
+                              "status": "skipped",
+                              "duration": 0,
+                              "errors": [],
+                              "stdout": [],
+                              "stderr": [],
+                              "retry": 0,
+                              "startTime": "2023-02-22T12:53:23.879Z",
+                              "attachments": []
+                            }
+                          ],
+                          "status": "skipped"
+                        }
+                      ],
+                      "id": "bbc1a48f30326a535028-bc95604fed6cda3ddda2",
+                      "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+                      "line": 111,
+                      "column": 7
+                    }
+                  ]
+                },
+                {
+                  "title": "szerverek törlése",
+                  "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+                  "line": 127,
+                  "column": 19,
+                  "specs": [
+                    {
+                      "title": "gamma távoli szerver törlése",
+                      "ok": true,
+                      "tags": [],
+                      "tests": [
+                        {
+                          "timeout": 0,
+                          "annotations": [],
+                          "expectedStatus": "passed",
+                          "projectId": "chromium",
+                          "projectName": "chromium",
+                          "results": [
+                            {
+                              "workerIndex": -1,
+                              "status": "skipped",
+                              "duration": 0,
+                              "errors": [],
+                              "stdout": [],
+                              "stderr": [],
+                              "retry": 0,
+                              "startTime": "2023-02-22T12:53:23.879Z",
+                              "attachments": []
+                            }
+                          ],
+                          "status": "skipped"
+                        }
+                      ],
+                      "id": "bbc1a48f30326a535028-584ac4a3fe7491acaa9d",
+                      "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+                      "line": 128,
+                      "column": 7
+                    },
+                    {
+                      "title": "beta távoli szerver törlése",
+                      "ok": true,
+                      "tags": [],
+                      "tests": [
+                        {
+                          "timeout": 0,
+                          "annotations": [],
+                          "expectedStatus": "passed",
+                          "projectId": "chromium",
+                          "projectName": "chromium",
+                          "results": [
+                            {
+                              "workerIndex": -1,
+                              "status": "skipped",
+                              "duration": 0,
+                              "errors": [],
+                              "stdout": [],
+                              "stderr": [],
+                              "retry": 0,
+                              "startTime": "2023-02-22T12:53:23.879Z",
+                              "attachments": []
+                            }
+                          ],
+                          "status": "skipped"
+                        }
+                      ],
+                      "id": "bbc1a48f30326a535028-4541ced36738be856724",
+                      "file": "medalyse3admin/hozzaferesek/szerverek.spec.ts",
+                      "line": 133,
+                      "column": 7
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "title": "medalyse3admin\\segedtablak\\font-ikonok.spec.ts",
       "file": "medalyse3admin/segedtablak/font-ikonok.spec.ts",
       "column": 0,
@@ -137,14 +1374,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 9259,
+                      "duration": 7640,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-22T12:36:44.432Z",
+                      "startTime": "2023-02-22T12:48:48.820Z",
                       "attachments": []
                     }
                   ],
@@ -169,14 +1406,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 17593,
+                      "duration": 14955,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-22T12:36:53.769Z",
+                      "startTime": "2023-02-22T12:48:56.462Z",
                       "attachments": []
                     }
                   ],
@@ -220,12 +1457,12 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 8665,
+                      "duration": 7465,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-22T12:36:44.451Z",
+                      "startTime": "2023-02-22T12:49:11.428Z",
                       "attachments": []
                     }
                   ],
@@ -252,12 +1489,12 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 7952,
+                      "duration": 8271,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-22T12:38:21.720Z",
+                      "startTime": "2023-02-22T12:49:18.894Z",
                       "attachments": []
                     }
                   ],
@@ -284,12 +1521,12 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 6956,
+                      "duration": 7444,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-22T12:38:29.674Z",
+                      "startTime": "2023-02-22T12:49:27.164Z",
                       "attachments": []
                     }
                   ],
@@ -331,14 +1568,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 7307,
+                      "duration": 6266,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-22T12:37:11.386Z",
+                      "startTime": "2023-02-22T12:49:34.620Z",
                       "attachments": []
                     }
                   ],
@@ -363,14 +1600,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 6656,
+                      "duration": 6312,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-22T12:37:18.695Z",
+                      "startTime": "2023-02-22T12:49:40.887Z",
                       "attachments": []
                     }
                   ],
@@ -395,14 +1632,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 6958,
+                      "duration": 6233,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-22T12:37:25.354Z",
+                      "startTime": "2023-02-22T12:49:47.200Z",
                       "attachments": []
                     }
                   ],
@@ -444,14 +1681,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 6693,
+                      "duration": 6939,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-22T12:37:32.327Z",
+                      "startTime": "2023-02-22T12:49:53.445Z",
                       "attachments": []
                     }
                   ],
@@ -476,14 +1713,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 7095,
+                      "duration": 6103,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-22T12:37:39.021Z",
+                      "startTime": "2023-02-22T12:50:00.385Z",
                       "attachments": []
                     }
                   ],
@@ -508,14 +1745,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 6922,
+                      "duration": 5842,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-22T12:37:46.114Z",
+                      "startTime": "2023-02-22T12:50:06.489Z",
                       "attachments": []
                     }
                   ],
@@ -557,14 +1794,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 6628,
+                      "duration": 6025,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-22T12:37:53.048Z",
+                      "startTime": "2023-02-22T12:50:12.342Z",
                       "attachments": []
                     }
                   ],
@@ -589,14 +1826,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 6553,
+                      "duration": 5722,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-22T12:37:59.677Z",
+                      "startTime": "2023-02-22T12:50:18.368Z",
                       "attachments": []
                     }
                   ],
@@ -621,14 +1858,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 6752,
+                      "duration": 6050,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2023-02-22T12:38:06.232Z",
+                      "startTime": "2023-02-22T12:50:24.091Z",
                       "attachments": []
                     }
                   ],

@@ -37,8 +37,8 @@ const config = {
   reporter: [
     ['./src/custom-report.ts'],
     ['list'],
-    ['html'],
-    ['json', { outputFile: 'results.json' }]
+    ['dot'],
+    ['html']
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
