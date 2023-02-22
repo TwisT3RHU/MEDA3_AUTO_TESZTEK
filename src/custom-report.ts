@@ -1,5 +1,5 @@
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
-import { Reporter } from '@playwright/test/reporter';
+import { FullConfig, FullResult, Reporter, Suite, TestCase, TestResult, TestStep } from '@playwright/test/reporter';
 import { logger } from 'globalis';
 
 async function createPdf() {
@@ -21,22 +21,22 @@ async function createPdf() {
   }
 
 class MyReporter implements Reporter {
-  onBegin(config: any, suite: any) {
+  onBegin(config: FullConfig, suite: Suite) {
     logger.log(`Teszt megkezdése ${suite.allTests().length} esettel`);
   }
-  onTestBegin(test: any) {
+  onTestBegin(test: TestCase, result: TestResult) {
     logger.log(`Teszteset címe: "${test.title}"`);
   }
-  onStepBegin(test: any, result: any, step: any) {
+  onStepBegin(test: TestCase, result: TestResult, step: TestStep) {
     logger.log(`${step.title}`);
   }
   /*onStepEnd(test: TestCase, result: TestResult, step: TestStep): void { 
     logger.log(`Finished test step ${step.title} inside ${test.title}: ${result.status}`)
   }*/
-  onTestEnd(test: any, result: any) {
+  onTestEnd(test: TestCase, result: TestResult) {
     logger.log(`"${test.title}" teszteset lefuttatva "${result.status}" eredménnyel`);
   }
-  onEnd(result: any) {
+  onEnd(result: FullResult) {
     logger.log(`Teszt összegzett eredménye: ${result.status}`);
   }
 }
