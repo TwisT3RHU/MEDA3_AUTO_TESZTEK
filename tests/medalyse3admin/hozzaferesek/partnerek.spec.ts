@@ -1,35 +1,35 @@
 import { test, expect } from "@playwright/test";
+import *  as testfunc from 'globalis';
+//import { logger, login, logout, medaurl, pressbutton, randomname, removeitem, textboxcheck } from "globalis";
 
-import { logger, login, logout, medaurl, pressbutton, randomname, removeitem, textboxcheck } from "globalis";
+const testname = testfunc.randomname("geriautpart");
 
-const testname = randomname("geriautpart");
-
-logger.log(testname); // tudjuk már, hogy mit adott meg a script :D
+testfunc.logger.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
-  await login(page);
+  await testfunc.login(page);
   await page.getByText("►Hozzáférések").click();
   await page.getByText("Partnerek").click();
-  await expect(page).toHaveURL(medaurl(false, "#!partners"));
+  await expect(page).toHaveURL(testfunc.medaurl(false, "#!partners"));
 });
 
 test.describe.serial("egy partnert érintő tesztek", () => {
   test("partner hozzáadás", async ({ page }) => {
     await page.getByRole('button', { name: ' Új' }).click();
-    await textboxcheck(page, "Név", testname);
-    await pressbutton(page, " Mentés", 0);
+    await testfunc.textboxcheck(page, "Név", testname);
+    await testfunc.pressbutton(page, " Mentés", 0);
     const cellname = page.getByRole("cell", { name: testname });
     await expect(cellname).toHaveText(testname);
-    logger.log(testname + " létrehozva");
+    testfunc.logger.log(testname + " létrehozva");
   });
 
   test("partner törlés", async ({ page }) => {
     const cellname = page.getByRole("cell", { name: testname });
     await expect(cellname).toHaveText(testname);
     await cellname.click();
-    await removeitem(page, " Törlés");
-    logger.log(testname + " törölve");
+    await testfunc.removeitem(page, " Törlés");
+    testfunc.logger.log(testname + " törölve");
   });
 
   test("partner visszaállítás", async ({ page }) => {
@@ -37,9 +37,9 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     const cellname = page.getByRole("cell", { name: testname });
     await expect(cellname).toHaveText(testname);
     await cellname.click();
-    await pressbutton(page,  " Visszaállítás", 0);
+    await testfunc.pressbutton(page,  " Visszaállítás", 0);
     await page.getByText("Töröltek").click();
-    logger.log(testname + " visszaállítva");
+    testfunc.logger.log(testname + " visszaállítva");
   });
 
   test.fixme("partner egyediség megsértése", async ({ page }) => {
@@ -47,7 +47,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
 
     await page.getByRole("textbox", { name: "Név" }).click();
     await page.getByRole("textbox", { name: "Név" }).fill(testname);
-    await pressbutton(page, " Mentés", 0);
+    await testfunc.pressbutton(page, " Mentés", 0);
     //await expect(page).toContain('Hiba');
   });
 
@@ -55,10 +55,10 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     const cellname = page.getByRole("cell", { name: testname });
     await expect(cellname).toHaveText(testname);
     await cellname.click();
-    await removeitem(page, " Törlés");    
-    logger.log(testname + " ismételten törölve");
+    await testfunc.removeitem(page, " Törlés");    
+    testfunc.logger.log(testname + " ismételten törölve");
   });
   test.afterEach(async ({ page }) => {
-    await logout(page);
+    await testfunc.logout(page);
   });
 });

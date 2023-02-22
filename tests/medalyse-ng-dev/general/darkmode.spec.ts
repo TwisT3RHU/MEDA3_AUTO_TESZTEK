@@ -1,11 +1,11 @@
 import { expect, test } from "@playwright/test";
-
-import { logger, login, logout, selectApp } from "globalis";
+//import { logger, login, logout, selectApp } from "globalis";
+import *  as testfunc from 'globalis';
 import { setTimeout } from "timers/promises";
 
 test.beforeEach(async ({ page }) => {
-    await login(page);
-    await selectApp(page, "Medalyse3 App", "medalyse3app");
+    await testfunc.login(page);
+    await testfunc.selectApp(page, "Medalyse3 App", "medalyse3app");
 });
   
 test.describe.serial("témát érintő teszt", () => {
@@ -19,18 +19,18 @@ test.describe.serial("témát érintő teszt", () => {
         const menuszin = page.locator('.mat-slide-toggle-bar').first();
         let color = await menuszin.evaluate((e) => { return window.getComputedStyle(e).getPropertyValue("background-color") });
         expect(color).toBe("rgb(27, 106, 61)");
-        logger.log(color); // dark szín
+        testfunc.logger.log(color); // dark szín
 
         await expect(sidebar).toBeEnabled();
         await sidebar.click();
         await setTimeout(1000);
         color = await menuszin.evaluate((e) => { return window.getComputedStyle(e).getPropertyValue("background-color") });
         expect(color).toBe("rgb(37, 85, 133)");
-        logger.log(color); // világos szín
+        testfunc.logger.log(color); // világos szín
 
         await page.keyboard.press("Escape");
     });
     test.afterEach(async ({ page }) => {
-        await logout(page);
+        await testfunc.logout(page);
     });
 });

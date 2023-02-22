@@ -1,11 +1,11 @@
 import { test } from "@playwright/test";
 import { user } from "core.json";
-
-import { logger, login, logout, pressbutton, removeitem, selectApp } from "globalis";
+import *  as testfunc from 'globalis';
+//import { logger, login, logout, pressbutton, removeitem, selectApp } from "globalis";
 
 test.beforeEach(async ({ page }) => {
-    await login(page);
-    await selectApp(page, "Medalyse3 App", "medalyse3app");
+    await testfunc.login(page);
+    await testfunc.selectApp(page, "Medalyse3 App", "medalyse3app");
 });
   
 test.describe.serial("hozzáférési kódot érintő teszt", () => {
@@ -17,17 +17,17 @@ test.describe.serial("hozzáférési kódot érintő teszt", () => {
         let honapszam = datum.getMonth() + 1; //zero-based érték
         let day = datum.getDate();
         let day2 = day + 2;
-        logger.log(datum + " év " + ev + " hónap " + honap + " napok " + day + " - " + day2); // dátum formázása, future-proofing
+        testfunc.logger.log(datum + " év " + ev + " hónap " + honap + " napok " + day + " - " + day2); // dátum formázása, future-proofing
 
         await page.locator('button:has-text("security")').click();
-        await pressbutton(page, "Hozzáférési kódok", 0, "menuitem");
+        await testfunc.pressbutton(page, "Hozzáférési kódok", 0, "menuitem");
         await page.getByRole('combobox', { name: 'Felhasználói csoportok' }).locator('div').nth(3).click();
         await page.getByText(user.usergroup).click();
         await page.locator('.cdk-overlay-backdrop').click();
-        await pressbutton(page, "Open calendar");
-        await pressbutton(page, honap + " " + day + ", " + ev);
-        await pressbutton(page, honap + " " + day2 + ", " + ev);
-        await pressbutton(page, "Hozzáférési kód generálása");
+        await testfunc.pressbutton(page, "Open calendar");
+        await testfunc.pressbutton(page, honap + " " + day + ", " + ev);
+        await testfunc.pressbutton(page, honap + " " + day2 + ", " + ev);
+        await testfunc.pressbutton(page, "Hozzáférési kód generálása");
         await page.getByRole('cell', { name: user.usergroup }).click();
         let napelenulla = day.toString();
         let napelenulla2 = day2.toString();
@@ -38,9 +38,9 @@ test.describe.serial("hozzáférési kódot érintő teszt", () => {
         await page.getByRole('cell', { name: ev + "-" + honapnulla + "-" + napelenulla2 + " 23:59" }).click();
         await page.getByRole('cell', { name: ev + "-" + honapnulla + "-" + napelenulla + " 00:00" }).click();
         //await page.getByRole('cell', { name: '47a1d84b-f9bd-491b-879d-d20aec94d351' }).click();
-        await removeitem(page, "not needed...", 0, 2);
+        await testfunc.removeitem(page, "not needed...", 0, 2);
     });
     test.afterEach(async ({ page }) => {
-        await logout(page);
+        await testfunc.logout(page);
     });
 });
