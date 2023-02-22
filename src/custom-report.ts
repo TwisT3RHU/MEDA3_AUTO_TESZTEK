@@ -30,7 +30,7 @@ class MyReporter implements Reporter {
   onStepBegin(test: any, result: any, step: any) {
     logger.log(`${step.title}`);
   }
-  /*onStepEnd(test: TestCase, result: TestResult, step: TestStep): void {
+  /*onStepEnd(test: TestCase, result: TestResult, step: TestStep): void { 
     logger.log(`Finished test step ${step.title} inside ${test.title}: ${result.status}`)
   }*/
   onTestEnd(test: any, result: any) {
