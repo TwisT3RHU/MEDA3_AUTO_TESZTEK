@@ -1,8 +1,8 @@
-import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
+//import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
 import { FullConfig, FullResult, Reporter, Suite, TestCase, TestResult, TestStep } from '@playwright/test/reporter';
 import { logger } from 'globalis';
 
-async function createPdf() {
+/*async function createPdf() {
     const pdfDoc = await PDFDocument.create()
     const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
   
@@ -18,23 +18,25 @@ async function createPdf() {
     })
   
     const pdfBytes = await pdfDoc.save()
-  }
+  }*/
+
+let resultcount: number = 0; // normális számláló majd...
 
 class MyReporter implements Reporter {
   onBegin(config: FullConfig, suite: Suite) {
     logger.log(`Teszt megkezdése ${suite.allTests().length} esettel`);
   }
   onTestBegin(test: TestCase, result: TestResult) {
-    logger.log(`Teszteset címe: "${test.title}"`);
+    logger.log(`${test.id} - Teszteset címe: "${test.title}"`);
   }
   onStepBegin(test: TestCase, result: TestResult, step: TestStep) {
-    logger.log(`${step.title}`);
+    logger.log(`${test.id} - ${step.title}`);
   }
   /*onStepEnd(test: TestCase, result: TestResult, step: TestStep): void { 
-    logger.log(`Finished test step ${step.title} inside ${test.title}: ${result.status}`)
+    logger.log(`${step.title} (${test.id}): ${test.}`);
   }*/
   onTestEnd(test: TestCase, result: TestResult) {
-    logger.log(`"${test.title}" teszteset lefuttatva "${result.status}" eredménnyel`);
+    logger.log(`${test.id} - "${test.title}" teszteset lefuttatva "${result.status}" eredménnyel`);
   }
   onEnd(result: FullResult) {
     logger.log(`Teszt összegzett eredménye: ${result.status}`);
