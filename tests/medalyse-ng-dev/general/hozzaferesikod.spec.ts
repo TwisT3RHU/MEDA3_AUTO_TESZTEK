@@ -17,7 +17,7 @@ test.describe.serial("hozzáférési kódot érintő teszt", () => {
         let honapszam = datum.getMonth() + 1; //zero-based érték
         let day = datum.getDate();
         let day2 = day + 2;
-        testfunc.logger.log(datum + " év " + ev + " hónap " + honap + " napok " + day + " - " + day2); // dátum formázása, future-proofing
+        console.log(datum + " év " + ev + " hónap " + honap + " napok " + day + " - " + day2); // dátum formázása, future-proofing
 
         await page.locator('button:has-text("security")').click();
         await testfunc.pressbutton(page, "Hozzáférési kódok", 0, "menuitem");

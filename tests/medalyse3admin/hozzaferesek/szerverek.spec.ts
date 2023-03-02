@@ -29,7 +29,7 @@ test.describe.serial("szerverek összekötése", () => {
       await testfunc.textboxcheck(page, textboxes[0][i], textboxes[1][i]);
     };
     const kimenokod = await page.getByRole("textbox", { name: "Kimenő kapcsolat kód", exact: true }).inputValue();
-    testfunc.logger.log(kimenokod + " kimenő kapcsolat kód tárolva")
+    console.log(kimenokod + " kimenő kapcsolat kód tárolva")
 
     const context = page.context();
     const page2 = await context.newPage();
@@ -48,7 +48,7 @@ test.describe.serial("szerverek összekötése", () => {
       await testfunc.textboxcheck(page2, textboxes2[0][i], textboxes2[1][i]);
     };
     const bejovokod = await page2.getByRole("textbox", { name: "Kimenő kapcsolat kód", exact: true }).inputValue();
-    testfunc.logger.log(bejovokod + " bejövő kapcsolat kód tárolva")
+    console.log(bejovokod + " bejövő kapcsolat kód tárolva")
 
     await testfunc.textboxcheck(page, "Bejövő kapcsolat kód", bejovokod);
 

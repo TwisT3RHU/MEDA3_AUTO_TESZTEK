@@ -6,7 +6,7 @@ const testname = testfunc.randomname("Playwright");
 const testshort = "PW";
 const testshortedit = testshort + "E";
 
-testfunc.logger.log(testname); // tudjuk már, hogy mit adott meg a script :D
+console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
@@ -26,7 +26,7 @@ test.describe.serial("egy nyelvet érintő tesztek", () => {
     const cellshort = page.getByRole("cell", { name: testshort, exact: true });
     await expect(cellname).toHaveText(testname);
     await expect(cellshort).toHaveText(testshort);
-    testfunc.logger.log(testname + " létrehozva");
+    console.log(testname + " létrehozva");
   });
 
   test("nyelv rövid név szerkesztés", async ({ page }) => {
@@ -36,7 +36,7 @@ test.describe.serial("egy nyelvet érintő tesztek", () => {
     await testfunc.textboxcheck(page, "Rövid név", testshortedit);
     await testfunc.pressbutton(page, " Mentés", 0);
     await expect(cellshort).toHaveText(testshortedit);
-    testfunc.logger.log(testshort + " szerkesztve, új rövid név: " + testshortedit);
+    console.log(testshort + " szerkesztve, új rövid név: " + testshortedit);
   });
 
   test("nyelv törlés", async ({ page }) => {
@@ -44,7 +44,7 @@ test.describe.serial("egy nyelvet érintő tesztek", () => {
     await expect(cellname).toHaveText(testname);
     await cellname.click();
     await testfunc.removeitem(page, " Törlés");
-    testfunc.logger.log(testname + " törölve");
+    console.log(testname + " törölve");
   });
 
   test.afterEach(async ({ page }) => {

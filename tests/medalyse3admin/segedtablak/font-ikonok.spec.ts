@@ -16,7 +16,7 @@ test.describe.serial("font ikonokat érintő tesztek", () => {
     await testfunc.scrollUntilVisible(page, "Név", 0, font);
     await font.click();
     await testfunc.pressbutton(page, '', 0);
-    testfunc.logger.log(font + " hozzáadva a készlethez");
+    console.log(font + " hozzáadva a készlethez");
   });
 
   test("font ikon törlése a készletből", async ({ page }) => {
@@ -24,7 +24,7 @@ test.describe.serial("font ikonokat érintő tesztek", () => {
     await testfunc.scrollUntilVisible(page, "Név", 1, font);
     await font.click();
     await testfunc.pressbutton(page, '', 1);
-    testfunc.logger.log(font + " törölve a készletből");
+    console.log(font + " törölve a készletből");
   });
 
   test.afterEach(async ({ page }) => {

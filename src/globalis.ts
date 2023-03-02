@@ -1,13 +1,14 @@
 import { expect } from "@playwright/test";
 import * as core from "core.json";
-import { Console } from "console";
+
+/*import { Console } from "console";
 import * as fs from "fs";
 
-/* Creating a new Console object and assigning it to the logger variable. */
+ Creating a new Console object and assigning it to the logger variable. 
 export const logger = new Console({
   stdout: fs.createWriteStream("normalStdout.txt"),
   stderr: fs.createWriteStream("errStdErr.txt")
-});
+});*/
 
 // LINK ÖSSZERAKÁSOK
 
@@ -98,7 +99,7 @@ export function medaurl(remote: boolean, menu?: string) {
       else url = url + menu;
     }
   }
-  logger.log(url + " meda url összerakva");
+  console.log(url + " meda url összerakva");
   return url;
 };
 
@@ -117,7 +118,7 @@ export async function textboxcheck(page: any, textboxname: string, name: string)
   await textbox.fill(name);
   await expect(textbox).not.toBeEmpty(); // ez legalább működik
   //await expect(textbox).toHaveText(name); // nem értem, received string "" közben nem?
-  logger.log(name + " beillesztve a " + textbox + " textboxba");
+  console.log(name + " beillesztve a " + textbox + " textboxba");
 };
 
 /**
@@ -131,7 +132,7 @@ export async function rowcheck(page: any, rowname: string, name: string) {
   await row.click();
   //await expect(row).toBeFocused();
   await page.getByText(name).click();
-  logger.log(name + " kiválasztva a " + row + " comboboxból")
+  console.log(name + " kiválasztva a " + row + " comboboxból")
 };
 
 // NÉV GENERÁLÁS
@@ -144,7 +145,7 @@ export async function rowcheck(page: any, rowname: string, name: string) {
 export function randomname(name: string) {
   const randomname_num = Math.floor(Math.random() * 10000000);
   let randomname = name + "_" + randomname_num;
-  logger.log(randomname + " generálva");
+  console.log(randomname + " generálva");
   return randomname;
 };
 
@@ -177,7 +178,7 @@ export async function login(page: any, remote: boolean = false) {
   await expect(username).toBeFocused();
   await username.fill(core.user.name);
   await expect(username).not.toBeEmpty();
-  logger.log(core.user.name + " beillesztve a " + username + " textboxba");
+  console.log(core.user.name + " beillesztve a " + username + " textboxba");
 
   const password = page.getByLabel("Password");
   await expect(password).toBeEditable();
@@ -185,12 +186,12 @@ export async function login(page: any, remote: boolean = false) {
   await expect(password).toBeFocused();
   await password.fill(core.user.pass);
   await expect(password).not.toBeEmpty();
-  logger.log(core.user.pass + " beillesztve a " + password + " textboxba");
+  console.log(core.user.pass + " beillesztve a " + password + " textboxba");
 
   await password.press("Enter");
   await expect(page).toHaveURL(medaurl(remote));
   //await page.waitForNavigation();
-  logger.log("sikeres bejelentkezés: " + branch(remote) + ": " + core.user.name + " - " + core.user.pass);
+  console.log("sikeres bejelentkezés: " + branch(remote) + ": " + core.user.name + " - " + core.user.pass);
 };
 
 /**
@@ -241,7 +242,7 @@ export async function pressbutton(page: any, buttonname: string, position: numbe
   const button = page.getByRole(role, { name: buttonname, exact: true }).nth(position);
   await expect(button).toBeEnabled();
   await button.click();
-  logger.log(button + " meg lett nyomva");
+  console.log(button + " meg lett nyomva");
 };
 
 /**
@@ -256,7 +257,7 @@ export async function removeitem(page: any, buttonname: string, position: number
   const nemstr: string[] = ['Nem', 'Cancel', 'Mégsem'];
   const igenstr: string[] = ['Igen', 'Ok', 'Igen'];
   const nem = nemstr[environment], igen = igenstr[environment];
-  logger.log(nem + " " + igen);
+  console.log(nem + " " + igen);
 
   if (environment == 2) {
     await page.locator('button:has-text("delete_outline")').click();
@@ -295,7 +296,7 @@ export async function scrollUntilVisible(page: any, headername: string, nth: num
   await page.getByText(headername).nth(nth).click({ delay: 100 });
   do await page.keyboard.down('ArrowDown');
   while (await locator.isVisible() == false);
-  logger.log(locator + " megtalálva")
+  console.log(locator + " megtalálva")
   await page.keyboard.up('ArrowDown');
 };
 
@@ -320,6 +321,6 @@ export async function selectApp(page: any, appname: string, appurl: string, remo
  */
 export async function getElementColor(locator: any) {
   const color = await locator.evaluate((e) => { return window.getComputedStyle(e).getPropertyValue("background-color") });
-  logger.log(color);
+  console.log(color);
   //return color;
 };

@@ -7,7 +7,7 @@ const testnamedit = testname + "_edited";
 const testtitle = testname + " lekérdezés nézet csoport";
 const testtitledit = testtitle + " edited";
 
-testfunc.logger.log(testname); // tudjuk már, hogy mit adott meg a script :D
+console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
@@ -27,7 +27,7 @@ test.describe.serial("egy lekérdezés nézet csoportot érintő tesztek", () =>
     const cellshort = page.getByRole("cell", { name: testtitle, exact: true });
     await expect(cellname).toHaveText(testname);
     await expect(cellshort).toHaveText(testtitle);
-    testfunc.logger.log(testname + " létrehozva");
+    console.log(testname + " létrehozva");
   });
 
   test("lekérdezés nézet csoport szerkesztés", async ({ page }) => {
@@ -40,7 +40,7 @@ test.describe.serial("egy lekérdezés nézet csoportot érintő tesztek", () =>
     const cellnamedit = page.getByRole("cell", { name: testnamedit, exact: true });
     await expect(cellnamedit).toHaveText(testnamedit);
     await expect(cellshort).toHaveText(testtitledit);
-    testfunc.logger.log(testname + ", " + testtitle + " szerkesztve, új név, leírás: " + testnamedit + ", " + testtitledit);
+    console.log(testname + ", " + testtitle + " szerkesztve, új név, leírás: " + testnamedit + ", " + testtitledit);
   });
 
   test("lekérdezés nézet csoport törlés", async ({ page }) => {
@@ -48,7 +48,7 @@ test.describe.serial("egy lekérdezés nézet csoportot érintő tesztek", () =>
     await expect(cellname).toHaveText(testnamedit);
     await cellname.click();
     await testfunc.removeitem(page, " Törlés", 0, 1);
-    testfunc.logger.log(testnamedit + " törölve");
+    console.log(testnamedit + " törölve");
   });
 
   test.afterEach(async ({ page }) => {

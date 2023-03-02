@@ -7,7 +7,7 @@ const origname = "adatmódosítás";
 const testname = testfunc.randomname("fordítás");
 const testnamedit = testname + "_edited";
 
-testfunc.logger.log(testname); // tudjuk már, hogy mit adott meg a script :D
+console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
@@ -26,7 +26,7 @@ test.describe.serial("egy fordítást érintő tesztek", () => {
     await testfunc.pressbutton(page, " Mentés", 0);
     const celltest = page.getByRole("cell", { name: testname, exact: true });
     await expect(celltest).toHaveText(testname);
-    testfunc.logger.log(celltest + " fordítás létrehozva");
+    console.log(celltest + " fordítás létrehozva");
   });
 
   test("fordítás szerkesztés", async ({ page }) => {
@@ -36,7 +36,7 @@ test.describe.serial("egy fordítást érintő tesztek", () => {
     await testfunc.textboxcheck(page, "Fordítás", testnamedit);
     await testfunc.pressbutton(page, " Mentés", 0);
     await expect(celltest).toHaveText(testnamedit);
-    testfunc.logger.log(cellorig + " szerkesztve, új fordítás: " + celltest);
+    console.log(cellorig + " szerkesztve, új fordítás: " + celltest);
   });
 
   test("fordítás törlés", async ({ page }) => {
@@ -44,7 +44,7 @@ test.describe.serial("egy fordítást érintő tesztek", () => {
     await expect(cellname).toHaveText(testnamedit);
     await cellname.click();
     await testfunc.removeitem(page, " Törlés");
-    testfunc.logger.log(cellname + " törölve");
+    console.log(cellname + " törölve");
   });
 
   test.afterEach(async ({ page }) => {

@@ -19,14 +19,14 @@ test.describe.serial("témát érintő teszt", () => {
         const menuszin = page.locator('.mat-slide-toggle-bar').first();
         let color = await menuszin.evaluate((e) => { return window.getComputedStyle(e).getPropertyValue("background-color") });
         expect(color).toBe("rgb(27, 106, 61)");
-        testfunc.logger.log(color); // dark szín
+        console.log(color); // dark szín
 
         await expect(sidebar).toBeEnabled();
         await sidebar.click();
         await setTimeout(1000);
         color = await menuszin.evaluate((e) => { return window.getComputedStyle(e).getPropertyValue("background-color") });
         expect(color).toBe("rgb(37, 85, 133)");
-        testfunc.logger.log(color); // világos szín
+        console.log(color); // világos szín
 
         await page.keyboard.press("Escape");
     });

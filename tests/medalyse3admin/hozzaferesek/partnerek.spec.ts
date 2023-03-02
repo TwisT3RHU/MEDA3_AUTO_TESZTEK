@@ -4,7 +4,7 @@ import *  as testfunc from 'globalis';
 
 const testname = testfunc.randomname("geriautpart");
 
-testfunc.logger.log(testname); // tudjuk már, hogy mit adott meg a script :D
+console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
@@ -21,7 +21,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     await testfunc.pressbutton(page, " Mentés", 0);
     const cellname = page.getByRole("cell", { name: testname, exact: true });
     await expect(cellname).toHaveText(testname);
-    testfunc.logger.log(testname + " létrehozva");
+    console.log(testname + " létrehozva");
   });
 
   test("partner törlés", async ({ page }) => {
@@ -29,7 +29,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     await expect(cellname).toHaveText(testname);
     await cellname.click();
     await testfunc.removeitem(page, " Törlés");
-    testfunc.logger.log(testname + " törölve");
+    console.log(testname + " törölve");
   });
 
   test("partner visszaállítás", async ({ page }) => {
@@ -39,7 +39,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     await cellname.click();
     await testfunc.pressbutton(page,  " Visszaállítás", 0);
     await page.getByText("Töröltek").click();
-    testfunc.logger.log(testname + " visszaállítva");
+    console.log(testname + " visszaállítva");
   });
 
   test.fixme("partner egyediség megsértése", async ({ page }) => {
@@ -56,7 +56,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
     await expect(cellname).toHaveText(testname);
     await cellname.click();
     await testfunc.removeitem(page, " Törlés");    
-    testfunc.logger.log(testname + " ismételten törölve");
+    console.log(testname + " ismételten törölve");
   });
   test.afterEach(async ({ page }) => {
     await testfunc.logout(page);

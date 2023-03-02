@@ -6,7 +6,7 @@ const testname = testfunc.randomname("PWLEKCSOP");
 const testtitle = testname + " lekérdezés csoport";
 const testtitledit = testtitle + " edited";
 
-testfunc.logger.log(testname); // tudjuk már, hogy mit adott meg a script :D
+console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
@@ -26,7 +26,7 @@ test.describe.serial("egy lekérdezés csoportot érintő tesztek", () => {
     const cellshort = page.getByRole("cell", { name: testtitle, exact: true });
     await expect(cellname).toHaveText(testname);
     await expect(cellshort).toHaveText(testtitle);
-    testfunc.logger.log(testname + " létrehozva");
+    console.log(testname + " létrehozva");
   });
 
   test("lekérdezés csoport cím szerkesztés", async ({ page }) => {
@@ -36,7 +36,7 @@ test.describe.serial("egy lekérdezés csoportot érintő tesztek", () => {
     await testfunc.textboxcheck(page, "Cím", testtitledit);
     await testfunc.pressbutton(page, " Mentés", 0);
     await expect(cellshort).toHaveText(testtitledit);
-    testfunc.logger.log(testtitle + " szerkesztve, új cím: " + testtitledit);
+    console.log(testtitle + " szerkesztve, új cím: " + testtitledit);
   });
 
   test("lekérdezés csoport törlés", async ({ page }) => {
@@ -44,7 +44,7 @@ test.describe.serial("egy lekérdezés csoportot érintő tesztek", () => {
     await expect(cellname).toHaveText(testname);
     await cellname.click();
     await testfunc.removeitem(page, " Törlés");
-    testfunc.logger.log(testname + " törölve");
+    console.log(testname + " törölve");
   });
 
   test.afterEach(async ({ page }) => {
