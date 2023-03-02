@@ -110,7 +110,7 @@ export function medaurl(remote: boolean, menu?: string) {
  * @param {string} name - string - the value to be filled into the text box
  */
 export async function textboxcheck(page: any, textboxname: string, name: string) {
-  const textbox = page.getByRole("textbox", { name: textboxname });
+  const textbox = page.getByRole("textbox", { name: textboxname, exact: true });
   await expect(textbox).toBeEditable();
   await textbox.click();
   await expect(textbox).toBeFocused();
@@ -127,7 +127,7 @@ export async function textboxcheck(page: any, textboxname: string, name: string)
  * @param {string} name - the name of the item inside a combobox
  */
 export async function rowcheck(page: any, rowname: string, name: string) {
-  const row = await page.getByRole("row", { name: rowname }).getByRole("combobox").locator("div");
+  const row = await page.getByRole("row", { name: rowname, exact: true  }).getByRole("combobox").locator("div");
   await row.click();
   //await expect(row).toBeFocused();
   await page.getByText(name).click();
@@ -200,8 +200,8 @@ export async function login(page: any, remote: boolean = false) {
 export async function logout(page: any) {
   if (core.misc.admin) await page.locator('span:has-text("kilépés")').first().click();
   else {
-    await page.getByRole('button', { name: "avatar" + core.user.name }).click();
-    await page.getByRole('menuitem', { name: 'Kijelentkezés' }).click();
+    await page.getByRole('button', { name: "avatar" + core.user.name, exact: true }).click();
+    await page.getByRole('menuitem', { name: 'Kijelentkezés', exact: true  }).click();
   };
   const context = page.context();
   await context.close();
@@ -218,11 +218,11 @@ export async function logout(page: any) {
  * @param {string} remote - the name of the remote server
  */
 export async function hoptoserverusers(page: any, remote: string) {
-  await page.getByRole("cell", { name: remote }).click();
+  await page.getByRole("cell", { name: remote, exact: true  }).click();
   await pressbutton(page,  " Távoli felhasználók", 0);
   await expect(page).toHaveURL(/.#!serverUsers./);
-  await page.getByRole('textbox', { name: 'Szerver' }).click(); // ez is :D
-  await page.getByRole('combobox').locator('div').click(); // talán ez hiányzott
+  await page.getByRole('textbox', { name: 'Szerver', exact: true  }).click(); // ez is :D
+  await page.getByRole('combobox', { exact: true }).locator('div').click(); // talán ez hiányzott
   await page
     .locator('td[role="listitem"]:has-text("' + remote + '")')
     .click();
@@ -238,7 +238,7 @@ export async function hoptoserverusers(page: any, remote: string) {
  * @param {string} [role=button] - the role of the button, usually "button"
  */
 export async function pressbutton(page: any, buttonname: string, position: number = 0, role: string = "button") {
-  const button = page.getByRole(role, { name: buttonname }).nth(position);
+  const button = page.getByRole(role, { name: buttonname, exact: true }).nth(position);
   await expect(button).toBeEnabled();
   await button.click();
   logger.log(button + " meg lett nyomva");

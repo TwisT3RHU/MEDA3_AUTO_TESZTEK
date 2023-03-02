@@ -38,8 +38,8 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
   });
 
   test("felhasználó hozzáadása egy csoporthoz", async ({ page }) => {
-    await page.getByRole("cell", { name: testname }).click();
-    const autocsop = page.getByRole("row", { name: new RegExp(core.user.usergroup) }).locator("span");
+    await page.getByRole("cell", { name: testname, exact: true }).click();
+    const autocsop = page.getByRole("row", { name: new RegExp(core.user.usergroup), exact: true }).locator("span");
     await testfunc.scrollUntilVisible(page, "Azonosító", 1, autocsop); // fenomenális...
     await autocsop.click();
     await testfunc.pressbutton(page, " Hozzáad", 0);
@@ -49,7 +49,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
   test("felhasználó eltávolítása egy csoportból", async ({
     page,
   }) => {
-    await page.getByRole("cell", { name: testname }).click();
+    await page.getByRole("cell", { name: testname, exact: true }).click();
     await page
       .locator(
         ".v-splitpanel-second-container > .v-panel > .v-panel-content > .v-verticallayout > .v-expand > div > .v-grid > .v-grid-tablewrapper > table > .v-grid-body > tr > td")
@@ -60,7 +60,7 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
   });
 
   test("felhasználó adatainak módosítása", async ({ page }) => {
-    await page.getByRole("cell", { name: testname }).click();
+    await page.getByRole("cell", { name: testname, exact: true }).click();
     const textboxes: string[][] = [
       ["Jelszó", "Jelszó mégegyszer", "Teljes név", "Email cím", "Bejelentkező kód"],
       [testnamedit, testnamedit, testnamedit, "autoteszt_edited@example.com", testnamedit]
@@ -79,21 +79,21 @@ test.describe.serial("egy felhasználót érintő tesztek", () => {
   });
 
   test("felhasználó törlése", async ({ page }) => {
-    await page.getByRole("cell", { name: testnamedit }).click();
+    await page.getByRole("cell", { name: testnamedit, exact: true }).click();
     await testfunc.removeitem(page, " Törlés");
     testfunc.logger.log(testnamedit + " törölve");
   });
 
   test("felhasználó visszaállítása", async ({ page }) => {
     await page.getByText("Töröltek").click();
-    await page.getByRole("cell", { name: testnamedit }).click();
+    await page.getByRole("cell", { name: testnamedit, exact: true }).click();
     await testfunc.pressbutton(page,  " Visszaállítás", 0);
     await page.getByText("Töröltek").click();
     testfunc.logger.log(testnamedit + " visszaállítva");
   });
 
   test("felhasználó ismételt törlése", async ({ page }) => {
-    await page.getByRole("cell", { name: testnamedit }).click();
+    await page.getByRole("cell", { name: testnamedit, exact: true }).click();
     await testfunc.removeitem(page, " Törlés");
     testfunc.logger.log(testnamedit + " ismét törölve");
   });
@@ -120,14 +120,14 @@ test.describe.serial(core.misc.bulkcount + " felhasználót érintő tesztek", (
       await testfunc.rowcheck(page, "Alapértelmezett nyelv", "Magyar");
       await testfunc.pressbutton(page, " Mentés", 0);
       testfunc.logger.log(randomname2 + " létrehozva");
-      await page.getByRole("cell", { name: randomname2 }).click();
+      await page.getByRole("cell", { name: randomname2, exact: true }).click();
     };
   });
 
   test(core.misc.bulkcount + " felhasználó adatainak módosítása", async ({ page }) => {
       for (let index = 1; index < core.misc.bulkcount + 1; index++) {
         const randomname2 = testname + "_" + index;
-        await page.getByRole("cell", { name: randomname2 }).click();
+        await page.getByRole("cell", { name: randomname2, exact: true }).click();
         const randomname2edit = randomname2 + "_edited";
         const textboxes: string[][] = [
           ["Jelszó", "Jelszó mégegyszer", "Teljes név", "Email cím", "Bejelentkező kód"],
@@ -139,7 +139,7 @@ test.describe.serial(core.misc.bulkcount + " felhasználót érintő tesztek", (
         await testfunc.rowcheck(page, "Alapértelmezett nyelv", "English");
         await testfunc.pressbutton(page, " Mentés", 0);
         testfunc.logger.log(randomname2edit + " módosítva");
-        await page.getByRole("cell", { name: randomname2 }).click();
+        await page.getByRole("cell", { name: randomname2, exact: true }).click();
       };
   });
 
@@ -147,7 +147,7 @@ test.describe.serial(core.misc.bulkcount + " felhasználót érintő tesztek", (
     for (let index = 1; index < core.misc.bulkcount + 1; index++) {
       const randomname2edit = testname + "_" + index;
       +"_edited";
-      await page.getByRole("cell", { name: randomname2edit }).click();
+      await page.getByRole("cell", { name: randomname2edit, exact: true }).click();
       await testfunc.removeitem(page, " Törlés");
       testfunc.logger.log(randomname2edit + " törölve");
     };

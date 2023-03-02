@@ -36,6 +36,7 @@ const config = {
   //reporter: [['html', { open: 'always' }]],
   reporter: [
     ['./src/custom-report.ts'],
+    ['line'],
     ['html'],
     [
       "allure-playwright",

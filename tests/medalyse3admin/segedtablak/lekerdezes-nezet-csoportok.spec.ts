@@ -19,32 +19,32 @@ test.beforeEach(async ({ page }) => {
 
 test.describe.serial("egy lekérdezés nézet csoportot érintő tesztek", () => {
   test("lekérdezés nézet csoport hozzáadás", async ({ page }) => {
-    await page.getByRole('button', { name: ' Új' }).click();
+    await page.getByRole('button', { name: ' Új', exact: true }).click();
     await testfunc.textboxcheck(page, "Név", testname);
     await testfunc.textboxcheck(page, "Leírás", testtitle);
     await testfunc.pressbutton(page, " Mentés", 0);
-    const cellname = page.getByRole("cell", { name: testname });
-    const cellshort = page.getByRole("cell", { name: testtitle });
+    const cellname = page.getByRole("cell", { name: testname, exact: true });
+    const cellshort = page.getByRole("cell", { name: testtitle, exact: true });
     await expect(cellname).toHaveText(testname);
     await expect(cellshort).toHaveText(testtitle);
     testfunc.logger.log(testname + " létrehozva");
   });
 
   test("lekérdezés nézet csoport szerkesztés", async ({ page }) => {
-    const cellname = page.getByRole("cell", { name: testname });
-    const cellshort = page.getByRole("cell", { name: testtitledit });
+    const cellname = page.getByRole("cell", { name: testname, exact: true });
+    const cellshort = page.getByRole("cell", { name: testtitledit, exact: true });
     await cellname.click();
     await testfunc.textboxcheck(page, "Név", testnamedit);
     await testfunc.textboxcheck(page, "Leírás", testtitledit);
     await testfunc.pressbutton(page, " Mentés", 0);
-    const cellnamedit = page.getByRole("cell", { name: testnamedit });
+    const cellnamedit = page.getByRole("cell", { name: testnamedit, exact: true });
     await expect(cellnamedit).toHaveText(testnamedit);
     await expect(cellshort).toHaveText(testtitledit);
     testfunc.logger.log(testname + ", " + testtitle + " szerkesztve, új név, leírás: " + testnamedit + ", " + testtitledit);
   });
 
   test("lekérdezés nézet csoport törlés", async ({ page }) => {
-    const cellname = page.getByRole("cell", { name: testnamedit });
+    const cellname = page.getByRole("cell", { name: testnamedit, exact: true });
     await expect(cellname).toHaveText(testnamedit);
     await cellname.click();
     await testfunc.removeitem(page, " Törlés", 0, 1);

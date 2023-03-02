@@ -28,7 +28,7 @@ test.describe.serial("szerverek összekötése", () => {
     for (let i= 0; i < textboxes[0].length; i++) {
       await testfunc.textboxcheck(page, textboxes[0][i], textboxes[1][i]);
     };
-    const kimenokod = await page.getByRole("textbox", { name: "Kimenő kapcsolat kód" }).inputValue();
+    const kimenokod = await page.getByRole("textbox", { name: "Kimenő kapcsolat kód", exact: true }).inputValue();
     testfunc.logger.log(kimenokod + " kimenő kapcsolat kód tárolva")
 
     const context = page.context();
@@ -47,7 +47,7 @@ test.describe.serial("szerverek összekötése", () => {
     for (let i= 0; i < textboxes2[0].length; i++) {
       await testfunc.textboxcheck(page2, textboxes2[0][i], textboxes2[1][i]);
     };
-    const bejovokod = await page2.getByRole("textbox", { name: "Kimenő kapcsolat kód" }).inputValue();
+    const bejovokod = await page2.getByRole("textbox", { name: "Kimenő kapcsolat kód", exact: true }).inputValue();
     testfunc.logger.log(bejovokod + " bejövő kapcsolat kód tárolva")
 
     await testfunc.textboxcheck(page, "Bejövő kapcsolat kód", bejovokod);
@@ -59,8 +59,8 @@ test.describe.serial("szerverek összekötése", () => {
     test.describe.serial(core.misc.branch + " szerver felhasználója", () => {
       test(core.misc.branch + " új távoli felhasználó hozzáadása", async ({ page }) => {
         testfunc.hoptoserverusers(page, remotename);
-        await page.getByRole('row', { name: 'Név Teljes név' }).getByRole('cell', { name: 'Név' }).getByText('Név').click({ delay: 1000 }); 
-        await page.getByRole("cell", { name: core.user.name }).first().click(); //??? miért nem klikkelsz?
+        await page.getByRole('row', { name: 'Név Teljes név', exact: true }).getByRole('cell', { name: 'Név', exact: true }).getByText('Név').click({ delay: 1000 }); 
+        await page.getByRole("cell", { name: core.user.name, exact: true }).first().click(); //??? miért nem klikkelsz?
         await testfunc.pressbutton(page,  " Hozzáad", 0);
       });
       test(core.misc.branch + " felhasználó hozzáadása a " + core.user.usergroup + " csoporthoz", async ({ page }) => {
@@ -69,7 +69,7 @@ test.describe.serial("szerverek összekötése", () => {
           .getByRole("row", { name: remotename + " " + core.user.name })
           .getByRole("cell", { name: core.user.name })
           .click();
-        const autocsop = page.getByRole("row", { name: core.user.usergroup }).getByLabel("");
+        const autocsop = page.getByRole("row", { name: core.user.usergroup, exact: true }).getByLabel("");
         await testfunc.scrollUntilVisible(page, "Név", 3, autocsop);
         await autocsop.check(); // scrolluntilvisible
         await testfunc.pressbutton(page,  " Hozzáad", 1);
@@ -93,8 +93,8 @@ test.describe.serial("szerverek összekötése", () => {
     test.describe.serial(core.misc.branch_remote + " szerver felhasználója", () => {
       test(core.misc.branch_remote + " új távoli felhasználó hozzáadása", async ({ page }) => {
         testfunc.hoptoserverusers(page, servername);
-        await page.getByRole('row', { name: 'Név Teljes név' }).getByRole('cell', { name: 'Név' }).getByText('Név').click({ delay: 1000 }); 
-        await page.getByRole("cell", { name: core.user.name }).first().click();
+        await page.getByRole('row', { name: 'Név Teljes név', exact: true }).getByRole('cell', { name: 'Név', exact: true }).getByText('Név').click({ delay: 1000 }); 
+        await page.getByRole("cell", { name: core.user.name, exact: true }).first().click();
         await testfunc.pressbutton(page,  " Hozzáad", 0);
       });
       test(core.misc.branch_remote + " felhasználó hozzáadása a " + core.user.usergroup + " csoporthoz", async ({ page }) => {
@@ -103,7 +103,7 @@ test.describe.serial("szerverek összekötése", () => {
           .getByRole("row", { name: servername + " " + core.user.name })
           .getByRole("cell", { name: core.user.name })
           .click();
-        const autocsop = page.getByRole("row", { name: core.user.usergroup }).getByLabel("");
+        const autocsop = page.getByRole("row", { name: core.user.usergroup, exact: true }).getByLabel("");
         await testfunc.scrollUntilVisible(page, "Név", 3, autocsop);
         await autocsop.check(); // scrolluntilvisible
         await testfunc.pressbutton(page,  " Hozzáad", 1);
@@ -126,12 +126,12 @@ test.describe.serial("szerverek összekötése", () => {
     });
     test.describe.serial("szerverek törlése", () => {
       test(core.misc.branch + " távoli szerver törlése", async ({ page }) => {
-        await page.getByRole("cell", { name: remotename }).click();
+        await page.getByRole("cell", { name: remotename, exact: true }).click();
         await testfunc.removeitem(page, " Törlés");
         jumpbranch = true;
       });
       test(core.misc.branch_remote + " távoli szerver törlése", async ({ page }) => {
-        await page.getByRole("cell", { name: servername }).click();
+        await page.getByRole("cell", { name: servername, exact: true }).click();
         await testfunc.removeitem(page, " Törlés");
         jumpbranch = false;
         await testfunc.logout(page);

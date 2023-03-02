@@ -16,16 +16,16 @@ test.beforeEach(async ({ page }) => {
 
 test.describe.serial("egy partnert érintő tesztek", () => {
   test("partner hozzáadás", async ({ page }) => {
-    await page.getByRole('button', { name: ' Új' }).click();
+    await page.getByRole('button', { name: ' Új', exact: true }).click();
     await testfunc.textboxcheck(page, "Név", testname);
     await testfunc.pressbutton(page, " Mentés", 0);
-    const cellname = page.getByRole("cell", { name: testname });
+    const cellname = page.getByRole("cell", { name: testname, exact: true });
     await expect(cellname).toHaveText(testname);
     testfunc.logger.log(testname + " létrehozva");
   });
 
   test("partner törlés", async ({ page }) => {
-    const cellname = page.getByRole("cell", { name: testname });
+    const cellname = page.getByRole("cell", { name: testname, exact: true });
     await expect(cellname).toHaveText(testname);
     await cellname.click();
     await testfunc.removeitem(page, " Törlés");
@@ -34,7 +34,7 @@ test.describe.serial("egy partnert érintő tesztek", () => {
 
   test("partner visszaállítás", async ({ page }) => {
     await page.getByText("Töröltek").click();
-    const cellname = page.getByRole("cell", { name: testname });
+    const cellname = page.getByRole("cell", { name: testname, exact: true });
     await expect(cellname).toHaveText(testname);
     await cellname.click();
     await testfunc.pressbutton(page,  " Visszaállítás", 0);
@@ -45,14 +45,14 @@ test.describe.serial("egy partnert érintő tesztek", () => {
   test.fixme("partner egyediség megsértése", async ({ page }) => {
     // ezt még nem tudom hogy kéne normálisan
 
-    await page.getByRole("textbox", { name: "Név" }).click();
-    await page.getByRole("textbox", { name: "Név" }).fill(testname);
+    await page.getByRole("textbox", { name: "Név", exact: true }).click();
+    await page.getByRole("textbox", { name: "Név", exact: true }).fill(testname);
     await testfunc.pressbutton(page, " Mentés", 0);
     //await expect(page).toContain('Hiba');
   });
 
   test("partner ismételt törlése", async ({ page }) => {
-    const cellname = page.getByRole("cell", { name: testname });
+    const cellname = page.getByRole("cell", { name: testname, exact: true });
     await expect(cellname).toHaveText(testname);
     await cellname.click();
     await testfunc.removeitem(page, " Törlés");    

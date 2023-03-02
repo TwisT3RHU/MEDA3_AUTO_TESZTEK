@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => {
 
 test.describe.serial("font ikonokat érintő tesztek", () => {
   test("font ikon hozzáadás a készlethez", async ({ page }) => {
-    const font = page.getByRole('row', { name: 'BEHANCE f1b4 ' }).getByRole('cell').first();
+    const font = page.getByRole('row', { name: 'BEHANCE f1b4 ', exact: true }).getByRole('cell').first();
     await testfunc.scrollUntilVisible(page, "Név", 0, font);
     await font.click();
     await testfunc.pressbutton(page, '', 0);
@@ -20,7 +20,7 @@ test.describe.serial("font ikonokat érintő tesztek", () => {
   });
 
   test("font ikon törlése a készletből", async ({ page }) => {
-    const font = page.getByRole('row', { name: 'BEHANCE f1b4 ' }).getByRole('cell').first();
+    const font = page.getByRole('row', { name: 'BEHANCE f1b4 ', exact: true }).getByRole('cell').first();
     await testfunc.scrollUntilVisible(page, "Név", 1, font);
     await font.click();
     await testfunc.pressbutton(page, '', 1);

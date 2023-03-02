@@ -18,20 +18,20 @@ test.beforeEach(async ({ page }) => {
 
 test.describe.serial("egy nyelvet érintő tesztek", () => {
   test("nyelv hozzáadás", async ({ page }) => {
-    await page.getByRole('button', { name: ' Új' }).click();
+    await page.getByRole('button', { name: ' Új', exact: true }).click();
     await testfunc.textboxcheck(page, "Név", testname);
     await testfunc.textboxcheck(page, "Rövid név", testshort);
     await testfunc.pressbutton(page, " Mentés", 0);
-    const cellname = page.getByRole("cell", { name: testname });
-    const cellshort = page.getByRole("cell", { name: testshort });
+    const cellname = page.getByRole("cell", { name: testname, exact: true });
+    const cellshort = page.getByRole("cell", { name: testshort, exact: true });
     await expect(cellname).toHaveText(testname);
     await expect(cellshort).toHaveText(testshort);
     testfunc.logger.log(testname + " létrehozva");
   });
 
   test("nyelv rövid név szerkesztés", async ({ page }) => {
-    const cellname = page.getByRole("cell", { name: testname });
-    const cellshort = page.getByRole("cell", { name: testshortedit });
+    const cellname = page.getByRole("cell", { name: testname, exact: true });
+    const cellshort = page.getByRole("cell", { name: testshortedit, exact: true });
     await cellname.click();
     await testfunc.textboxcheck(page, "Rövid név", testshortedit);
     await testfunc.pressbutton(page, " Mentés", 0);
@@ -40,7 +40,7 @@ test.describe.serial("egy nyelvet érintő tesztek", () => {
   });
 
   test("nyelv törlés", async ({ page }) => {
-    const cellname = page.getByRole("cell", { name: testname });
+    const cellname = page.getByRole("cell", { name: testname, exact: true });
     await expect(cellname).toHaveText(testname);
     await cellname.click();
     await testfunc.removeitem(page, " Törlés");

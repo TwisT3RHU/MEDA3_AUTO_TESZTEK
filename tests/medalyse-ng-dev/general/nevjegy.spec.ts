@@ -13,7 +13,7 @@ test.describe.serial("névjegyet érintő teszt", () => {
 
         await testfunc.pressbutton(page, "Névjegy", 0, "menuitem");
 
-        const header = page.getByRole('heading', { name: 'Névjegy' });
+        const header = page.getByRole('heading', { name: 'Névjegy', exact: true });
         await expect(header).toBeVisible();
 
         await page.keyboard.press("Escape");

@@ -8,4 +8,7 @@ errStdErr.txt
 normalStdout.txt
 results.xml
 allure-results/
+allure-results_/
 allure-report/
+allure-report-pdf-html/test-results.pdf
+allure-report-pdf-html/test-results.docx

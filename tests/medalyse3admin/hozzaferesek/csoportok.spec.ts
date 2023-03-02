@@ -19,12 +19,12 @@ test.beforeEach(async ({ page }) => {
 test.describe.serial("egy csoportot érintő tesztek", () => {
   test("csoport létrehozása", async ({ page }) => {
     await testfunc.pressbutton(page, " Új" , 0);
-    await page.getByRole("textbox", { name: "Név" }).click();
-    await page.getByRole("textbox", { name: "Név" }).fill(testname);
-    await page.getByRole("textbox", { name: "Név" }).press("Tab");
-    await page.getByRole("textbox", { name: "Információ" }).click();
+    await page.getByRole("textbox", { name: "Név", exact: true }).click();
+    await page.getByRole("textbox", { name: "Név", exact: true }).fill(testname);
+    await page.getByRole("textbox", { name: "Név", exact: true }).press("Tab");
+    await page.getByRole("textbox", { name: "Információ", exact: true }).click();
     await page
-      .getByRole("textbox", { name: "Információ" })
+      .getByRole("textbox", { name: "Információ", exact: true })
       .fill(testfunc.datum() + " playwright teszt " + testname);
     await testfunc.pressbutton(page, " Mentés", 0);
     testfunc.logger.log(testname + " csoport létrehozva");
@@ -32,23 +32,23 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
 
   test("csoport jogosultságainak beállítása", async ({ page }) => {
     if (testfunc.branch() == "gamma") {
-      await page.getByRole("cell", { name: testname }).click();
+      await page.getByRole("cell", { name: testname, exact: true }).click();
       await page.getByRole("combobox").locator("div").click();
       await page.getByText("General.Admin").click();
       await testfunc.pressbutton(page, " Hozzáad", 1);
       await page.getByRole("combobox").locator("div").click();
       await page.getByText("Client.Menu").click();
       await page
-        .getByRole("row", { name: "Alkalmazás" })
+        .getByRole("row", { name: "Alkalmazás", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page
-        .getByRole("textbox", { name: "Alkalmazás" })
+        .getByRole("textbox", { name: "Alkalmazás", exact: true })
         .fill("medalyse3app");
-      await page.getByRole("textbox", { name: "Alkalmazás" }).press(" ");
+      await page.getByRole("textbox", { name: "Alkalmazás", exact: true }).press(" ");
       await page
-        .getByRole("textbox", { name: "Alkalmazás" })
+        .getByRole("textbox", { name: "Alkalmazás", exact: true })
         .press("Backspace");
       await page.getByText("medalyse3app").click();
       await page.getByText("Főmenü").click();
@@ -60,35 +60,35 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
       await page.getByText("Tesztriportok").click();
       await testfunc.pressbutton(page, " Hozzáad", 1);
       await page
-        .getByRole("row", { name: "Jogosultság" })
+        .getByRole("row", { name: "Jogosultság", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page
         .locator('td[role="listitem"]:has-text("Client.ExportRows")')
         .click();
-      await page.getByRole("textbox", { name: "Sorok száma" }).click();
-      await page.getByRole("textbox", { name: "Sorok száma" }).fill("10");
+      await page.getByRole("textbox", { name: "Sorok száma", exact: true }).click();
+      await page.getByRole("textbox", { name: "Sorok száma", exact: true }).fill("10");
       await page
-        .getByRole("row", { name: "Riport" })
+        .getByRole("row", { name: "Riport", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page
-        .getByRole("textbox", { name: "Riport" })
+        .getByRole("textbox", { name: "Riport", exact: true })
         .fill("KGERIC_EXPORT_TESZT_2020");
-      await page.getByRole("textbox", { name: "Riport" }).press(" ");
-      await page.getByRole("textbox", { name: "Riport" }).press("Backspace");
+      await page.getByRole("textbox", { name: "Riport", exact: true }).press(" ");
+      await page.getByRole("textbox", { name: "Riport", exact: true }).press("Backspace");
       await page.getByText("KGERIC_EXPORT_TESZT_2020").click();
       await page
-        .getByRole("row", { name: "Lekérdezés" })
+        .getByRole("row", { name: "Lekérdezés", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page.getByText("QUERY_FOR_ROWS_EXPORT").click();
       await testfunc.pressbutton(page, " Hozzáad", 1);
       await page
-        .getByRole("row", { name: "Jogosultság" })
+        .getByRole("row", { name: "Jogosultság", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
@@ -96,107 +96,107 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
         .locator('td[role="listitem"]:has-text("Client.ExportTable")')
         .click();
       await page
-        .getByRole("row", { name: "Lekérdezés" })
+        .getByRole("row", { name: "Lekérdezés", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page.getByText("QUERY_FOR_TABLE_EXPORT").click();
       await testfunc.pressbutton(page, " Hozzáad", 1);
       await page
-        .getByRole("row", { name: "Jogosultság" })
+        .getByRole("row", { name: "Jogosultság", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page.getByText("Client.ExportDiagram").click();
       await page
-        .getByRole("row", { name: "Riport" })
+        .getByRole("row", { name: "Riport", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       //await page.getByRole('textbox', { name: 'Riport' }).dblclick();
       await page
-        .getByRole("textbox", { name: "Riport" })
+        .getByRole("textbox", { name: "Riport", exact: true })
         .fill("KGERIC_ROUT_MEGJELENESEK");
-      await page.getByRole("textbox", { name: "Riport" }).press(" ");
-      await page.getByRole("textbox", { name: "Riport" }).press("Backspace");
+      await page.getByRole("textbox", { name: "Riport", exact: true }).press(" ");
+      await page.getByRole("textbox", { name: "Riport", exact: true }).press("Backspace");
       await page
         .locator('td[role="listitem"]:has-text("KGERIC_ROUT_MEGJELENESEK")')
         .click();
-      await page.getByRole("textbox", { name: "Lekérdezés" }).click();
+      await page.getByRole("textbox", { name: "Lekérdezés", exact: true }).click();
       await page
-        .getByRole("row", { name: "Lekérdezés" })
+        .getByRole("row", { name: "Lekérdezés", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page
-        .getByRole("textbox", { name: "Lekérdezés" })
+        .getByRole("textbox", { name: "Lekérdezés", exact: true })
         .fill("DIAGRAM_BOXPLOT");
-      await page.getByRole("textbox", { name: "Lekérdezés" }).press(" ");
+      await page.getByRole("textbox", { name: "Lekérdezés", exact: true }).press(" ");
       await page
-        .getByRole("textbox", { name: "Lekérdezés" })
+        .getByRole("textbox", { name: "Lekérdezés", exact: true })
         .press("Backspace");
       await page.getByText("DIAGRAM_BOXPLOT").click();
       await testfunc.pressbutton(page, " Hozzáad", 1);
       await page
-        .getByRole("row", { name: "Jogosultság" })
+        .getByRole("row", { name: "Jogosultság", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page.getByText("Client.DisableFld").click();
       await page
-        .getByRole("row", { name: "Mező" })
+        .getByRole("row", { name: "Mező", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page.locator('td[role="listitem"]:has-text("ID")').click();
       await testfunc.pressbutton(page, " Hozzáad", 1);
       await page
-        .getByRole("row", { name: "Riport" })
+        .getByRole("row", { name: "Riport", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page.getByText("KGERIC_ROUT_SZINKRON_TESZT").click();
       await page
-        .getByRole("row", { name: "Jogosultság" })
+        .getByRole("row", { name: "Jogosultság", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page.getByText("Client.DisableButton").click();
       //await page.getByRole('textbox', { name: 'Riport' }).dblclick();
       await page
-        .getByRole("textbox", { name: "Riport" })
+        .getByRole("textbox", { name: "Riport", exact: true })
         .fill("KGERIC_GOMBOK_TESZT");
-      await page.getByRole("textbox", { name: "Riport" }).press(" ");
-      await page.getByRole("textbox", { name: "Riport" }).press("Backspace");
+      await page.getByRole("textbox", { name: "Riport", exact: true }).press(" ");
+      await page.getByRole("textbox", { name: "Riport", exact: true }).press("Backspace");
       await page.getByText("KGERIC_GOMBOK_TESZT").click();
       //await page.getByRole('row', { name: 'Dinamikus gomb' }).getByRole('combobox').locator('div').click();
       await page
-        .getByRole("row", { name: "Lekérdezés" })
+        .getByRole("row", { name: "Lekérdezés", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
-      await page.getByRole("textbox", { name: "Lekérdezés" }).fill("JARMUVEK");
-      await page.getByRole("textbox", { name: "Lekérdezés" }).press(" ");
+      await page.getByRole("textbox", { name: "Lekérdezés", exact: true }).fill("JARMUVEK");
+      await page.getByRole("textbox", { name: "Lekérdezés", exact: true }).press(" ");
       await page
-        .getByRole("textbox", { name: "Lekérdezés" })
+        .getByRole("textbox", { name: "Lekérdezés", exact: true })
         .press("Backspace");
       await page.getByText("JARMUVEK").click();
       await page
-        .getByRole("row", { name: "Dinamikus gomb" })
+        .getByRole("row", { name: "Dinamikus gomb", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page
-        .getByRole("textbox", { name: "Dinamikus gomb" })
+        .getByRole("textbox", { name: "Dinamikus gomb", exact: true })
         .fill("docupdesc");
-      await page.getByRole("textbox", { name: "Dinamikus gomb" }).press(" ");
+      await page.getByRole("textbox", { name: "Dinamikus gomb", exact: true }).press(" ");
       await page
-        .getByRole("textbox", { name: "Dinamikus gomb" })
+        .getByRole("textbox", { name: "Dinamikus gomb", exact: true })
         .press("Backspace");
       await page.getByText("docupdesc").click();
       await testfunc.pressbutton(page, " Hozzáad", 1);
       await page
-        .getByRole("row", { name: "Jogosultság" })
+        .getByRole("row", { name: "Jogosultság", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
@@ -204,80 +204,80 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
         .locator('td[role="listitem"]:has-text("Client.DisableSaves")')
         .click();
       await page
-        .getByRole("row", { name: "Alkalmazás" })
+        .getByRole("row", { name: "Alkalmazás", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page
-        .getByRole("textbox", { name: "Alkalmazás" })
+        .getByRole("textbox", { name: "Alkalmazás", exact: true })
         .fill("medalyse3app");
-      await page.getByRole("textbox", { name: "Alkalmazás" }).press(" ");
+      await page.getByRole("textbox", { name: "Alkalmazás", exact: true }).press(" ");
       await page
-        .getByRole("textbox", { name: "Alkalmazás" })
+        .getByRole("textbox", { name: "Alkalmazás", exact: true })
         .press("Backspace");
       await page.locator('span:has-text("medalyse3app")').click();
       await testfunc.pressbutton(page, " Hozzáad", 1);
       await page
-        .getByRole("row", { name: "Jogosultság" })
+        .getByRole("row", { name: "Jogosultság", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page.getByText("Client.DisableExternalControls").click();
       await page
-        .getByRole("row", { name: "Riport" })
+        .getByRole("row", { name: "Riport", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page
-        .getByRole("textbox", { name: "Riport" })
+        .getByRole("textbox", { name: "Riport", exact: true })
         .fill("KGERIC_GOMBOK_TESZT");
-      await page.getByRole("textbox", { name: "Riport" }).press(" ");
-      await page.getByRole("textbox", { name: "Riport" }).press("Backspace");
+      await page.getByRole("textbox", { name: "Riport", exact: true }).press(" ");
+      await page.getByRole("textbox", { name: "Riport", exact: true }).press("Backspace");
       await page
         .locator('td[role="listitem"]:has-text("KGERIC_GOMBOK_TESZT")')
         .click();
       await page
-        .getByRole("row", { name: "Lekérdezés" })
+        .getByRole("row", { name: "Lekérdezés", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
-      await page.getByRole("textbox", { name: "Lekérdezés" }).fill("EVDARAB");
-      await page.getByRole("textbox", { name: "Lekérdezés" }).press(" ");
+      await page.getByRole("textbox", { name: "Lekérdezés", exact: true }).fill("EVDARAB");
+      await page.getByRole("textbox", { name: "Lekérdezés", exact: true }).press(" ");
       await page
-        .getByRole("textbox", { name: "Lekérdezés" })
+        .getByRole("textbox", { name: "Lekérdezés", exact: true })
         .press("Backspace");
       await page.getByText("EVDARAB").click();
       await page
-        .getByRole("row", { name: "Dinamikus gomb" })
+        .getByRole("row", { name: "Dinamikus gomb", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page
-        .getByRole("textbox", { name: "Dinamikus gomb" })
+        .getByRole("textbox", { name: "Dinamikus gomb", exact: true })
         .fill("floatingchart");
-      await page.getByRole("textbox", { name: "Dinamikus gomb" }).press(" ");
+      await page.getByRole("textbox", { name: "Dinamikus gomb", exact: true }).press(" ");
       await page
-        .getByRole("textbox", { name: "Dinamikus gomb" })
+        .getByRole("textbox", { name: "Dinamikus gomb", exact: true })
         .press("Backspace");
       await page.getByText("floatingchart").click();
       await testfunc.pressbutton(page, " Hozzáad", 1);
       await page
-        .getByRole("row", { name: "Jogosultság" })
+        .getByRole("row", { name: "Jogosultság", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page.getByText("Survey.EnableKampany").click();
       await page
-        .getByRole("row", { name: "Kérdőív" })
+        .getByRole("row", { name: "Kérdőív", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
       await page
-        .getByRole("row", { name: "COVID-19" })
+        .getByRole("row", { name: "COVID-19", exact: true })
         .locator('td[role="listitem"]:has-text("COVID-19")')
         .click();
       await page
-        .getByRole("row", { name: "Kampány" })
+        .getByRole("row", { name: "Kampány", exact: true })
         .getByRole("combobox")
         .locator("div")
         .click();
@@ -286,17 +286,17 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
   });
 
   test("csoport módosítása", async ({ page }) => {
-    await page.getByRole("cell", { name: testname }).click();
-    await page.getByRole("textbox", { name: "Információ" }).click();
+    await page.getByRole("cell", { name: testname, exact: true }).click();
+    await page.getByRole("textbox", { name: "Információ", exact: true }).click();
     await page
-      .getByRole("textbox", { name: "Információ" })
+      .getByRole("textbox", { name: "Információ", exact: true })
       .fill(testfunc.datum() + " playwright teszt_edited");
     await testfunc.pressbutton(page, " Mentés", 0);
     testfunc.logger.log(testname + " leírás módosítva");
   });
 
   test("felhasználó hozzáadása a csoporthoz", async ({ page }) => {
-    await page.getByRole("cell", { name: testname }).click();
+    await page.getByRole("cell", { name: testname, exact: true }).click();
     await page.locator("#gwt-uid-91").click();
     await page.locator("#gwt-uid-91").fill(core.user.name);
     await page.check("input[type=checkbox]:nth-child(1)");
@@ -310,7 +310,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
   });
 
   test("felhasználó eltávolítása a csoportból", async ({ page, }) => {
-    await page.getByRole("cell", { name: testname }).click();
+    await page.getByRole("cell", { name: testname, exact: true }).click();
     await page.locator("#gwt-uid-91").click();
     await page.locator("#gwt-uid-91").fill(core.user.name);
     await page.check("input[type=checkbox]:nth-child(1)");
@@ -325,7 +325,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
     page,
   }) => {
     if (testfunc.branch() == "gamma") {
-      await page.getByRole("cell", { name: testname }).click();
+      await page.getByRole("cell", { name: testname, exact: true }).click();
       await page
         .locator(
           ".v-splitpanel-second-container > .v-splitpanel-horizontal > div > .v-splitpanel-second-container > div > div > div > .v-panel > .v-panel-content > .v-verticallayout > div > div > .v-grid > .v-grid-tablewrapper > table > .v-grid-header > .v-grid-row > th"
@@ -338,7 +338,7 @@ test.describe.serial("egy csoportot érintő tesztek", () => {
   });
 
   test("csoport törlése", async ({ page }) => {
-    await page.getByRole("cell", { name: testname }).click();
+    await page.getByRole("cell", { name: testname, exact: true }).click();
     await testfunc.removeitem(page, " Törlés");
     testfunc.logger.log(testname + " csoport törölve");
   });
@@ -352,23 +352,23 @@ test.describe.serial(core.misc.bulkcount + " csoportot érintő tesztek", () => 
     for (let index = 1; index < core.misc.bulkcount + 1; index++) {
       const randomname2 = testname + "_" + index;
       await testfunc.pressbutton(page, " Új" , 0);
-      await page.getByRole("textbox", { name: "Név" }).click();
-      await page.getByRole("textbox", { name: "Név" }).fill(randomname2);
-      await page.getByRole("textbox", { name: "Név" }).press("Tab");
-      await page.getByRole("textbox", { name: "Információ" }).click();
+      await page.getByRole("textbox", { name: "Név", exact: true }).click();
+      await page.getByRole("textbox", { name: "Név", exact: true }).fill(randomname2);
+      await page.getByRole("textbox", { name: "Név", exact: true }).press("Tab");
+      await page.getByRole("textbox", { name: "Információ", exact: true }).click();
       await page
-        .getByRole("textbox", { name: "Információ" })
+        .getByRole("textbox", { name: "Információ", exact: true })
         .fill(testfunc.datum() + " playwright teszt " + randomname2);
       await testfunc.pressbutton(page, " Mentés", 0);
       testfunc.logger.log(randomname2 + " csoport létrehozva");
-      await page.getByRole("cell", { name: randomname2 }).click();
+      await page.getByRole("cell", { name: randomname2, exact: true }).click();
     }
   });
 
   test(core.misc.bulkcount + " csoport törlése", async ({ page }) => {
     for (let index = 1; index < core.misc.bulkcount + 1; index++) {
       const randomname2 = testname + "_" + index;
-      await page.getByRole("cell", { name: randomname2 }).click();
+      await page.getByRole("cell", { name: randomname2, exact: true }).click();
       await testfunc.removeitem(page, " Törlés");
       testfunc.logger.log(randomname2 + " csoport törölve");
     }

@@ -18,20 +18,20 @@ test.beforeEach(async ({ page }) => {
 
 test.describe.serial("egy lekérdezés csoportot érintő tesztek", () => {
   test("lekérdezés csoport hozzáadás", async ({ page }) => {
-    await page.getByRole('button', { name: ' Új' }).click();
+    await page.getByRole('button', { name: ' Új', exact: true }).click();
     await testfunc.textboxcheck(page, "Név", testname);
     await testfunc.textboxcheck(page, "Cím", testtitle);
     await testfunc.pressbutton(page, " Mentés", 0);
-    const cellname = page.getByRole("cell", { name: testname });
-    const cellshort = page.getByRole("cell", { name: testtitle });
+    const cellname = page.getByRole("cell", { name: testname, exact: true });
+    const cellshort = page.getByRole("cell", { name: testtitle, exact: true });
     await expect(cellname).toHaveText(testname);
     await expect(cellshort).toHaveText(testtitle);
     testfunc.logger.log(testname + " létrehozva");
   });
 
   test("lekérdezés csoport cím szerkesztés", async ({ page }) => {
-    const cellname = page.getByRole("cell", { name: testname });
-    const cellshort = page.getByRole("cell", { name: testtitledit });
+    const cellname = page.getByRole("cell", { name: testname, exact: true });
+    const cellshort = page.getByRole("cell", { name: testtitledit, exact: true });
     await cellname.click();
     await testfunc.textboxcheck(page, "Cím", testtitledit);
     await testfunc.pressbutton(page, " Mentés", 0);
@@ -40,7 +40,7 @@ test.describe.serial("egy lekérdezés csoportot érintő tesztek", () => {
   });
 
   test("lekérdezés csoport törlés", async ({ page }) => {
-    const cellname = page.getByRole("cell", { name: testname });
+    const cellname = page.getByRole("cell", { name: testname, exact: true });
     await expect(cellname).toHaveText(testname);
     await cellname.click();
     await testfunc.removeitem(page, " Törlés");

@@ -19,19 +19,19 @@ test.beforeEach(async ({ page }) => {
 
 test.describe.serial("egy fordítást érintő tesztek", () => {
   test("fordítás hozzáadás", async ({ page }) => {
-    await page.getByRole('button', { name: ' Új' }).click();
+    await page.getByRole('button', { name: ' Új', exact: true }).click();
     await testfunc.rowcheck(page, "Nyelv", "Playwright");
     await testfunc.textboxcheck(page, "Eredeti", origname);
     await testfunc.textboxcheck(page, "Fordítás", testname);
     await testfunc.pressbutton(page, " Mentés", 0);
-    const celltest = page.getByRole("cell", { name: testname });
+    const celltest = page.getByRole("cell", { name: testname, exact: true });
     await expect(celltest).toHaveText(testname);
     testfunc.logger.log(celltest + " fordítás létrehozva");
   });
 
   test("fordítás szerkesztés", async ({ page }) => {
-    const cellorig = page.getByRole("cell", { name: origname });
-    const celltest = page.getByRole("cell", { name: testnamedit });
+    const cellorig = page.getByRole("cell", { name: origname, exact: true });
+    const celltest = page.getByRole("cell", { name: testnamedit, exact: true });
     await cellorig.nth(0).click();
     await testfunc.textboxcheck(page, "Fordítás", testnamedit);
     await testfunc.pressbutton(page, " Mentés", 0);
@@ -40,7 +40,7 @@ test.describe.serial("egy fordítást érintő tesztek", () => {
   });
 
   test("fordítás törlés", async ({ page }) => {
-    const cellname = page.getByRole("cell", { name: testnamedit });
+    const cellname = page.getByRole("cell", { name: testnamedit, exact: true });
     await expect(cellname).toHaveText(testnamedit);
     await cellname.click();
     await testfunc.removeitem(page, " Törlés");

@@ -21,22 +21,22 @@ test.describe.serial("hozzáférési kódot érintő teszt", () => {
 
         await page.locator('button:has-text("security")').click();
         await testfunc.pressbutton(page, "Hozzáférési kódok", 0, "menuitem");
-        await page.getByRole('combobox', { name: 'Felhasználói csoportok' }).locator('div').nth(3).click();
+        await page.getByRole('combobox', { name: 'Felhasználói csoportok', exact: true }).locator('div').nth(3).click();
         await page.getByText(core.user.usergroup).click();
         await page.locator('.cdk-overlay-backdrop').click();
         await testfunc.pressbutton(page, "Open calendar");
         await testfunc.pressbutton(page, honap + " " + day + ", " + ev);
         await testfunc.pressbutton(page, honap + " " + day2 + ", " + ev);
         await testfunc.pressbutton(page, "Hozzáférési kód generálása");
-        await page.getByRole('cell', { name: core.user.usergroup }).click();
+        await page.getByRole('cell', { name: core.user.usergroup, exact: true }).click();
         let napelenulla = day.toString();
         let napelenulla2 = day2.toString();
         if (napelenulla.length < 2) napelenulla = "0" + day;
         if (napelenulla2.length < 2) napelenulla2 = "0" + day2;
         let honapnulla = honapszam.toString();
         if (honapnulla.length < 2) honapnulla = "0" + honapszam;
-        await page.getByRole('cell', { name: ev + "-" + honapnulla + "-" + napelenulla2 + " 23:59" }).click();
-        await page.getByRole('cell', { name: ev + "-" + honapnulla + "-" + napelenulla + " 00:00" }).click();
+        await page.getByRole('cell', { name: ev + "-" + honapnulla + "-" + napelenulla2 + " 23:59", exact: true }).click();
+        await page.getByRole('cell', { name: ev + "-" + honapnulla + "-" + napelenulla + " 00:00", exact: true }).click();
         //await page.getByRole('cell', { name: '47a1d84b-f9bd-491b-879d-d20aec94d351' }).click();
         await testfunc.removeitem(page, "not needed...", 0, 2);
     });

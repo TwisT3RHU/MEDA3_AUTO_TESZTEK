@@ -1,0 +1,1 @@
+allure-docx C:/Users/kotel.g/Desktop/MEDA3_AUTO_TESZTEK/allure-results test-results.docx --pdf
