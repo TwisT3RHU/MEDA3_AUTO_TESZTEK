@@ -36,9 +36,15 @@ const config = {
   //reporter: [['html', { open: 'always' }]],
   reporter: [
     ['./src/custom-report.ts'],
-    ['list'],
-    ['dot'],
-    ['html']
+    ['html'],
+    [
+      "allure-playwright",
+      {
+        detail: true,
+        outputFolder: "allure-results",
+        suiteTitle: false,
+      },
+    ]
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

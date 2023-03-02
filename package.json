@@ -8,8 +8,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.27.1",
-    "@types/smoothscroll-polyfill": "^0.3.1"
+    "@playwright/test": "^1.31.1",
+    "@types/smoothscroll-polyfill": "^0.3.1",
+    "allure-playwright": "^2.0.0"
   },
   "dependencies": {
     "nodemailer": "^6.8.0",

@@ -7,3 +7,5 @@ results.json
 errStdErr.txt
 normalStdout.txt
 results.xml
+allure-results/
+allure-report/
