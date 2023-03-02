@@ -35,7 +35,6 @@ const config = {
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   //reporter: [['html', { open: 'always' }]],
   reporter: [
-    ['./src/custom-report.ts'],
     ['line'],
     ['html'],
     [
