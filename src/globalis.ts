@@ -6,7 +6,7 @@ import * as fs from "fs";
 /* Creating a new Console object and assigning it to the logger variable. */
 export const logger = new Console({
   stdout: fs.createWriteStream("normalStdout.txt"),
-  stderr: fs.createWriteStream("errStdErr.txt"),
+  stderr: fs.createWriteStream("errStdErr.txt")
 });
 
 // LINK ÖSSZERAKÁSOK

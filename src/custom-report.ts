@@ -22,24 +22,27 @@ import { logger } from 'globalis';
 
 let resultcount: number = 0; // normális számláló majd...
 
-class MyReporter implements Reporter {
-  onBegin(config: FullConfig, suite: Suite) {
+class customReport implements Reporter {
+  async onBegin(config: FullConfig, suite: Suite) {
+    logger.log('Playwright custom report - kotel.g');
     logger.log(`Teszt megkezdése ${suite.allTests().length} esettel`);
+    logger.log(`${config.version} - ${config.metadata}`);
   }
-  onTestBegin(test: TestCase, result: TestResult) {
+  async onTestBegin(test: TestCase, result: TestResult) {
     logger.log(`${test.id} - Teszteset címe: "${test.title}"`);
   }
-  onStepBegin(test: TestCase, result: TestResult, step: TestStep) {
+  async onStepBegin(test: TestCase, result: TestResult, step: TestStep) {
     logger.log(`${test.id} - ${step.title}`);
   }
-  /*onStepEnd(test: TestCase, result: TestResult, step: TestStep): void { 
-    logger.log(`${step.title} (${test.id}): ${test.}`);
+  /*async onStepEnd(test: TestCase, result: TestResult, step: TestStep) { 
+    logger.log(`${step.title} (${test.id}): ${result.status}`);
   }*/
-  onTestEnd(test: TestCase, result: TestResult) {
+  async onTestEnd(test: TestCase, result: TestResult) {
     logger.log(`${test.id} - "${test.title}" teszteset lefuttatva "${result.status}" eredménnyel`);
   }
-  onEnd(result: FullResult) {
+  async onEnd(result: FullResult) {
     logger.log(`Teszt összegzett eredménye: ${result.status}`);
+    
   }
 }
-export default MyReporter;
+export default customReport;
