@@ -122,6 +122,36 @@ export async function textboxcheck(page: any, textboxname: string, name: string)
 };
 
 /**
+ * It's a function that clicks on the nth element of a text on a page.
+ * </code>
+ * @param {any} page - the page object
+ * @param {string} textname - the text you want to find
+ * @param {number} nth - number -&gt; the nth element of the text
+ */
+export async function textcheck(page: any, textname: string, nth: number) {
+  const text = page.getByText(textname).nth(nth);
+  await text.click();
+  console.log(text + " megtalálva a(z) " + nth + ". helyen");
+};
+
+/**
+ * It clicks on a button, then clicks on a menu item.
+ * @param {any} page - the page object
+ * @param {string} version - string - report version
+ */
+export async function chooseReportVersion(page: any, version: string) {
+  await page.locator('hw-report-breadcrumbs').getByRole('button').click();
+  await page.getByRole('menuitem', { name: version, exact: true }).click();
+  console.log(version + " riport verzió kiválasztva");
+};
+
+export async function chooseAccessibilityMode(page: any, mode: string) {
+  await page.locator('hw-header').getByRole('button').filter({ hasText: 'explore' }).click();
+  await page.getByText(mode).click();
+  console.log(mode + " hozzáférési mód kiválasztva");
+}
+
+/**
  * It clicks on a combobox, then clicks on a text in the combobox.
  * @param {any} page - the page object
  * @param {string} rowname - the name of the combobox
