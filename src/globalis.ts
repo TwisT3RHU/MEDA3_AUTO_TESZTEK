@@ -148,7 +148,7 @@ export async function chooseReportVersion(page: any, version: string) {
 export async function chooseAccessibilityMode(page: any, mode: string) {
   await page.locator('hw-header').getByRole('button').filter({ hasText: 'explore' }).click();
   await page.getByText(mode).click();
-  console.log(mode + " hozzáférési mód kiválasztva");
+  console.log(mode + " hozzáférési mód kiválasztva");//
 }
 
 /**
