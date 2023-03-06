@@ -1,5 +1,4 @@
-import { expect, test } from "@playwright/test";
-//import { logger, login, logout, selectApp } from "globalis";
+import { test } from "@playwright/test";
 import *  as testfunc from 'globalis';
 
 const verziok: string[][] = [
