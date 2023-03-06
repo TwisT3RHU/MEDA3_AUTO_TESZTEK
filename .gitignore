@@ -7,10 +7,10 @@ results.json
 errStdErr.txt
 normalStdout.txt
 results.xml
-core.json
 allure-results/
 allure-results_/
 allure-report/
 allure-report-pdf-html/pie.png
 allure-report-pdf-html/test-results.pdf
 allure-report-pdf-html/test-results.docx
+src/core.json
