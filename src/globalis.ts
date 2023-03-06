@@ -123,10 +123,9 @@ export async function textboxcheck(page: any, textboxname: string, name: string)
 
 /**
  * It's a function that clicks on the nth element of a text on a page.
- * </code>
  * @param {any} page - the page object
  * @param {string} textname - the text you want to find
- * @param {number} nth - number -&gt; the nth element of the text
+ * @param {number} nth - number - the nth text located inside the page
  */
 export async function textcheck(page: any, textname: string, nth: number) {
   const text = page.getByText(textname).nth(nth);
@@ -135,7 +134,8 @@ export async function textcheck(page: any, textname: string, nth: number) {
 };
 
 /**
- * It clicks on a button, then clicks on a menu item.
+ * It clicks on the report version changer button located inside a report, 
+ * then sets the version given as the argument. (Angular)
  * @param {any} page - the page object
  * @param {string} version - string - report version
  */
@@ -146,7 +146,8 @@ export async function chooseReportVersion(page: any, version: string) {
 };
 
 /**
- * Click on the 'explore' button, then click on the 'mode' button.
+ * It clicks on the accessibility mode changer button, 
+ * then chooses the accessibility mode according to the argument given. (Angular)
  * @param {any} page - any - the page object
  * @param {string} mode - string - the accessibility mode to choose
  */
