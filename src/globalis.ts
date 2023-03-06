@@ -290,9 +290,11 @@ export async function pressbutton(page: any, buttonname: string, position: numbe
  * @param {number} [environment=0] - 0 = Medalyse admin Hungarian, 1 = Medalyse admin English, 2 = Angular Hungarian
  */
 export async function removeitem(page: any, buttonname: string, position: number = 0, environment: number = 0) {
-  const nemstr: string[] = ['Nem', 'Cancel', 'Mégsem'];
-  const igenstr: string[] = ['Igen', 'Ok', 'Igen'];
-  const nem = nemstr[environment], igen = igenstr[environment];
+  const text: string[][] = [
+    ['Nem', 'Cancel', 'Mégsem'],
+    ['Igen', 'Ok', 'Igen']
+  ];
+  const nem = text[0][environment], igen = text[1][environment];
   console.log(nem + " " + igen);
 
   if (environment == 2) {
