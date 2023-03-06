@@ -6,9 +6,9 @@
     "branch_remote": "beta"
   },
   "user": {
-    "name": "username",
-    "pass": "password",
-    "partner": "partner",
-    "usergroup": "usergroup"
+    "name": "kotel.g_autotestuser",
+    "pass": "kotel.g_autotestuser",
+    "partner": "geriautousers",
+    "usergroup": "geriautocsop"
   }
 }
