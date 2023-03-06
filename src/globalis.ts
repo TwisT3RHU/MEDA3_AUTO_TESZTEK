@@ -145,6 +145,11 @@ export async function chooseReportVersion(page: any, version: string) {
   console.log(version + " riport verzió kiválasztva");
 };
 
+/**
+ * Click on the 'explore' button, then click on the 'mode' button.
+ * @param {any} page - any - the page object
+ * @param {string} mode - string - the accessibility mode to choose
+ */
 export async function chooseAccessibilityMode(page: any, mode: string) {
   await page.locator('hw-header').getByRole('button').filter({ hasText: 'explore' }).click();
   await page.getByText(mode).click();
