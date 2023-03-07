@@ -7,7 +7,7 @@ let email = core.user.testemail;
 let password = core.user.testpass;
 
 test.beforeEach(async ({ page }) => {
-    await testfunc.login(page, username, password);
+    await testfunc.login(page, false, username, password);
     await testfunc.selectApp(page, "Medalyse3 App", "medalyse3app");
     await testfunc.pressbutton(page, "avatar" + username);
     await testfunc.pressbutton(page, "Adatváltoztatás", 0, "menuitem");

@@ -204,9 +204,11 @@ export function datum() {
  * the password, presses the enter key, and then checks if the URL is the same as the main page.
  * 
  * @param {any} page - the page object
+ * @param {string} user - string - the username to log in with
+ * @param {string} pass - string - the password to log in with
  * @param {boolean} remote - true if the site is being used as a remote server, false if it's used locally.
  */
-export async function login(page: any, user: string = core.user.name, pass: string = core.user.pass, remote: boolean = false) {
+export async function login(page: any, remote: boolean = false, user: string = core.user.name, pass: string = core.user.pass) {
   await page.goto(medaurl(remote));
   await expect(page).toHaveURL(/.auth\/realms\/healthware\/protocol\/openid-connect./); // SSO
   const username = page.getByLabel("Username or email");
