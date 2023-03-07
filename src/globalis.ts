@@ -204,9 +204,9 @@ export function datum() {
  * the password, presses the enter key, and then checks if the URL is the same as the main page.
  * 
  * @param {any} page - the page object
+ * @param {boolean} remote - true if the site is being used as a remote server, false if it's used locally.
  * @param {string} user - string - the username to log in with
  * @param {string} pass - string - the password to log in with
- * @param {boolean} remote - true if the site is being used as a remote server, false if it's used locally.
  */
 export async function login(page: any, remote: boolean = false, user: string = core.user.name, pass: string = core.user.pass) {
   await page.goto(medaurl(remote));
