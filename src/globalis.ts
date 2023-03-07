@@ -141,7 +141,8 @@ export async function textcheck(page: any, textname: string, nth: number) {
  */
 export async function chooseReportVersion(page: any, version: string) {
   await page.locator('hw-report-breadcrumbs').getByRole('button').click();
-  await page.getByRole('menuitem', { name: version, exact: true }).click();
+  await pressbutton(page, version, 0, "menuitem");
+  //await page.getByRole('menuitem', { name: version, exact: true }).click();
   console.log(version + " riport verzió kiválasztva");
 };
 
@@ -205,39 +206,39 @@ export function datum() {
  * @param {any} page - the page object
  * @param {boolean} remote - true if the site is being used as a remote server, false if it's used locally.
  */
-export async function login(page: any, remote: boolean = false) {
+export async function login(page: any, user: string = core.user.name, pass: string = core.user.pass, remote: boolean = false) {
   await page.goto(medaurl(remote));
   await expect(page).toHaveURL(/.auth\/realms\/healthware\/protocol\/openid-connect./); // SSO
   const username = page.getByLabel("Username or email");
   await expect(username).toBeEditable();
   await username.click();
   await expect(username).toBeFocused();
-  await username.fill(core.user.name);
+  await username.fill(user);
   await expect(username).not.toBeEmpty();
-  console.log(core.user.name + " beillesztve a " + username + " textboxba");
+  console.log(user + " beillesztve a " + username + " textboxba");
 
   const password = page.getByLabel("Password");
   await expect(password).toBeEditable();
   await password.click();
   await expect(password).toBeFocused();
-  await password.fill(core.user.pass);
+  await password.fill(pass);
   await expect(password).not.toBeEmpty();
-  console.log(core.user.pass + " beillesztve a " + password + " textboxba");
+  console.log(pass + " beillesztve a " + password + " textboxba");
 
   await password.press("Enter");
   await expect(page).toHaveURL(medaurl(remote));
   //await page.waitForNavigation();
-  console.log("sikeres bejelentkezés: " + branch(remote) + ": " + core.user.name + " - " + core.user.pass);
+  console.log("sikeres bejelentkezés: " + branch(remote) + ": " + user + " - " + pass);
 };
 
 /**
  * It clicks on the "kilépés" button, then closes the page context
  * @param {any} page - the page object
  */
-export async function logout(page: any) {
+export async function logout(page: any, user: string = core.user.name) {
   if (core.misc.admin) await page.locator('span:has-text("kilépés")').first().click();
   else {
-    await page.getByRole('button', { name: "avatar" + core.user.name, exact: true }).click();
+    await page.getByRole('button', { name: "avatar" + user, exact: true }).click();
     await page.getByRole('menuitem', { name: 'Kijelentkezés', exact: true  }).click();
   };
   const context = page.context();

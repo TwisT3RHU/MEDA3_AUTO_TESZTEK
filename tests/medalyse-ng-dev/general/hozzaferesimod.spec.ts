@@ -9,12 +9,12 @@ const verziok: string[][] = [
 test.beforeEach(async ({ page }) => {
     await testfunc.login(page);
     await testfunc.selectApp(page, "Medalyse3 App", "medalyse3app");
+    await page.getByText('double_arrowFőmenü expand_more').click();
+    await page.getByRole('link', { name: 'riportverziok', exact: true }).click();
 });
   
 test.describe.serial("hozzáférési módokat érintő tesztek", () => {
     test('hozzáférési módok', async ({ page }) => {
-        await page.getByText('double_arrowFőmenü expand_more').click();
-        await page.getByRole('link', { name: 'riportverziok' }).click();
         for (let i= 0; i < verziok[0].length; i++) {
             await testfunc.chooseAccessibilityMode(page, verziok[0][i]);
             await page.getByRole('link', { name: 'riportverziok', exact: true }).click();
@@ -22,8 +22,6 @@ test.describe.serial("hozzáférési módokat érintő tesztek", () => {
         };
     });
     test('riport verziók', async ({ page }) => {
-        await page.getByText('double_arrowFőmenü expand_more').click();
-        await page.getByRole('link', { name: 'riportverziok', exact: true }).click();
         for (let i= 0; i < verziok[0].length; i++) {
             await testfunc.chooseReportVersion(page, verziok[0][i]);
             await testfunc.textcheck(page, verziok[1][i], 2);

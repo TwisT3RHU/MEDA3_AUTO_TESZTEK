@@ -8,6 +8,10 @@
   "user": {
     "name": "kotel.g_autotestuser",
     "pass": "kotel.g_autotestuser",
+    "email": "kotel.g@healthware.hu",
+    "testname": "kotel.g_testedit",
+    "testpass": "kotel.g_testpass",
+    "testemail": "kotel.g@healthware.hu",
     "partner": "geriautousers",
     "usergroup": "geriautocsop"
   }
