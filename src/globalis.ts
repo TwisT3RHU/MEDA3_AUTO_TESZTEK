@@ -129,7 +129,7 @@ export async function textboxcheck(page: any, textboxname: string, name: string)
  */
 export async function textcheck(page: any, textname: string, nth: number) {
   const text = page.getByText(textname).nth(nth);
-  await text.click();
+  await expect(text).toBeVisible();
   console.log(text + " megtalálva a(z) " + nth + ". helyen");
 };
 
@@ -278,9 +278,13 @@ export async function hoptoserverusers(page: any, remote: string) {
  * @param {number} [position=0] - number = 0 -&gt; if there are multiple buttons with the same name,
  * you can specify which one you want to click on.
  * @param {string} [role=button] - the role of the button, usually "button"
+ * @param {boolean} [filtered=false] - true if the stock getByRole function needs extra filtering
  */
-export async function pressbutton(page: any, buttonname: string, position: number = 0, role: string = "button") {
-  const button = page.getByRole(role, { name: buttonname, exact: true }).nth(position);
+export async function pressbutton(page: any, buttonname: string, position: number = 0, role: string = "button", filtered: boolean = false) {
+  let button: any = undefined;
+  if (filtered) button = page.getByRole(role).filter({ hasText: buttonname, exact: true }).nth(position);
+  else button = page.getByRole(role, { name: buttonname, exact: true }).nth(position);
+  await expect(button).toBeVisible();
   await expect(button).toBeEnabled();
   await button.click();
   console.log(button + " meg lett nyomva");
