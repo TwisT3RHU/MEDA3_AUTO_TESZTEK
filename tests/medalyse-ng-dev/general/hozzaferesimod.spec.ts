@@ -23,12 +23,18 @@ test.describe.serial("hozzáférési módokat érintő tesztek", () => {
             await testfunc.textcheck(page, verziok[1][i], 2);
         };
     });
-    test('riport verziók', async ({ page }) => {
+    test('riport hozzáférési módok', async ({ page }) => {
         for (let i= 0; i < verziok[0].length; i++) {
-            await testfunc.chooseReportVersion(page, verziok[0][i]);
+            await testfunc.chooseReportAccMode(page, verziok[0][i]);
             await expect(page).toHaveURL(RegExp(verziok[2][i]));
             await testfunc.textcheck(page, verziok[1][i], 2);
         };
+    });
+    test('riport verzió', async ({ page }) => {
+        await page.getByText('historyMENUVERZIO2').click();
+        await testfunc.pressbutton(page, "menuverzio1", 0, "menuitem");
+        const verzio1 = page.getByRole('cell', { name: 'menuverzio1' }).getByText('menuverzio1');
+        await expect(verzio1).toBeVisible();
     });
     test.afterEach(async ({ page }) => {
         await testfunc.logout(page);

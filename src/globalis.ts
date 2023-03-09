@@ -134,31 +134,6 @@ export async function textcheck(page: any, textname: string, nth: number) {
 };
 
 /**
- * It clicks on the report version changer button located inside a report, 
- * then sets the version given as the argument. (Angular)
- * @param {any} page - the page object
- * @param {string} version - string - report version
- */
-export async function chooseReportVersion(page: any, version: string) {
-  await page.locator('hw-report-breadcrumbs').getByRole('button').click();
-  await pressbutton(page, version, 0, "menuitem");
-  //await page.getByRole('menuitem', { name: version, exact: true }).click();
-  console.log(version + " riport verzió kiválasztva");
-};
-
-/**
- * It clicks on the accessibility mode changer button, 
- * then chooses the accessibility mode according to the argument given. (Angular)
- * @param {any} page - any - the page object
- * @param {string} mode - string - the accessibility mode to choose
- */
-export async function chooseAccessibilityMode(page: any, mode: string) {
-  await page.locator('hw-header').getByRole('button').filter({ hasText: 'explore' }).click();
-  await page.getByText(mode).click();
-  console.log(mode + " hozzáférési mód kiválasztva");//
-}
-
-/**
  * It clicks on a combobox, then clicks on a text in the combobox.
  * @param {any} page - the page object
  * @param {string} rowname - the name of the combobox
@@ -371,3 +346,27 @@ export async function getElementColor(locator: any) {
   console.log(color);
   //return color;
 };
+
+/**
+ * It clicks on the report version changer button located inside a report, 
+ * then sets the version given as the argument. (Angular)
+ * @param {any} page - the page object
+ * @param {string} version - string - report version
+ */
+export async function chooseReportAccMode(page: any, version: string) {
+  await page.locator('hw-report-breadcrumbs').getByRole('button').click();
+  await pressbutton(page, version, 0, "menuitem");
+  console.log(version + " riport hozzáférési mód kiválasztva");
+};
+
+/**
+ * It clicks on the accessibility mode changer button, 
+ * then chooses the accessibility mode according to the argument given. (Angular)
+ * @param {any} page - any - the page object
+ * @param {string} mode - string - the accessibility mode to choose
+ */
+export async function chooseAccessibilityMode(page: any, mode: string) {
+  await page.locator('hw-header').getByRole('button').filter({ hasText: 'explore' }).click();
+  await page.getByText(mode).click();
+  console.log(mode + " hozzáférési mód kiválasztva");
+}
