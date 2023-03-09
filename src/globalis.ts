@@ -240,8 +240,8 @@ export async function login(page: any, remote: boolean = false, user: string = c
 export async function logout(page: any, user: string = core.user.name) {
   if (core.misc.admin) await page.locator('span:has-text("kilépés")').first().click();
   else {
-    await page.getByRole('button', { name: "avatar" + user, exact: true }).click();
-    await page.getByRole('menuitem', { name: 'Kijelentkezés', exact: true  }).click();
+    await pressbutton(page, "avatar" + user);
+    await pressbutton(page, "Kijelentkezés", 0, "menuitem");
   };
   const context = page.context();
   await context.close();
@@ -258,10 +258,12 @@ export async function logout(page: any, user: string = core.user.name) {
  * @param {string} remote - the name of the remote server
  */
 export async function hoptoserverusers(page: any, remote: string) {
-  await page.getByRole("cell", { name: remote, exact: true  }).click();
-  await pressbutton(page,  " Távoli felhasználók", 0);
+  await pressbutton(page, remote, 0, "cell");
+  //await page.getByRole("cell", { name: remote, exact: true  }).click();
+  await pressbutton(page,  " Távoli felhasználók");
   await expect(page).toHaveURL(/.#!serverUsers./);
-  await page.getByRole('textbox', { name: 'Szerver', exact: true  }).click(); // ez is :D
+  await pressbutton(page, "Szerver", 0, "textbox");
+  //await page.getByRole('textbox', { name: 'Szerver', exact: true  }).click(); // ez is :D
   await page.getByRole('combobox', { exact: true }).locator('div').click(); // talán ez hiányzott
   await page
     .locator('td[role="listitem"]:has-text("' + remote + '")')
@@ -334,7 +336,7 @@ export async function scrollOnElement(page: any, selector: any) {
  * @param {any} locator - the element you want to scroll to
  */
 export async function scrollUntilVisible(page: any, headername: string, nth: number, locator: any) {
-  await page.getByText(headername).nth(nth).click({ delay: 100 });
+  await page.getByText(headername).nth(nth).click({ delay: 50 });
   do await page.keyboard.down('ArrowDown');
   while (await locator.isVisible() == false);
   console.log(locator + " megtalálva")
