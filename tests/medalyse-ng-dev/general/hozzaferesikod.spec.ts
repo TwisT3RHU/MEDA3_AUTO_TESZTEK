@@ -4,20 +4,63 @@ import * as testfunc from 'globalis';
 
 const formatter = new Intl.DateTimeFormat('en-us', { month: 'long' });
 let datum = new Date();
+//let datum = new Date("March 29 2023 13:37:11");
+let kovihonap = new Date(datum.getFullYear(), datum.getMonth() + 1, 1);
 let ev = datum.getFullYear();
 let honap = formatter.format(datum);
 let honapszam = datum.getMonth() + 1; //zero-based érték
 let day = datum.getDate();
 let day2 = day + 2;
+
+let nextmonthswitch: boolean = false;
+if (honapszam == 2)
+{
+    if (ev % 4 == 0)
+    {
+        if (day2 > 29)
+        {
+            if (day2 == 30) day2 = 1;
+            else if (day2 == 31) day2 = 2;
+            nextmonthswitch = true;
+        }
+    }
+    else if (day2 > 28)
+    {
+        if (day2 == 29) day2 = 1;
+        else if (day2 == 30) day2 = 2;
+        nextmonthswitch = true;
+    }
+}
+else if (honapszam == 4 || honapszam == 6 || honapszam == 9 || honapszam == 11)
+{
+    if (day2 > 30)
+        {
+            if (day2 == 31) day2 = 1;
+            else if (day2 == 32) day2 = 2;
+            nextmonthswitch = true;
+        }
+}
+else
+{
+    if (day2 > 31)
+        {
+            if (day2 == 32) day2 = 1;
+            else if (day2 == 33) day2 = 2;
+            nextmonthswitch = true;
+        }
+}
+if (formatter.format(kovihonap) == "January") ev = ev + 1;
+
 let napelenulla = day.toString();
 let napelenulla2 = day2.toString();
 if (napelenulla.length < 2) napelenulla = "0" + day;
 if (napelenulla2.length < 2) napelenulla2 = "0" + day2;
 let honapnulla = honapszam.toString();
 if (honapnulla.length < 2) honapnulla = "0" + honapszam;
-const elsodatum = ev + "-" + honapnulla + "-" + napelenulla2 + " 23:59";
+/*const elsodatum = ev + "-" + honapnulla + "-" + napelenulla2 + " 23:59";
 const masodikdatum = ev + "-" + honapnulla + "-" + napelenulla + " 00:00";
-console.log(datum + " év " + ev + " hónap " + honap + " napok " + day + " - " + day2); // dátum formázása, nem a legjobb megoldás, DE egyelőre jó lesz
+console.log(elsodatum + " - " + masodikdatum);
+console.log(datum + " év " + ev + " hónap " + honap + " napok " + day + " - " + day2); // dátum formázása, nem a legjobb megoldás, DE egyelőre jó lesz*/
 
 test.beforeEach(async ({ page }) => {
     await testfunc.login(page);
@@ -33,12 +76,16 @@ test.describe.serial("hozzáférési kódot érintő teszt", () => {
         await page.locator('.cdk-overlay-backdrop').click();
         await testfunc.pressbutton(page, "Open calendar");
         await testfunc.pressbutton(page, honap + " " + day + ", " + ev);
+        if (nextmonthswitch)
+        {
+            await testfunc.pressbutton(page, "Next month");
+            honap = formatter.format(kovihonap);
+        }
         await testfunc.pressbutton(page, honap + " " + day2 + ", " + ev);
         await testfunc.pressbutton(page, "Hozzáférési kód generálása");
         await testfunc.pressbutton(page, core.user.usergroup, 0, "cell");
-        //await page.getByRole('cell', { name: core.user.usergroup, exact: true }).click();
-        await testfunc.pressbutton(page, elsodatum, 0, "cell");
-        await testfunc.pressbutton(page, masodikdatum, 0, "cell");
+        //await testfunc.pressbutton(page, elsodatum, 0, "cell");
+        //await testfunc.pressbutton(page, masodikdatum, 0, "cell");
         await testfunc.removeitem(page, "not needed...", 0, 2);
     });
     test.afterEach(async ({ page }) => {
