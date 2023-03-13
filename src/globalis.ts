@@ -342,7 +342,7 @@ export async function selectApp(page: any, appname: string, appurl: string, remo
  * @param {any} locator - The element you want to get the color of.
  */
 export async function getElementColor(locator: any) {
-  const color = await locator.evaluate((e) => { return window.getComputedStyle(e).getPropertyValue("background-color") });
+  const color = await locator.evaluate((e: any) => { return window.getComputedStyle(e).getPropertyValue("background-color") });
   console.log(color);
   //return color;
 };
