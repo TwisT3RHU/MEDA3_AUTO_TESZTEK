@@ -49,7 +49,6 @@ else
             nextmonthswitch = true;
         }
 }
-if (formatter.format(kovihonap) == "January") ev = ev + 1;
 
 let napelenulla = day.toString();
 let napelenulla2 = day2.toString();
@@ -80,6 +79,7 @@ test.describe.serial("hozzáférési kódot érintő teszt", () => {
         {
             await testfunc.pressbutton(page, "Next month");
             honap = formatter.format(kovihonap);
+            if (formatter.format(kovihonap) == "January") ev = ev + 1;
         }
         await testfunc.pressbutton(page, honap + " " + day2 + ", " + ev);
         await testfunc.pressbutton(page, "Hozzáférési kód generálása");
