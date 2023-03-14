@@ -12,10 +12,7 @@ test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
   if (jumpbranch) await testfunc.login(page, true);
   else await testfunc.login(page, false);
-  //testfunc.login(page, jumpbranch);
-  await page.getByText("►Hozzáférések").click();
-  await page.getByText("Szerverek").click();
-  await expect(page).toHaveURL(testfunc.medaurl(jumpbranch, "#!servers"));
+  await testfunc.navigateToAdminPage(page, "►Hozzáférések", "Szerverek", "#!servers", jumpbranch);
 });
 
 test.describe.serial("szerverek összekötése", () => {

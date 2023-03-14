@@ -68,11 +68,11 @@ test.beforeEach(async ({ page }) => {
   
 test.describe.serial("hozzáférési kódot érintő teszt", () => {
     test('hozzáférési kód generálása', async ({ page }) => {
-        await page.locator('button:has-text("security")').click();
+        await testfunc.pressbutton(page, 'button:has-text("security")', 0, "locator");
         await testfunc.pressbutton(page, "Hozzáférési kódok", 0, "menuitem");
         await testfunc.pressbutton(page, "Felhasználói csoportok", 0, "combobox");
-        await page.getByText(core.user.usergroup).click();
-        await page.locator('.cdk-overlay-backdrop').click();
+        await testfunc.pressbutton(page, core.user.usergroup, 0, "text");
+        await testfunc.pressbutton(page, '.cdk-overlay-backdrop', 0, "locator");
         await testfunc.pressbutton(page, "Open calendar");
         await testfunc.pressbutton(page, honap + " " + day + ", " + ev);
         if (nextmonthswitch)

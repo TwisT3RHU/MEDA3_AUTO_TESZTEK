@@ -14,7 +14,7 @@ export const logger = new Console({
 
 /* Defining the base URLs. */
 const alfa = "http://medalyse.alfa.local/";
-const beta = "http://medalyse.beta.local/";
+//const beta = "http://medalyse.beta.local/";
 const gamma = "http://medalyse.gamma.local/";
 const pre = "https://pre.medalyse.hu/";
 const prod = "https://medalyse.hu/";
@@ -42,8 +42,8 @@ function medalink(remote: boolean = false) {
   switch (branch(remote)) {
     case "alfa":
       return alfa;
-    case "beta":
-      return beta;
+    /*case "beta":
+      return beta;*/ // béta lelőve
     case "gamma":
       return gamma;
     case "pre":
@@ -213,7 +213,7 @@ export async function login(page: any, remote: boolean = false, user: string = c
  * @param {any} page - the page object
  */
 export async function logout(page: any, user: string = core.user.name) {
-  if (core.misc.admin) await page.locator('span:has-text("kilépés")').first().click();
+  if (core.misc.admin) await pressbutton(page, 'span:has-text("kilépés")', 0, "locator");
   else {
     await pressbutton(page, "avatar" + user);
     await pressbutton(page, "Kijelentkezés", 0, "menuitem");
@@ -240,9 +240,7 @@ export async function hoptoserverusers(page: any, remote: string) {
   await pressbutton(page, "Szerver", 0, "textbox");
   //await page.getByRole('textbox', { name: 'Szerver', exact: true  }).click(); // ez is :D
   await page.getByRole('combobox', { exact: true }).locator('div').click(); // talán ez hiányzott
-  await page
-    .locator('td[role="listitem"]:has-text("' + remote + '")')
-    .click();
+  await pressbutton(page, 'td[role="listitem"]:has-text("' + remote + '")', 0, "locator");
   await page.waitForLoadState();
 };
 
@@ -257,10 +255,14 @@ export async function hoptoserverusers(page: any, remote: string) {
  */
 export async function pressbutton(page: any, buttonname: string, position: number = 0, role: string = "button", filtered: boolean = false) {
   let button: any = undefined;
-  if (filtered) button = page.getByRole(role).filter({ hasText: buttonname, exact: true }).nth(position);
-  else button = page.getByRole(role, { name: buttonname, exact: true }).nth(position);
-  await expect(button).toBeVisible();
+  if (role == "text") button = page.getByText(buttonname).nth(position);
+  else if (role == "locator") button = page.locator(buttonname).nth(position);
+  else {
+    if (filtered) button = page.getByRole(role).filter({ hasText: buttonname, exact: true }).nth(position);
+    else button = page.getByRole(role, { name: buttonname, exact: true }).nth(position);
+  }
   await expect(button).toBeEnabled();
+  await expect(button).toBeVisible();
   await button.click();
   console.log(button + " meg lett nyomva");
 };
@@ -282,9 +284,9 @@ export async function removeitem(page: any, buttonname: string, position: number
   console.log(nem + " " + igen);
 
   if (environment == 2) {
-    await page.locator('button:has-text("delete_outline")').click();
+    await pressbutton(page, 'button:has-text("delete_outline")', 0, "locator");
     await pressbutton(page, nem, 0);
-    await page.locator('button:has-text("delete_outline")').click();
+    await pressbutton(page, 'button:has-text("delete_outline")', 0, "locator");
     await pressbutton(page, igen, 0);
   }
   else {
@@ -331,8 +333,8 @@ export async function scrollUntilVisible(page: any, headername: string, nth: num
  * @param {boolean} [remote=false] - boolean = false
  */
 export async function selectApp(page: any, appname: string, appurl: string, remote: boolean = false) {
-  await page.locator('div:has-text("Alkalmazás")').nth(4).click();
-  await page.getByText(appname).click();
+  await pressbutton(page, 'div:has-text("Alkalmazás")', 4, "locator");
+  await pressbutton(page, appname, 0, "text");
   await pressbutton(page, "BELÉPÉS");
   await expect(page).toHaveURL(medaurl(remote, appurl));
 };
@@ -367,6 +369,20 @@ export async function chooseReportAccMode(page: any, version: string) {
  */
 export async function chooseAccessibilityMode(page: any, mode: string) {
   await page.locator('hw-header').getByRole('button').filter({ hasText: 'explore' }).click();
-  await page.getByText(mode).click();
+  await pressbutton(page, mode, 0, "text");
   console.log(mode + " hozzáférési mód kiválasztva");
+}
+
+/**
+ * This function navigates to a page in the admin section of the site.
+ * @param {any} page - the page object from puppeteer
+ * @param {string} parent - the parent button to press
+ * @param {string} child - the name of the child element
+ * @param {string} url - the url of the page you want to navigate to
+ * @param {boolean} [remote=false] - boolean = false
+ */
+export async function navigateToAdminPage(page: any, parent: string, child: string, url: string, remote: boolean = false) {
+  await pressbutton(page, parent, 0, "text");
+  await pressbutton(page, child, 0, "text");
+  await expect(page).toHaveURL(medaurl(remote, url));
 }

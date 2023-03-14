@@ -10,7 +10,7 @@ const verziok: string[][] = [
 test.beforeEach(async ({ page }) => {
     await testfunc.login(page);
     await testfunc.selectApp(page, "Medalyse3 App", "medalyse3app");
-    await page.getByText('double_arrowFőmenü expand_more').click();
+    await testfunc.pressbutton(page, 'double_arrowFőmenü expand_more', 0, "text");
     await testfunc.pressbutton(page, "riportverziok", 0, "link");
 });
   
@@ -31,7 +31,7 @@ test.describe.serial("hozzáférési módokat érintő tesztek", () => {
         };
     });
     test('riport verzió', async ({ page }) => {
-        await page.getByText('historyMENUVERZIO2').click();
+        await testfunc.pressbutton(page, 'historyMENUVERZIO2', 0, "text");
         await testfunc.pressbutton(page, "menuverzio1", 0, "menuitem");
         const verzio1 = page.getByRole('cell', { name: 'menuverzio1' }).getByText('menuverzio1');
         await expect(verzio1).toBeVisible();

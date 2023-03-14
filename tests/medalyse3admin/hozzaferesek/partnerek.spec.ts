@@ -9,9 +9,7 @@ console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
   await testfunc.login(page);
-  await page.getByText("►Hozzáférések").click();
-  await page.getByText("Partnerek").click();
-  await expect(page).toHaveURL(testfunc.medaurl(false, "#!partners"));
+  await testfunc.navigateToAdminPage(page, "►Hozzáférések", "Partnerek", "#!partners");
 });
 
 test.describe.serial("egy partnert érintő tesztek", () => {
@@ -33,12 +31,12 @@ test.describe.serial("egy partnert érintő tesztek", () => {
   });
 
   test("partner visszaállítás", async ({ page }) => {
-    await page.getByText("Töröltek").click();
+    await testfunc.pressbutton(page, "Töröltek", 0, "text");
     const cellname = page.getByRole("cell", { name: testname, exact: true });
     await expect(cellname).toHaveText(testname);
     await cellname.click();
     await testfunc.pressbutton(page,  " Visszaállítás", 0);
-    await page.getByText("Töröltek").click();
+    await testfunc.pressbutton(page, "Töröltek", 0, "text");
     console.log(testname + " visszaállítva");
   });
 

@@ -12,9 +12,7 @@ console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
   await testfunc.login(page);
-  await page.getByText('►Segédtáblák').click();
-  await page.getByText('Lekérdezés nézet csoportok').click();
-  await expect(page).toHaveURL(testfunc.medaurl(false, "#!qeryViewGrps"));
+  await testfunc.navigateToAdminPage(page, "►Segédtáblák", "Lekérdezés nézet csoportok", "#!qeryViewGrps");
 });
 
 test.describe.serial("egy lekérdezés nézet csoportot érintő tesztek", () => {

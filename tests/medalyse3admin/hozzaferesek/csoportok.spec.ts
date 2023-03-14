@@ -11,9 +11,7 @@ test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
 
   await testfunc.login(page);
-  await page.getByText("►Hozzáférések").click();
-  await page.getByText("Csoportok").click();
-  await expect(page).toHaveURL(testfunc.medaurl(false, "#!grps"));
+  await testfunc.navigateToAdminPage(page, "►Hozzáférések", "Csoportok", "#!grps");
 });
 
 test.describe.serial("egy csoportot érintő tesztek", () => {

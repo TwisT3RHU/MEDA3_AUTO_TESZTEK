@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
   
 test.describe.serial("névjegyet érintő teszt", () => {
     test('névjegy megtekintése', async ({ page }) => {
-        await page.locator('button:has-text("settings")').click();
+        await testfunc.pressbutton(page, 'button:has-text("settings")', 0, "locator");
 
         await testfunc.pressbutton(page, "Névjegy", 0, "menuitem");
 

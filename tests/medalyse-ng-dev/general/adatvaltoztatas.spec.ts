@@ -24,7 +24,7 @@ test.describe.serial("adatmódosítást érintő tesztek", () => {
     });
     test('nyelv módosítása', async ({ page }) => {
         await testfunc.pressbutton(page, "country", 0, "combobox");
-        await page.getByText('English').click();
+        await testfunc.pressbutton(page, "English", 0, "text");
         await testfunc.pressbutton(page, "Mentés");
         await testfunc.pressbutton(page, "Rendben");
         console.log("nyelv módosítva");
@@ -67,7 +67,7 @@ test.describe.serial("adatmódosítást érintő tesztek", () => {
     });
     test('nyelv visszaállítása', async ({ page }) => {
         await testfunc.pressbutton(page, "country", 0, "combobox");
-        await page.getByText('Magyar').click();
+        await testfunc.pressbutton(page, "Magyar", 0, "text");
         await testfunc.pressbutton(page, "Mentés");
         await testfunc.pressbutton(page, "Rendben");
         console.log("nyelv visszaállítva");

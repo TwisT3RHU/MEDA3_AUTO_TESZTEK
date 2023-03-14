@@ -11,9 +11,7 @@ console.log(testname); // tudjuk már, hogy mit adott meg a script :D
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
   await testfunc.login(page);
-  await page.getByText('►Segédtáblák').click();
-  await page.getByText('Nyelvek').click();
-  await expect(page).toHaveURL(testfunc.medaurl(false, "#!langs"));
+  await testfunc.navigateToAdminPage(page, "►Segédtáblák", "Nyelvek", "#!langs");
 });
 
 test.describe.serial("egy nyelvet érintő tesztek", () => {

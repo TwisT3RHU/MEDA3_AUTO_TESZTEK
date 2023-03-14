@@ -5,9 +5,7 @@ import *  as testfunc from 'globalis';
 test.beforeEach(async ({ page }) => {
   // gyakorlatilag ez a precondition; legyen bejelentkezve
   await testfunc.login(page);
-  await page.getByText('►Segédtáblák').click();
-  await page.getByText('Font ikonok').click();
-  await expect(page).toHaveURL(testfunc.medaurl(false, "#!buttonIcons"));
+  await testfunc.navigateToAdminPage(page, "►Segédtáblák", "Font ikonok", "#!buttonIcons");
 });
 
 test.describe.serial("font ikonokat érintő tesztek", () => {
