@@ -147,6 +147,23 @@ export async function rowcheck(page: any, rowname: string, name: string) {
   console.log(name + " kiválasztva a " + row + " comboboxból")
 };
 
+/**
+ * It's a function that checks if a label is editable, then clicks on it, then checks if it's focused,
+ * then fills it with content, then checks if it's not empty.
+ * @param {any} page - any - the page object
+ * @param {string} name - the name of the label
+ * @param {string} content - the text that will be inserted into the textbox
+ */
+export async function labelcheck(page: any, name: string, content: string) {
+  const label = page.getByLabel(name, { exact: true });
+  await expect(label).toBeEditable();
+  await label.click();
+  await expect(label).toBeFocused();
+  await label.fill(content);
+  await expect(label).not.toBeEmpty();
+  console.log(content + " beillesztve a " + label + " textboxba");
+};
+
 // NÉV GENERÁLÁS
 
 /**
@@ -186,26 +203,29 @@ export function datum() {
 export async function login(page: any, remote: boolean = false, user: string = core.user.name, pass: string = core.user.pass) {
   await page.goto(medaurl(remote));
   await expect(page).toHaveURL(/.auth\/realms\/healthware\/protocol\/openid-connect./); // SSO
-  const username = page.getByLabel("Username or email");
-  await expect(username).toBeEditable();
-  await username.click();
-  await expect(username).toBeFocused();
-  await username.fill(user);
-  await expect(username).not.toBeEmpty();
-  console.log(user + " beillesztve a " + username + " textboxba");
-
-  const password = page.getByLabel("Password");
-  await expect(password).toBeEditable();
-  await password.click();
-  await expect(password).toBeFocused();
-  await password.fill(pass);
-  await expect(password).not.toBeEmpty();
-  console.log(pass + " beillesztve a " + password + " textboxba");
-
-  await password.press("Enter");
+  await labelcheck(page, "Username or email", user);
+  await labelcheck(page, "Password", pass);
+  await pressbutton(page, "Sign In");
   await expect(page).toHaveURL(medaurl(remote));
-  //await page.waitForNavigation();
   console.log("sikeres bejelentkezés: " + branch(remote) + ": " + user + " - " + pass);
+};
+
+export async function register(page: any, remote: boolean = false, firstname: string, lastname: string, email: string, user: string, pass: string, accesscode: string) {
+  await page.goto(medaurl(remote));
+  await expect(page).toHaveURL(/.auth\/realms\/healthware\/protocol\/openid-connect./); // SSO
+  await pressbutton(page, "Register", 0, "link");
+  await expect(page).toHaveURL(/.auth\/realms\/healthware\/login-actions\/registration./); // SSO
+  await labelcheck(page, "First name", firstname);
+  await labelcheck(page, "Last name", lastname);
+  await labelcheck(page, "Email", email);
+  await labelcheck(page, "Username", user);
+  await labelcheck(page, "Password", pass);
+  await labelcheck(page, "Confirm password", pass);
+  await labelcheck(page, "Access code (optional)", accesscode);
+  await page.locator('.rc-anchor-center-item').first().click(); // NEM VAGYOK ROBOT (xD)
+  await pressbutton(page, "Register");
+  await expect(page).toHaveURL(medaurl(remote));
+  console.log("sikeres regisztráció: " + branch(remote) + ": " + user + " - " + pass);
 };
 
 /**

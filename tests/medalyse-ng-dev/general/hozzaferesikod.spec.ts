@@ -13,6 +13,7 @@ let day = datum.getDate();
 let day2 = day + 2;
 
 let nextmonthswitch: boolean = false;
+
 if (honapszam == 2)
 {
     if (ev % 4 == 0)
@@ -61,17 +62,26 @@ const masodikdatum = ev + "-" + honapnulla + "-" + napelenulla + " 00:00";
 console.log(elsodatum + " - " + masodikdatum);
 console.log(datum + " év " + ev + " hónap " + honap + " napok " + day + " - " + day2); // dátum formázása, nem a legjobb megoldás, DE egyelőre jó lesz*/
 
-test.beforeEach(async ({ page }) => {
-    await testfunc.login(page);
-    await testfunc.selectApp(page, "Medalyse3 App", "medalyse3app");
-});
+const accessrole = "healthware-medalyse3app-user"
+let hozzaferes: string = undefined; // lentebb töltve lesz
+const firstname: string = testfunc.randomname("first");
+const lastname: string = testfunc.randomname("last");
+const email: string = testfunc.randomname("access") + "@co.de";
+const user: string = testfunc.randomname("accesscode");
+const pass: string = "accesspw";
+
+/*test.beforeEach(async ({ page }) => {
+});*/
   
 test.describe.serial("hozzáférési kódot érintő teszt", () => {
     test('hozzáférési kód generálása', async ({ page }) => {
+        await testfunc.login(page);
+        await testfunc.selectApp(page, "Medalyse3 App", "medalyse3app");
+
         await testfunc.pressbutton(page, 'button:has-text("security")', 0, "locator");
         await testfunc.pressbutton(page, "Hozzáférési kódok", 0, "menuitem");
         await testfunc.pressbutton(page, "Felhasználói csoportok", 0, "combobox");
-        await testfunc.pressbutton(page, core.user.usergroup, 0, "text");
+        await testfunc.pressbutton(page, accessrole, 0, "text");
         await testfunc.pressbutton(page, '.cdk-overlay-backdrop', 0, "locator");
         await testfunc.pressbutton(page, "Open calendar");
         await testfunc.pressbutton(page, honap + " " + day + ", " + ev);
@@ -83,10 +93,19 @@ test.describe.serial("hozzáférési kódot érintő teszt", () => {
         }
         await testfunc.pressbutton(page, honap + " " + day2 + ", " + ev);
         await testfunc.pressbutton(page, "Hozzáférési kód generálása");
-        await testfunc.pressbutton(page, core.user.usergroup, 0, "cell");
-        //await testfunc.pressbutton(page, elsodatum, 0, "cell");
-        //await testfunc.pressbutton(page, masodikdatum, 0, "cell");
-        await testfunc.removeitem(page, "not needed...", 0, 2);
+        await testfunc.pressbutton(page, accessrole, 0, "cell");
+        hozzaferes = await page.getByRole('cell', { name: /[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}/g, exact: true }).innerText();
+    });
+    test('új felhasználó regisztrálása a megadott kóddal', async ({ page }) => {
+        await testfunc.register(page, false, firstname, lastname, email, user, pass, hozzaferes);
+    });
+    test('hozzáférési kód törlése', async ({ page }) => {
+        await testfunc.login(page);
+        await testfunc.selectApp(page, "Medalyse3 App", "medalyse3app");
+
+        await testfunc.pressbutton(page, 'button:has-text("security")', 0, "locator");
+        await testfunc.pressbutton(page, "Hozzáférési kódok", 0, "menuitem");
+        await testfunc.removeitem(page, "", 0, 2);
     });
     test.afterEach(async ({ page }) => {
         await testfunc.logout(page);
