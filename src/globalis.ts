@@ -210,7 +210,22 @@ export async function login(page: any, remote: boolean = false, user: string = c
   console.log("sikeres bejelentkezés: " + branch(remote) + ": " + user + " - " + pass);
 };
 
-export async function register(page: any, remote: boolean = false, firstname: string, lastname: string, email: string, user: string, pass: string, accesscode: string) {
+/**
+ * It registers a new user on a website.
+ * The function is called like this:
+ * <code>await register(page, true, "John", "Doe", "john.doe@example.com", "johndoe", "password",
+ * "12345");
+ * </code>
+ * @param {any} page - the page object,
+ * @param {boolean} [remote=false] - boolean = false
+ * @param {string} firstname - string, first name
+ * @param {string} lastname - string, last name
+ * @param {string} email - string, e-mail address
+ * @param {string} user - string, username
+ * @param {string} pass - string, password
+ * @param {string} accesscode - string, optional
+ */
+export async function register(page: any, remote: boolean = false, firstname: string, lastname: string, email: string, user: string, pass: string, accesscode?: string) {
   await page.goto(medaurl(remote));
   await expect(page).toHaveURL(/.auth\/realms\/healthware\/protocol\/openid-connect./); // SSO
   await pressbutton(page, "Register", 0, "link");
@@ -221,7 +236,7 @@ export async function register(page: any, remote: boolean = false, firstname: st
   await labelcheck(page, "Username", user);
   await labelcheck(page, "Password", pass);
   await labelcheck(page, "Confirm password", pass);
-  await labelcheck(page, "Access code (optional)", accesscode);
+  if (accesscode != undefined) await labelcheck(page, "Access code (optional)", accesscode);
   await page.locator('.rc-anchor-center-item').first().click(); // NEM VAGYOK ROBOT (xD)
   await pressbutton(page, "Register");
   await expect(page).toHaveURL(medaurl(remote));
