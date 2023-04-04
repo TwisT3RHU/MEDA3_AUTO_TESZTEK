@@ -213,9 +213,7 @@ export async function login(page: any, remote: boolean = false, user: string = c
 /**
  * It registers a new user on a website.
  * The function is called like this:
- * <code>await register(page, true, "John", "Doe", "john.doe@example.com", "johndoe", "password",
- * "12345");
- * </code>
+ * @example register(page, false, "John", "Doe", "john.doe@example.com", "johndoe", "password", "12345");
  * @param {any} page - the page object,
  * @param {boolean} [remote=false] - boolean = false
  * @param {string} firstname - string, first name
@@ -237,7 +235,8 @@ export async function register(page: any, remote: boolean = false, firstname: st
   await labelcheck(page, "Password", pass);
   await labelcheck(page, "Confirm password", pass);
   if (accesscode != undefined) await labelcheck(page, "Access code (optional)", accesscode);
-  await page.locator('.rc-anchor-center-item').first().click(); // NEM VAGYOK ROBOT (xD)
+  //await page.locator('iframe[name=' + RegExp(/a-[a-z0-9]{12}/g) + '"]').getByRole('checkbox', { name: 'I\'m not a robot' }).click();
+  await page.getByRole('checkbox', { name: 'I\'m not a robot', exact: true }).click();
   await pressbutton(page, "Register");
   await expect(page).toHaveURL(medaurl(remote));
   console.log("sikeres regisztráció: " + branch(remote) + ": " + user + " - " + pass);
