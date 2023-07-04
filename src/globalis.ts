@@ -12,7 +12,7 @@ export const logger = new Console({
 
 // LINK ÖSSZERAKÁSOK
 
-/* Defining the base URLs. */
+/* Paraméter nélküli domain URL-ek definiálása. */
 const alfa = "http://medalyse.alfa.local/";
 //const beta = "http://medalyse.beta.local/";
 const gamma = "http://medalyse.gamma.local/";
@@ -20,9 +20,9 @@ const pre = "https://pre.medalyse.hu/";
 const prod = "https://medalyse.hu/";
 
 /**
- * It returns the current branch base URL of Medalyse.
- * @param {boolean} remote - true if the site is being used as a remote server, false if it's used locally.
- * @returns The branch base URL.
+ * A tesztelendő verziót visszaadja stringként.
+ * @param {boolean} remote - true, ha távoli szerver és false, ha helyi.
+ * @returns a verzió nevét.
  */
 
 export function branch(remote: boolean = false) {
@@ -33,9 +33,9 @@ export function branch(remote: boolean = false) {
 };
 
 /**
- * `medalink` is a function that returns a string based on the value of the `branch` function
+ * Ez a funkció a stringben kapott verzió nevéből a helyes URL-t adja vissza.
  * @param {boolean} [remote=false] - boolean = false
- * @returns the value of the variable that is assigned to the branch.
+ * @returns a stringből kapott verziónak a fentebb definiált linkjét adja vissza.
  */
 
 function medalink(remote: boolean = false) {
@@ -56,9 +56,9 @@ function medalink(remote: boolean = false) {
 };
 
 /**
- * It returns a string.
- * @param {string} [appurl] - The URL of the application you want to link to.
- * @returns The function klienslink() is being returned.
+ * A kliensen belül megnyitott app linkje, alapesetben a választóba dob be.
+ * @param {string} [appurl] - Az app neve.
+ * @returns  Az app kliens linkjét adja vissza.
  */
 function klienslink(appurl?: string) {
   if (branch() == "alfa") {
@@ -70,18 +70,17 @@ function klienslink(appurl?: string) {
 
 
 /**
- * It returns a string.
- * @returns The function adminlink() is being returned.
+ * Az admin linkje.
+ * @returns Az admin linkjét.
  */
 function adminlink() {
   return "admin/";
 };
 
 /**
- * It returns a url based on the parameters.
- * </code>
- * @param {boolean} remote - true if the site is being used as a remote server, false if it's used locally.
- * @param {string} [menu] - string, navigates to the main page if it's empty.
+ * Összerakja a komplett Medalyse linket különböző paraméterek alapján.
+ * @param {boolean} remote - True, ha távoli szerver összekötéshez van használva a link és false, ha minden máshoz.
+ * @param {string} [menu] - Amennyiben üres, a főmenübe dob be.
  * @returns the url.
  */
 export function medaurl(remote: boolean, menu?: string) {
@@ -104,11 +103,10 @@ export function medaurl(remote: boolean, menu?: string) {
 };
 
 /**
- * It checks if a textbox is editable, then clicks on it, checks if it's focused, fills it with a name,
- * and checks if it has the name.
- * @param {any} page - the page object
- * @param {any} textboxname - string - the name of the specified textbox
- * @param {string} name - string - the value to be filled into the text box
+ * Ellenőrzi, hogy a textbox szerheszthető-e, majd ráklikkel, ellenőrzi, hogy fókuszban van-e és kitölti amennyiben igen.
+ * @param {any} page - page objektum
+ * @param {any} textboxname - string - a textbox neve
+ * @param {string} name - string - az érték, amit kap a textbox
  */
 export async function textboxcheck(page: any, textboxname: string, name: string) {
   const textbox = page.getByRole("textbox", { name: textboxname, exact: true });
@@ -122,10 +120,10 @@ export async function textboxcheck(page: any, textboxname: string, name: string)
 };
 
 /**
- * It's a function that clicks on the nth element of a text on a page.
- * @param {any} page - the page object
- * @param {string} textname - the text you want to find
- * @param {number} nth - number - the nth text located inside the page
+ * Ez a funkció ellenőrzi azt, hogy a szöveg megjelenik-e a felületen.
+ * @param {any} page - page objektum
+ * @param {string} textname - a szöveg, amit meg szeretnél találni
+ * @param {number} nth - szám - a szöveg számszerűsített helye az oldalon
  */
 export async function textcheck(page: any, textname: string, nth: number) {
   const text = page.getByText(textname).nth(nth);
@@ -134,10 +132,10 @@ export async function textcheck(page: any, textname: string, nth: number) {
 };
 
 /**
- * It clicks on a combobox, then clicks on a text in the combobox.
- * @param {any} page - the page object
- * @param {string} rowname - the name of the combobox
- * @param {string} name - the name of the item inside a combobox
+ * Ráklikkel egy comboboxra és utána a benne lévő elemre.
+ * @param {any} page - page objektum
+ * @param {string} rowname - a combobox neve
+ * @param {string} name - az elem neve a comboboxban
  */
 export async function rowcheck(page: any, rowname: string, name: string) {
   const row = await page.getByRole("row", { name: rowname, exact: true  }).getByRole("combobox").locator("div");
@@ -148,11 +146,11 @@ export async function rowcheck(page: any, rowname: string, name: string) {
 };
 
 /**
- * It's a function that checks if a label is editable, then clicks on it, then checks if it's focused,
- * then fills it with content, then checks if it's not empty.
- * @param {any} page - any - the page object
- * @param {string} name - the name of the label
- * @param {string} content - the text that will be inserted into the textbox
+ * Ellenőrzi, hogy a label szerkeszthető-e, majd ráklikkel, majd ellenőrzi a fókuszt,
+ * feltölti a megadott szöveggel és ellenőrzi, hogy bele lett-e téve.
+ * @param {any} page - page objektum
+ * @param {string} name - a label neve
+ * @param {string} content - a szöveg, amivel fel lesz töltve
  */
 export async function labelcheck(page: any, name: string, content: string) {
   const label = page.getByLabel(name, { exact: true });
@@ -167,9 +165,9 @@ export async function labelcheck(page: any, name: string, content: string) {
 // NÉV GENERÁLÁS
 
 /**
- * It generates a random name from a given name, adding a random number as its suffix.
- * @param {string} name - the base name.
- * @returns the randomname variable.
+ * A paraméterként kapott név után tesz egy alsóvonalat és egy véletlen számot.
+ * @param {string} name - a név
+ * @returns a paraméterben kapott nevet és a számot.
  */
 export function randomname(name: string) {
   const randomname_num = Math.floor(Math.random() * 10000000);
@@ -181,8 +179,8 @@ export function randomname(name: string) {
 // DÁTUM
 
 /**
- * `datum()` returns the current date and time in ISO format
- * @returns the date.
+ * `datum()` visszaadja az aktuális dátumot ISO formátumban, stringként.
+ * @returns a dátumot.
  */
 export function datum() {
   const now = new Date().toISOString();
@@ -192,13 +190,12 @@ export function datum() {
 // KI ÉS BE
 
 /**
- * It navigates to the login page, fills in the username and password, presses the tab key, fills in
- * the password, presses the enter key, and then checks if the URL is the same as the main page.
+ * Elnavigál az SSO-s login oldalra, kitölti a nevet és jelszavat, bejelentkeztet és ellenőrzi azt, hogy jó helyre dobott-e.
  * 
- * @param {any} page - the page object
- * @param {boolean} remote - true if the site is being used as a remote server, false if it's used locally.
- * @param {string} user - string - the username to log in with
- * @param {string} pass - string - the password to log in with
+ * @param {any} page - page objektum
+ * @param {boolean} remote - true, ha távoliként van használva a link és false, ha helyiként.
+ * @param {string} user - string - a felhasználónév (alap paraméter a configban beírt)
+ * @param {string} pass - string - a jelszó (alap paraméter a configban beírt)
  */
 export async function login(page: any, remote: boolean = false, user: string = core.user.name, pass: string = core.user.pass) {
   await page.goto(medaurl(remote));
@@ -211,17 +208,18 @@ export async function login(page: any, remote: boolean = false, user: string = c
 };
 
 /**
- * It registers a new user on a website.
- * The function is called like this:
+ * Beregisztrál egy új felhasználót.
+ * Ez a funkció nem működik, mert a bot nem képes beleklikkelni a captcha-ba...
+ * 
  * @example register(page, false, "John", "Doe", "john.doe@example.com", "johndoe", "password", "12345");
- * @param {any} page - the page object,
+ * @param {any} page - page objektum
  * @param {boolean} [remote=false] - boolean = false
- * @param {string} firstname - string, first name
- * @param {string} lastname - string, last name
- * @param {string} email - string, e-mail address
- * @param {string} user - string, username
- * @param {string} pass - string, password
- * @param {string} accesscode - string, optional
+ * @param {string} firstname - string, keresztnév
+ * @param {string} lastname - string, vezetéknév
+ * @param {string} email - string, e-mail cím
+ * @param {string} user - string, felhasználónév
+ * @param {string} pass - string, jelszó
+ * @param {string} accesscode - string, opcionális
  */
 export async function register(page: any, remote: boolean = false, firstname: string, lastname: string, email: string, user: string, pass: string, accesscode?: string) {
   await page.goto(medaurl(remote));
@@ -236,15 +234,15 @@ export async function register(page: any, remote: boolean = false, firstname: st
   await labelcheck(page, "Confirm password", pass);
   if (accesscode != undefined) await labelcheck(page, "Access code (optional)", accesscode);
   //await page.locator('iframe[name=' + RegExp(/a-[a-z0-9]{12}/g) + '"]').getByRole('checkbox', { name: 'I\'m not a robot' }).click();
-  await page.getByRole('checkbox', { name: 'I\'m not a robot', exact: true }).click();
+  //await page.getByRole('checkbox', { name: 'I\'m not a robot', exact: true }).click();
   await pressbutton(page, "Register");
   await expect(page).toHaveURL(medaurl(remote));
   console.log("sikeres regisztráció: " + branch(remote) + ": " + user + " - " + pass);
 };
 
 /**
- * It clicks on the "kilépés" button, then closes the page context
- * @param {any} page - the page object
+ * Rányom a "Kilépés" gombra, ezáltal kijelentkeztet.
+ * @param {any} page - page objektum
  */
 export async function logout(page: any, user: string = core.user.name) {
   if (core.misc.admin) await pressbutton(page, 'span:has-text("kilépés")', 0, "locator");
@@ -258,13 +256,12 @@ export async function logout(page: any, user: string = core.user.name) {
 
 // TÁVOLI SZERVER MENÜ
 
-/**
- * It clicks on a cell with the name of a remote server, then clicks on a button with the name "
- * Távoli felhasználók", then it checks if the URL contains the string ".#!serverUsers.", then it
- * clicks on a cell with the name of the remote server.
+/** 
+ * A távoli szerver nevére ráklikkel, majd megnyitja a Távoli felhasználók felületet
+ * és onnan is kiválasztja a távoli szervert.
  * 
- * @param {any} page - the page object
- * @param {string} remote - the name of the remote server
+ * @param {any} page - page objektum
+ * @param {string} remote - a távoli szerver neve
  */
 export async function hoptoserverusers(page: any, remote: string) {
   await pressbutton(page, remote, 0, "cell");
@@ -279,13 +276,13 @@ export async function hoptoserverusers(page: any, remote: string) {
 };
 
 /**
- * It clicks on a button with a given name and position on the page
- * @param {any} page - the page object
- * @param {string} buttonname - the name of the button
- * @param {number} [position=0] - number = 0 -&gt; if there are multiple buttons with the same name,
- * you can specify which one you want to click on.
- * @param {string} [role=button] - the role of the button, usually "button"
- * @param {boolean} [filtered=false] - true if the stock getByRole function needs extra filtering
+ * Megnyom egy gombot az adott paraméterek alapján, miután ellenőrizte azt, hogy létezik és látható.
+ * 
+ * @param {any} page - page objektum
+ * @param {string} buttonname - a gomb neve
+ * @param {number} [position=0] - number = 0, ha több gomb van ugyanazzal a névvel, akkor aszerint kell számozni
+ * @param {string} [role=button] - a gomb szerepe, általában "button", mivel vaadin alatt több fajta gombot is meg lehet nyomni...
+ * @param {boolean} [filtered=false] - true, ha egyéb szűrési feltételekre is szükség van
  */
 export async function pressbutton(page: any, buttonname: string, position: number = 0, role: string = "button", filtered: boolean = false) {
   let button: any = undefined;
@@ -302,12 +299,13 @@ export async function pressbutton(page: any, buttonname: string, position: numbe
 };
 
 /**
- * It clicks on a button, then it clicks on the first button with the text "Nem" (Cancel), then it
- * clicks on the original button again, then it clicks on the first button with the text "Igen" (Ok).
- * @param {any} page - the page object
- * @param {string} buttonname - the name of the button you want to press
- * @param {number} [position=0] - 0 = first button, 1 = second button, etc.
- * @param {number} [environment=0] - 0 = Medalyse admin Hungarian, 1 = Medalyse admin English, 2 = Angular Hungarian
+ * Ez a funkció bizonyos dolgok törlésére való, aminél először Nem-re nyom, majd Igen-re, 
+ * hogy ellenőrizze a működését ennek is.
+ * 
+ * @param {any} page - page objektum
+ * @param {string} buttonname - a megnyomandó gomb neve
+ * @param {number} [position=0] - a gomb pozíciója
+ * @param {number} [environment=0] - 0 = Medalyse admin magyar nyelvű, 1 = Medalyse admin angol nyelvű, 2 = Angular magyar
  */
 export async function removeitem(page: any, buttonname: string, position: number = 0, environment: number = 0) {
   const text: string[][] = [
@@ -343,12 +341,14 @@ export async function scrollOnElement(page: any, selector: any) {
 };
 
 /**
- * "Scrolls" down by holding the ArrowDown key inside until the element becomes visible.
- * This workaround exists only because Medalyse isn't capable of running the already existing scrollIntoView(IfNeeded) function.
- * @param {any} page - the page object
- * @param {string} headername - The name of the header you want to "click on"
- * @param {number} nth - To indicate which header name to be selected if there are multiple with the same name
- * @param {any} locator - the element you want to scroll to
+ * "Legörget" egy listában addig az elemig, amit meg akarunk találni benne.
+ * Technikailag a lefelé nyilat spameli.
+ * Ez a funkció azért létezik, mert vaadinban a scrollIntoView() nem működik.
+ * 
+ * @param {any} page - page objektum
+ * @param {string} headername - a klikkelendő fejléc neve
+ * @param {number} nth - klikkelendő fejléc pozíciója
+ * @param {any} locator - az elem, amire "görgetni" szeretnénk
  */
 export async function scrollUntilVisible(page: any, headername: string, nth: number, locator: any) {
   await page.getByText(headername).nth(nth).click({ delay: 50 });
@@ -359,11 +359,11 @@ export async function scrollUntilVisible(page: any, headername: string, nth: num
 };
 
 /**
- * It clicks on the "Alkalmazás" menu, then clicks on the appname, then clicks on the "BELÉPÉS" button,
- * then checks if the URL is correct
- * @param {any} page - the page object
- * @param {string} appname - the name of the application
- * @param {string} appurl - the url of the application
+ * Az "Alkalmazás" menüre klikkel, azon belül kiválasztja az appot,
+ * a BELÉPÉS gombra kattint és ellenőrzi az URL helyességét.
+ * @param {any} page - page objektum
+ * @param {string} appname - az alkalmazás neve
+ * @param {string} appurl - az alkalmazás linkje
  * @param {boolean} [remote=false] - boolean = false
  */
 export async function selectApp(page: any, appname: string, appurl: string, remote: boolean = false) {
@@ -374,8 +374,8 @@ export async function selectApp(page: any, appname: string, appurl: string, remo
 };
 
 /**
- * It takes a locator as an argument, and returns the background color of the element
- * @param {any} locator - The element you want to get the color of.
+ * Egy elemnek a háttérszínét adja vissza.
+ * @param {any} locator - Az elem, aminek a színe kell.
  */
 export async function getElementColor(locator: any) {
   const color = await locator.evaluate((e: any) => { return window.getComputedStyle(e).getPropertyValue("background-color") });
@@ -384,10 +384,9 @@ export async function getElementColor(locator: any) {
 };
 
 /**
- * It clicks on the report version changer button located inside a report, 
- * then sets the version given as the argument. (Angular)
- * @param {any} page - the page object
- * @param {string} version - string - report version
+ * A lokális módválasztón átklikkel a megadott riport verzióra.
+ * @param {any} page - page objektum
+ * @param {string} version - string - riport verzió
  */
 export async function chooseReportAccMode(page: any, version: string) {
   await page.locator('hw-report-breadcrumbs').getByRole('button').click();
@@ -396,10 +395,9 @@ export async function chooseReportAccMode(page: any, version: string) {
 };
 
 /**
- * It clicks on the accessibility mode changer button, 
- * then chooses the accessibility mode according to the argument given. (Angular)
- * @param {any} page - any - the page object
- * @param {string} mode - string - the accessibility mode to choose
+ * A globális módválasztón átklikkel a megadott verzióra.
+ * @param {any} page - page objektum
+ * @param {string} mode - string - hozzáférési mód neve
  */
 export async function chooseAccessibilityMode(page: any, mode: string) {
   await page.locator('hw-header').getByRole('button').filter({ hasText: 'explore' }).click();
@@ -408,11 +406,11 @@ export async function chooseAccessibilityMode(page: any, mode: string) {
 }
 
 /**
- * This function navigates to a page in the admin section of the site.
- * @param {any} page - the page object from puppeteer
- * @param {string} parent - the parent button to press
- * @param {string} child - the name of the child element
- * @param {string} url - the url of the page you want to navigate to
+ * Ez a funkció az admin egyik fő menüjében lévő gyermekmenüre klikkel.
+ * @param {any} page - page objektum
+ * @param {string} parent - szülő menü neve
+ * @param {string} child - gyermek menü neve
+ * @param {string} url - az URL, amire navigálni akarsz
  * @param {boolean} [remote=false] - boolean = false
  */
 export async function navigateToAdminPage(page: any, parent: string, child: string, url: string, remote: boolean = false) {
